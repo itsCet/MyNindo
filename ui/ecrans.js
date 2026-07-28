@@ -220,18 +220,20 @@ function rendreBadgesEffets(effets = {}) {
 }
 
 function gererChoix(choixId) {
-  const choix = evenementCourant.choix.find((c) => c.id === choixId);
-  const { termine, etape } = jeu.choisir(evenementCourant, choixId);
+  const { termine, etape, resultatChoix } = jeu.choisir(evenementCourant, choixId);
   runTermineeEnAttente = termine;
   etapeEnAttente = etape;
 
   rendreStats();
   $("liste-choix").hidden = true;
 
-  $("texte-resultat").textContent = choix.resume
-    ? `Ton personnage ${choix.resume}.`
-    : choix.texte;
-  rendreBadgesEffets(choix.effets);
+  const etiquetteIssue = $("etiquette-issue");
+  etiquetteIssue.hidden = !resultatChoix.echec;
+
+  $("texte-resultat").textContent = resultatChoix.resume
+    ? `Ton personnage ${resultatChoix.resume}.`
+    : resultatChoix.texte;
+  rendreBadgesEffets(resultatChoix.effets);
 
   const zoneResultat = $("zone-resultat");
   zoneResultat.hidden = false;

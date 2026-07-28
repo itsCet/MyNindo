@@ -119,7 +119,12 @@
         "texte": "Foncer sans t'arrêter, quitte à t'épuiser.",
         "resume": "a livré des messages en fonçant sous la tempête",
         "tag": "Risqué",
-        "effets": { "stats": { "vitesse": 3, "sante": -2 } }
+        "risque": 0.3,
+        "effets": { "stats": { "vitesse": 3, "sante": -2 } },
+        "echec": {
+          "resume": "s'est perdu sous la tempête et a dû rebrousser chemin, les messages en retard",
+          "effets": { "stats": { "sante": -4, "reputation": -2 } }
+        }
       },
       {
         "id": "b",
@@ -141,7 +146,12 @@
         "texte": "T'approcher au plus près pour un rapport détaillé.",
         "resume": "s'est infiltré près d'un campement suspect",
         "tag": "Risqué",
-        "effets": { "stats": { "intelligence": 3, "controleEmotionnel": -1 } }
+        "risque": 0.35,
+        "effets": { "stats": { "intelligence": 3, "controleEmotionnel": -1 } },
+        "echec": {
+          "resume": "s'est fait repérer en s'approchant trop près du campement et a dû fuir en urgence",
+          "effets": { "stats": { "reputation": -3, "controleEmotionnel": -2, "sante": -2 } }
+        }
       },
       {
         "id": "b",
@@ -231,7 +241,12 @@
         "texte": "Intervenir immédiatement pour repousser les mercenaires.",
         "resume": "a repoussé des mercenaires pour sauver un village voisin",
         "tag": "Risqué",
-        "effets": { "stats": { "force": 4, "reputation": 4, "sante": -3 }, "drapeaux": { "a_sauve_un_village": true } }
+        "risque": 0.35,
+        "effets": { "stats": { "force": 4, "reputation": 4, "sante": -3 }, "drapeaux": { "a_sauve_un_village": true } },
+        "echec": {
+          "resume": "est arrivé trop tard : les mercenaires ont eu le temps de piller le village avant de fuir",
+          "effets": { "stats": { "force": 2, "reputation": -4, "sante": -5 } }
+        }
       },
       {
         "id": "b",
@@ -277,7 +292,12 @@
         "texte": "Forcer le passage au combat.",
         "resume": "a forcé le passage au combat en territoire hostile",
         "tag": "Risqué",
-        "effets": { "stats": { "force": 3, "sante": -4 } }
+        "risque": 0.3,
+        "effets": { "stats": { "force": 3, "sante": -4 } },
+        "echec": {
+          "resume": "a été durement blessé en forçant le passage, sans même réussir à percer",
+          "effets": { "stats": { "force": 1, "sante": -7 } }
+        }
       },
       {
         "id": "b",

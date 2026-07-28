@@ -30,18 +30,26 @@ export function tirerProchainEvenement(pool, etat, idsVus = new Set()) {
   return disponibles[index];
 }
 
+// Un choix peut porter un champ "risque" (0-1) et un bloc "echec" (resume/texte/effets
+// alternatifs). Si le tirage échoue, c'est le bloc "echec" qui s'applique à la place
+// du résultat attendu — un choix risqué peut donc vraiment mal tourner.
 export function appliquerChoix(etat, evenement, choixId) {
   const choix = evenement.choix.find((c) => c.id === choixId);
   if (!choix) throw new Error(`Choix inconnu "${choixId}" pour l'événement "${evenement.id}"`);
 
-  appliquerEffets(etat, choix.effets);
+  const risque = choix.risque ?? 0;
+  const echoue = risque > 0 && Math.random() < risque && Boolean(choix.echec);
+  const resolu = echoue ? choix.echec : choix;
+
+  appliquerEffets(etat, resolu.effets);
   etat.historique.push({
     eventId: evenement.id,
     choixId,
-    resume: choix.resume ?? choix.texte,
-    tag: choix.tag ?? null,
-    effets: choix.effets ?? {},
+    resume: resolu.resume ?? resolu.texte ?? choix.texte,
+    tag: echoue ? "Échec" : choix.tag ?? null,
+    effets: resolu.effets ?? {},
+    echec: echoue,
   });
 
-  return choix;
+  return { ...resolu, echec: echoue };
 }

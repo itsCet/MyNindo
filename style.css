@@ -452,6 +452,20 @@ fieldset.groupe-options legend {
   font-style: italic;
 }
 
+.etiquette-issue {
+  display: inline-block;
+  font-size: var(--taille-petite);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--espace-1) var(--espace-3);
+  border-radius: 999px;
+  color: var(--couleur-danger);
+  border: 1px solid var(--couleur-danger);
+  background: color-mix(in srgb, var(--couleur-danger) 12%, transparent);
+  margin-bottom: var(--espace-3);
+}
+
 .badges-effets {
   display: flex;
   flex-wrap: wrap;

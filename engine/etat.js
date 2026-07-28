@@ -44,6 +44,14 @@ export function creerPersonnage(selection, origines) {
     if (origine) appliquerBonusStats(stats, origine.bonus);
   }
 
+  // Drapeaux d'archétype : posés une fois pour toutes à la création, ils permettent
+  // à des événements de ne se déclencher que pour tel clan ou tel tempérament, pour
+  // que chaque combinaison vive une carrière qui lui ressemble vraiment.
+  const drapeaux = {};
+  if (clan) drapeaux[`clan_${clan.id}`] = true;
+  if (temperament) drapeaux[`temperament_${temperament.id}`] = true;
+  if (village) drapeaux[`village_${village.id}`] = true;
+
   return {
     identite: {
       nom: selection.nom?.trim() || "Ninja sans nom",
@@ -55,7 +63,7 @@ export function creerPersonnage(selection, origines) {
       mentor: mentor?.nom ?? "Mentor inconnu",
     },
     stats,
-    drapeaux: {},
+    drapeaux,
     progression: {
       arc: "enfance",
       compteurArc: 0,

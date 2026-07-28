@@ -343,7 +343,7 @@ export function choisir(evenement, choixId) {
   const arcAvant = etatCourant.progression.arc;
   const tailleArcAvant = obtenirTailleArc(arcAvant);
 
-  appliquerChoix(etatCourant, evenement, choixId);
+  const resultatChoix = appliquerChoix(etatCourant, evenement, choixId);
   idsVus.add(evenement.id);
   avancerProgression(etatCourant);
 
@@ -354,6 +354,7 @@ export function choisir(evenement, choixId) {
     etat: etatCourant,
     termine: arcApres === "fin",
     etape,
+    resultatChoix,
   };
 }
 

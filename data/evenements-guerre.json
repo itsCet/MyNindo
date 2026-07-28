@@ -159,7 +159,12 @@
         "texte": "Foncer à son secours, au péril de ta propre sécurité.",
         "resume": "a foncé secourir son mentor encerclé au péril de sa vie",
         "tag": "Risqué",
-        "effets": { "stats": { "loyaute": 5, "sante": -4 }, "drapeaux": { "lien_fort_avec_mentor": true } }
+        "risque": 0.3,
+        "effets": { "stats": { "loyaute": 5, "sante": -4 }, "drapeaux": { "lien_fort_avec_mentor": true } },
+        "echec": {
+          "resume": "n'est pas arrivé à temps malgré tous ses efforts pour secourir son mentor",
+          "effets": { "stats": { "sante": -5, "controleEmotionnel": -3 }, "drapeaux": { "a_perdu_son_mentor": true } }
+        }
       },
       {
         "id": "b",
@@ -221,7 +226,12 @@
         "texte": "Prendre tous les risques pour porter le coup décisif.",
         "resume": "a pris tous les risques lors de la bataille décisive",
         "tag": "Risqué",
-        "effets": { "stats": { "force": 4, "maitriseChakra": 3, "reputation": 4, "sante": -5 } }
+        "risque": 0.3,
+        "effets": { "stats": { "force": 4, "maitriseChakra": 3, "reputation": 4, "sante": -5 } },
+        "echec": {
+          "resume": "a pris tous les risques, mais le coup décisif n'a pas porté",
+          "effets": { "stats": { "sante": -6, "reputation": -2 } }
+        }
       },
       {
         "id": "b",

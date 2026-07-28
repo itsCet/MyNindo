@@ -146,7 +146,12 @@
         "texte": "Affronter l'adversaire frontalement, quitte à encaisser des coups.",
         "resume": "a affronté frontalement {{adversaire}}",
         "tag": "Risqué",
-        "effets": { "stats": { "force": 4, "sante": -3 } }
+        "risque": 0.3,
+        "effets": { "stats": { "force": 4, "sante": -3 } },
+        "echec": {
+          "resume": "a été dominé par {{adversaire}} lors de l'affrontement frontal",
+          "effets": { "stats": { "sante": -5, "reputation": -2 } }
+        }
       }
     ]
   },

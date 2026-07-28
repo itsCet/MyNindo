@@ -246,6 +246,144 @@
     ]
   },
   {
+    "id": "aca_011",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "clan_hoshigami": true } },
+    "texte": "On chuchote encore, dans les couloirs de l'Académie, l'histoire de la chute du clan Hoshigami. Un camarade te demande, sans détour, si c'est vrai que ton clan a été maudit.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Répondre avec fierté, sans rien renier de ton héritage.",
+        "resume": "a répondu avec fierté aux rumeurs sur la chute de son clan",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 2, "reputation": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Éluder la question, tu n'as pas envie d'en parler.",
+        "resume": "a éludé les questions sur la chute de son clan",
+        "tag": "Solitaire",
+        "effets": { "stats": { "controleEmotionnel": 2, "reputation": -1 } }
+      },
+      {
+        "id": "c",
+        "texte": "Corriger froidement les rumeurs, une à une.",
+        "resume": "a corrigé froidement les rumeurs sur son clan",
+        "tag": "Froid",
+        "effets": { "stats": { "intelligence": 2, "controleEmotionnel": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_012",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "clan_vharo": true } },
+    "texte": "Un instructeur te met en garde : la réputation du clan Vharo te précède, et le moindre débordement sera jugé plus sévèrement que pour les autres.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Te promettre de leur prouver qu'ils ont tort, calmement.",
+        "resume": "s'est promis de prouver calmement que la réputation de son clan est infondée",
+        "tag": "Discipliné",
+        "effets": { "stats": { "controleEmotionnel": 3 } }
+      },
+      {
+        "id": "b",
+        "texte": "Hausser les épaules, ça ne changera rien à qui tu es.",
+        "resume": "a haussé les épaules face aux préjugés sur son clan",
+        "tag": "Impulsif",
+        "effets": { "stats": { "force": 2, "reputation": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_013",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "clan_kagerou": true } },
+    "texte": "Pendant un exercice, ta maîtrise naissante des mirages trouble un camarade au point de le mettre mal à l'aise. Certains commencent à te regarder différemment.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "T'excuser et proposer de lui expliquer la technique.",
+        "resume": "s'est excusé et a expliqué sa technique d'illusion à un camarade troublé",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 2, "intelligence": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Ne rien changer : ce n'est pas à toi de t'excuser d'exister.",
+        "resume": "a refusé de s'excuser d'exister tel qu'il est",
+        "tag": "Solitaire",
+        "effets": { "stats": { "controleEmotionnel": 2, "reputation": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_014",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "clan_aucun": true } },
+    "texte": "Sans lignée derrière toi, tu remarques que certains formateurs consacrent plus de temps aux héritiers de grands clans qu'à toi.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Travailler deux fois plus dur pour te faire remarquer.",
+        "resume": "a travaillé deux fois plus dur pour se faire remarquer, sans clan derrière lui",
+        "tag": "Ambitieux",
+        "effets": { "stats": { "force": 1, "intelligence": 1, "sante": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Trouver ta motivation ailleurs que dans leur reconnaissance.",
+        "resume": "a trouvé sa motivation ailleurs que dans la reconnaissance des formateurs",
+        "tag": "Solitaire",
+        "effets": { "stats": { "controleEmotionnel": 2, "loyaute": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_015",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "temperament_impulsif": true } },
+    "texte": "Ta tendance à agir sans réfléchir te vaut une nouvelle remarque cette semaine — la troisième en quelques jours.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Reconnaître que tu dois apprendre à te canaliser.",
+        "resume": "a reconnu devoir apprendre à se canaliser",
+        "tag": "Discipliné",
+        "effets": { "stats": { "controleEmotionnel": 3 } }
+      },
+      {
+        "id": "b",
+        "texte": "Répondre que c'est aussi ce qui fait ta force.",
+        "resume": "a assumé son impulsivité comme une force",
+        "tag": "Impulsif",
+        "effets": { "stats": { "force": 2, "reputation": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_016",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "temperament_calme": true } },
+    "texte": "Ton calme à toute épreuve commence à intriguer tes camarades, qui se demandent si quelque chose parvient vraiment à t'atteindre.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Leur montrer que même toi, tu as des limites, une fois n'est pas coutume.",
+        "resume": "a montré, une fois n'est pas coutume, que son calme avait des limites",
+        "tag": "Impulsif",
+        "effets": { "stats": { "reputation": 1, "controleEmotionnel": -2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Garder ton calme, comme toujours.",
+        "resume": "a gardé son calme, comme toujours",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      }
+    ]
+  },
+  {
     "id": "aca_008",
     "arc": "academie",
     "conditions": {},
