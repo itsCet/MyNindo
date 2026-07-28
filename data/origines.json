@@ -1,60 +1,84 @@
 {
   "villages": [
     {
-      "id": "sylvombre",
-      "nom": "Sylvombre",
-      "description": "Village bâti dans la canopée d'une forêt sans fin, où l'on apprend à se déplacer sans un bruit avant même de savoir courir.",
-      "bonus": { "intelligence": 5, "maitriseChakra": 3, "force": -2 }
+      "id": "hono",
+      "nom": "Hono-gakure",
+      "description": "Village caché du Pays de la Flamme, dirigé par le Honokage. Ses habitants grandissent au rythme des forges et des brasiers d'entraînement, dans une discipline aussi ardente que leur territoire.",
+      "bonus": { "force": 4, "controleEmotionnel": -2, "reputation": 2 }
     },
     {
-      "id": "rocardent",
-      "nom": "Roc-Ardent",
-      "description": "Village creusé dans les flancs d'un volcan endormi. Ses habitants forgent leur corps à la chaleur des forges autant qu'à celle des entraînements.",
-      "bonus": { "force": 6, "sante": 4, "vitesse": -3 }
+      "id": "kasumi",
+      "nom": "Kasumi-gakure",
+      "description": "Village caché du Pays des Brumes, dirigé par le Kasumikage. Noyé sous un brouillard permanent, il forme des ninjas habitués à agir et se déplacer sans jamais être vraiment vus.",
+      "bonus": { "maitriseChakra": 3, "intelligence": 2, "force": -2 }
     },
     {
-      "id": "maregrise",
-      "nom": "Marée-Grise",
-      "description": "Port marchand battu par les vents, où l'on grandit entre les quais, les marchés et les rumeurs qui voyagent plus vite que les bateaux.",
-      "bonus": { "vitesse": 5, "reputation": 3, "sante": -2 }
+      "id": "ganseki",
+      "nom": "Ganseki-gakure",
+      "description": "Village caché du Pays de la Roche, dirigé par le Gansekikage. Bâti à même la pierre, il façonne des shinobi robustes, aussi patients qu'increvables.",
+      "bonus": { "sante": 5, "force": 2, "vitesse": -3 }
     },
     {
-      "id": "sablenuit",
-      "nom": "Sablenuit",
-      "description": "Village-oasis niché au creux d'un désert glacial la nuit, brûlant le jour. La survie y forge une discipline de fer.",
-      "bonus": { "controleEmotionnel": 5, "loyaute": 3, "vitesse": -2 }
+      "id": "sabaku",
+      "nom": "Sabaku-gakure",
+      "description": "Village caché du Pays du Désert, dirigé par le Sabakukage. La rareté de l'eau et la dureté du climat y forgent une endurance et une rapidité hors normes.",
+      "bonus": { "vitesse": 4, "sante": -3, "reputation": 1 }
+    },
+    {
+      "id": "raimei",
+      "nom": "Raimei-gakure",
+      "description": "Village caché du Pays du Tonnerre, dirigé par le Raimeikage. Ses écoles enseignent une maîtrise du chakra aussi vive et tranchante que la foudre.",
+      "bonus": { "intelligence": 2, "maitriseChakra": 3, "controleEmotionnel": -2 }
     }
   ],
   "clans": [
     {
-      "id": "kagetsu",
-      "nom": "Clan Kagetsu",
-      "description": "Lignée d'éclaireurs et d'espions, réputée pour son art de disparaître dans le clair-obscur.",
-      "bonus": { "vitesse": 3, "intelligence": 3, "reputation": -2 }
+      "id": "byakuen",
+      "nom": "Clan Byakuen",
+      "description": "Maîtres de l'Œil Blanc, capables de percer les illusions les plus fines au prix d'une froideur qui les tient à l'écart des autres clans.",
+      "bonus": { "intelligence": 4, "controleEmotionnel": 2, "reputation": -1 }
     },
     {
-      "id": "vharo",
-      "nom": "Clan Vharo",
-      "description": "Famille de combattants au sang chaud, connue pour son style offensif et son manque de patience légendaire.",
-      "bonus": { "force": 4, "controleEmotionnel": -4 }
+      "id": "kurogane",
+      "nom": "Clan Kurogane",
+      "description": "Guerriers au corps endurci comme du métal noir, réputés pour encaisser sans broncher ce qui briserait n'importe qui d'autre.",
+      "bonus": { "force": 4, "sante": 4, "vitesse": -3 }
     },
     {
-      "id": "nimbaru",
-      "nom": "Clan Nimbaru",
-      "description": "Descendants de danseurs de vent, capables d'enchaîner les déplacements à une vitesse déconcertante.",
-      "bonus": { "vitesse": 5, "maitriseChakra": 2, "sante": -2 }
+      "id": "nagareboshi",
+      "nom": "Clan Nagareboshi",
+      "description": "Spécialistes de la vitesse et des techniques dites « de comète », laissant derrière eux une traînée que l'adversaire n'a pas le temps de suivre.",
+      "bonus": { "vitesse": 5, "reputation": 2, "sante": -2 }
     },
     {
-      "id": "glacenne",
-      "nom": "Clan Glacenne",
-      "description": "Lignée réputée pour sa maîtrise froide et méthodique du chakra, transmise de génération en génération.",
-      "bonus": { "controleEmotionnel": 4, "maitriseChakra": 3, "force": -2 }
+      "id": "tsuchigumo",
+      "nom": "Clan Tsuchigumo",
+      "description": "Lignée d'utilisateurs de fils de chakra et de pièges, tissés avec la patience et la précision d'une araignée de terre.",
+      "bonus": { "intelligence": 3, "maitriseChakra": 3, "reputation": -3 }
     },
     {
-      "id": "ferrune",
-      "nom": "Clan Ferrune",
-      "description": "Clan de bâtisseurs et de gardes, réputé pour son endurance à toute épreuve et sa loyauté sans faille au village.",
-      "bonus": { "force": 3, "sante": 5, "vitesse": -3 }
+      "id": "akaoni",
+      "nom": "Clan Akaoni",
+      "description": "Réputés pour leur force brute autant que pour leur sang-froid absolu au combat, où d'autres perdraient tout contrôle.",
+      "bonus": { "force": 4, "controleEmotionnel": 3, "loyaute": -1 }
+    },
+    {
+      "id": "mizuchi",
+      "nom": "Clan Mizuchi",
+      "description": "Clan aquatique dont la légende prétend qu'il descend de créatures serpentines liées aux cours d'eau les plus anciens.",
+      "bonus": { "maitriseChakra": 4, "sante": 3, "controleEmotionnel": -1 }
+    },
+    {
+      "id": "kagerou",
+      "nom": "Clan Kagerou",
+      "description": "Spécialistes des mirages et des techniques d'illusion, aussi insaisissables qu'un miroitement de chaleur sur la route.",
+      "bonus": { "intelligence": 3, "maitriseChakra": 2, "force": -2 }
+    },
+    {
+      "id": "hoshigami",
+      "nom": "Clan Hoshigami",
+      "description": "Clan déchu, porteur d'un dojutsu céleste devenu extrêmement rare, dont l'héritage pèse autant qu'il fascine.",
+      "bonus": { "maitriseChakra": 5, "reputation": -2, "loyaute": -2 }
     },
     {
       "id": "aucun",
