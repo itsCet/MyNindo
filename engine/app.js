@@ -27,6 +27,16 @@ const LABELS_ARCS = {
   fin: "Fin de run",
 };
 
+const JALONS_ARCS = {
+  enfance: "Premiers pas d'une future légende.",
+  academie: "Académie achevée.",
+  examen_genin: "Examen Genin réussi.",
+  missions: "Missions accomplies, du rang D au rang S.",
+  examen_chunin: "Examen Chunin réussi.",
+  guerre: "Guerre traversée.",
+  ascension: "Ton destin est scellé.",
+};
+
 const CATALOGUE_BADGES = [
   {
     id: "premiere_run",
@@ -235,13 +245,68 @@ export function obtenirEvenementCourant() {
   return null;
 }
 
+function obtenirTailleArc(arc) {
+  if (arc === "missions") return CONFIG_ARCS.missions.seuilParRang * RANGS_MISSIONS.length;
+  return CONFIG_ARCS[arc]?.seuil ?? 0;
+}
+
+// Bilan affiché une fois qu'un arc entier vient d'être bouclé (pas à chaque choix).
+function construireBilanArc(etat, arcTermine, tailleArc) {
+  const entrees = etat.historique.slice(-tailleArc);
+
+  const totaux = {};
+  for (const entree of entrees) {
+    for (const [cle, delta] of Object.entries(entree.effets?.stats ?? {})) {
+      totaux[cle] = (totaux[cle] ?? 0) + delta;
+    }
+  }
+
+  // Réputation et santé ont déjà leur propre tuile dédiée : on cherche la
+  // meilleure progression parmi les autres statistiques pour éviter les doublons.
+  let meilleureStat = null;
+  for (const [cle, valeur] of Object.entries(totaux)) {
+    if (cle === "reputation" || cle === "sante") continue;
+    if (valeur > 0 && (!meilleureStat || valeur > meilleureStat.valeur)) {
+      meilleureStat = { cle, valeur };
+    }
+  }
+
+  const entreeTaguee = [...entrees].reverse().find((e) => e.tag);
+  const entreeCitation = entreeTaguee ?? entrees[entrees.length - 1] ?? null;
+
+  const momentsRecents = entrees
+    .filter((e) => e.resume && e.resume !== entreeCitation?.resume)
+    .map((e) => e.resume)
+    .slice(-2);
+
+  return {
+    arc: arcTermine,
+    label: obtenirLabelArc(arcTermine),
+    jalon: JALONS_ARCS[arcTermine] ?? "",
+    nbEvenements: entrees.length,
+    meilleureStat,
+    reputation: etat.stats.reputation,
+    sante: etat.stats.sante,
+    citation: entreeCitation?.resume ?? null,
+    moments: momentsRecents,
+  };
+}
+
 export function choisir(evenement, choixId) {
+  const arcAvant = etatCourant.progression.arc;
+  const tailleArcAvant = obtenirTailleArc(arcAvant);
+
   appliquerChoix(etatCourant, evenement, choixId);
   idsVus.add(evenement.id);
   avancerProgression(etatCourant);
+
+  const arcApres = etatCourant.progression.arc;
+  const etape = arcApres !== arcAvant && arcApres !== "fin" ? construireBilanArc(etatCourant, arcAvant, tailleArcAvant) : null;
+
   return {
     etat: etatCourant,
-    termine: etatCourant.progression.arc === "fin",
+    termine: arcApres === "fin",
+    etape,
   };
 }
 

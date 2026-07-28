@@ -39,6 +39,8 @@ export function appliquerChoix(etat, evenement, choixId) {
     eventId: evenement.id,
     choixId,
     resume: choix.resume ?? choix.texte,
+    tag: choix.tag ?? null,
+    effets: choix.effets ?? {},
   });
 
   return choix;

@@ -31,6 +31,7 @@ const TONS_ETIQUETTES = {
 
 let evenementCourant = null;
 let runTermineeEnAttente = false;
+let etapeEnAttente = null;
 
 function $(id) {
   return document.getElementById(id);
@@ -167,6 +168,7 @@ function rendreEcranJeu(evenement) {
   $("texte-evenement").textContent = evenement.texte;
 
   $("zone-resultat").hidden = true;
+  $("zone-etape").hidden = true;
   const liste = $("liste-choix");
   liste.hidden = false;
   liste.innerHTML = "";
@@ -219,8 +221,9 @@ function rendreBadgesEffets(effets = {}) {
 
 function gererChoix(choixId) {
   const choix = evenementCourant.choix.find((c) => c.id === choixId);
-  const { termine } = jeu.choisir(evenementCourant, choixId);
+  const { termine, etape } = jeu.choisir(evenementCourant, choixId);
   runTermineeEnAttente = termine;
+  etapeEnAttente = etape;
 
   rendreStats();
   $("liste-choix").hidden = true;
@@ -235,7 +238,64 @@ function gererChoix(choixId) {
   zoneResultat.focus?.();
 }
 
+function creerTuileEtape(valeur, label) {
+  const tuile = document.createElement("div");
+  tuile.className = "etape-tuile";
+  tuile.innerHTML = `
+    <span class="etape-tuile__valeur">${valeur}</span>
+    <span class="etape-tuile__label">${label}</span>
+  `;
+  return tuile;
+}
+
+function rendreEtape(etape) {
+  $("etape-badge").textContent = `Arc — ${etape.label}`;
+  $("etape-citation").textContent = etape.citation ? `« ${etape.citation} »` : "";
+  $("etape-citation").hidden = !etape.citation;
+
+  const tuiles = $("etape-tuiles");
+  tuiles.innerHTML = "";
+  tuiles.appendChild(creerTuileEtape(etape.nbEvenements, "Événements"));
+  tuiles.appendChild(
+    creerTuileEtape(
+      etape.meilleureStat ? `+${etape.meilleureStat.valeur}` : "—",
+      etape.meilleureStat ? LABELS_STATS[etape.meilleureStat.cle] ?? etape.meilleureStat.cle : "Stat dominante"
+    )
+  );
+  tuiles.appendChild(creerTuileEtape(etape.reputation, "Réputation"));
+  tuiles.appendChild(creerTuileEtape(etape.sante, "Santé"));
+
+  $("etape-jalon").textContent = etape.jalon;
+
+  const moments = $("etape-moments");
+  moments.innerHTML = "";
+  for (const moment of etape.moments) {
+    const p = document.createElement("p");
+    p.textContent = `Ton personnage ${moment}.`;
+    moments.appendChild(p);
+  }
+}
+
 function gererContinuer() {
+  if (etapeEnAttente) {
+    const etape = etapeEnAttente;
+    etapeEnAttente = null;
+    $("zone-resultat").hidden = true;
+    rendreEtape(etape);
+    const zoneEtape = $("zone-etape");
+    zoneEtape.hidden = false;
+    zoneEtape.focus?.();
+    return;
+  }
+  if (runTermineeEnAttente) {
+    conclureRun();
+    return;
+  }
+  afficherProchainEvenementOuFin();
+}
+
+function gererContinuerEtape() {
+  $("zone-etape").hidden = true;
   if (runTermineeEnAttente) {
     conclureRun();
     return;
@@ -347,6 +407,7 @@ function configurerNavigation() {
 
   $("formulaire-creation").addEventListener("submit", gererSoumissionCreation);
   $("bouton-continuer").addEventListener("click", gererContinuer);
+  $("bouton-continuer-etape").addEventListener("click", gererContinuerEtape);
 }
 
 export async function initialiser() {

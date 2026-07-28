@@ -479,6 +479,94 @@ fieldset.groupe-options legend {
   background: color-mix(in srgb, var(--couleur-danger) 12%, transparent);
 }
 
+/* ---------- Bilan d'arc (checkpoint entre deux chapitres de la carrière) ---------- */
+
+.zone-etape {
+  margin-top: var(--espace-2);
+}
+
+.etape-badge {
+  display: inline-block;
+  font-size: var(--taille-petite);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--espace-1) var(--espace-3);
+  border-radius: 999px;
+  background: var(--couleur-surface-haute);
+  border: 1px solid var(--couleur-bordure-forte);
+  color: var(--couleur-lueur);
+  margin-bottom: var(--espace-4);
+}
+
+.etape-citation {
+  margin: 0 0 var(--espace-6);
+  padding: var(--espace-3) var(--espace-4);
+  border-left: 3px solid var(--couleur-braise);
+  background: var(--couleur-surface-haute);
+  border-radius: 0 var(--rayon-m) var(--rayon-m) 0;
+  font-style: italic;
+}
+
+.etape-tuiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--espace-3);
+  margin-bottom: var(--espace-6);
+}
+
+.etape-tuile {
+  text-align: center;
+  padding: var(--espace-4) var(--espace-2);
+  background: var(--couleur-surface-haute);
+  border: 1px solid var(--couleur-bordure-forte);
+  border-radius: var(--rayon-m);
+}
+
+.etape-tuile__valeur {
+  display: block;
+  font-size: var(--taille-h2);
+  font-weight: 700;
+  color: var(--couleur-braise-forte);
+}
+
+.etape-tuile__label {
+  display: block;
+  font-size: var(--taille-petite);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--couleur-texte-att);
+  margin-top: var(--espace-1);
+}
+
+.etape-jalon {
+  font-weight: 700;
+  padding-left: var(--espace-4);
+  position: relative;
+}
+
+.etape-jalon::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--couleur-succes);
+}
+
+.etape-moments {
+  margin: var(--espace-3) 0 var(--espace-6);
+  color: var(--couleur-texte-att);
+  font-style: italic;
+  font-size: var(--taille-petite);
+}
+
+.etape-moments p {
+  margin: 0 0 var(--espace-1);
+}
+
 /* ---------- Fin de run ---------- */
 #titre-final {
   color: var(--couleur-braise-forte);
