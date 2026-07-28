@@ -1,0 +1,317 @@
+[
+  {
+    "id": "mis_d001",
+    "arc": "missions",
+    "rang": "D",
+    "conditions": {},
+    "texte": "Mission de rang D : surveiller l'enfant turbulent d'un notable du village pendant une après-midi entière.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Le laisser s'épuiser en jouant sans relâche.",
+        "resume": "a géré une garde d'enfant en le laissant se dépenser",
+        "effets": { "stats": { "sante": -1, "reputation": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "L'occuper avec des histoires calmes de shinobi légendaires.",
+        "resume": "a occupé un enfant turbulent avec des histoires",
+        "effets": { "stats": { "intelligence": 1, "reputation": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_d002",
+    "arc": "missions",
+    "rang": "D",
+    "conditions": {},
+    "texte": "Mission de rang D : retrouver le chat d'une vieille marchande, réfugié tout en haut d'un arbre du marché.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Grimper directement pour l'attraper.",
+        "resume": "a grimpé à un arbre pour récupérer un chat",
+        "effets": { "stats": { "vitesse": 1, "force": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "L'attirer patiemment avec de la nourriture.",
+        "resume": "a patiemment attiré un chat récalcitrant",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_d003",
+    "arc": "missions",
+    "rang": "D",
+    "conditions": {},
+    "texte": "Mission de rang D : aider à réparer le mur d'enceinte du village, endommagé par une tempête.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Porter les charges les plus lourdes sans te ménager.",
+        "resume": "a porté les charges les plus lourdes lors d'une corvée",
+        "effets": { "stats": { "force": 2, "sante": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Organiser le chantier pour que le travail avance plus vite.",
+        "resume": "a organisé une corvée de réparation",
+        "effets": { "stats": { "intelligence": 2, "reputation": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_c001",
+    "arc": "missions",
+    "rang": "C",
+    "conditions": {},
+    "texte": "Mission de rang C : escorter un marchand sur une route réputée pour ses embuscades de bandits.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Rester visible pour dissuader toute attaque.",
+        "resume": "a dissuadé des bandits en restant visible",
+        "effets": { "stats": { "reputation": 2, "controleEmotionnel": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Se fondre dans le décor pour surveiller la route sans être vu.",
+        "resume": "a surveillé une route discrètement pendant une escorte",
+        "effets": { "stats": { "vitesse": 2, "intelligence": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_c002",
+    "arc": "missions",
+    "rang": "C",
+    "conditions": {},
+    "texte": "Mission de rang C : protéger un ouvrier isolé sur un chantier en pleine forêt, où des traces suspectes ont été repérées.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Inspecter les traces avant qu'il ne fasse nuit.",
+        "resume": "a inspecté des traces suspectes en forêt",
+        "effets": { "stats": { "intelligence": 2, "vitesse": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Rester constamment aux côtés de l'ouvrier, quitte à négliger l'enquête.",
+        "resume": "a protégé un ouvrier sans quitter son poste",
+        "effets": { "stats": { "loyaute": 2, "controleEmotionnel": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_c003",
+    "arc": "missions",
+    "rang": "C",
+    "conditions": {},
+    "texte": "Mission de rang C : livrer des messages urgents entre deux villages alliés, en pleine tempête.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Foncer sans t'arrêter, quitte à t'épuiser.",
+        "resume": "a livré des messages en fonçant sous la tempête",
+        "effets": { "stats": { "vitesse": 3, "sante": -2 } }
+      },
+      {
+        "id": "b",
+        "texte": "T'abriter par moments pour préserver tes forces.",
+        "resume": "a géré ses forces pendant une livraison sous la tempête",
+        "effets": { "stats": { "sante": 1, "intelligence": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_b001",
+    "arc": "missions",
+    "rang": "B",
+    "conditions": {},
+    "texte": "Mission de rang B : t'infiltrer discrètement près d'un campement suspect pour en évaluer la dangerosité, sans être repéré.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "T'approcher au plus près pour un rapport détaillé.",
+        "resume": "s'est infiltré près d'un campement suspect",
+        "effets": { "stats": { "intelligence": 3, "controleEmotionnel": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Observer à bonne distance, quitte à rapporter moins d'informations.",
+        "resume": "a observé un campement suspect à distance prudente",
+        "effets": { "stats": { "vitesse": 1, "sante": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_b002",
+    "arc": "missions",
+    "rang": "B",
+    "conditions": {},
+    "texte": "Mission de rang B : saboter discrètement un dépôt d'armes appartenant à un groupe hostile au village.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Agir vite et te retirer avant l'alerte.",
+        "resume": "a saboté un dépôt d'armes en agissant vite",
+        "effets": { "stats": { "vitesse": 2, "maitriseChakra": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Prendre le temps de tout neutraliser sans laisser de trace.",
+        "resume": "a méticuleusement saboté un dépôt d'armes",
+        "effets": { "stats": { "intelligence": 2, "maitriseChakra": 1, "sante": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_b003",
+    "arc": "missions",
+    "rang": "B",
+    "conditions": {},
+    "texte": "Mission de rang B : protéger un témoin clé avant un procès important pour le village, malgré plusieurs tentatives d'approche suspectes.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Rester constamment à ses côtés, sans relâche.",
+        "resume": "a protégé un témoin clé sans relâche",
+        "effets": { "stats": { "loyaute": 3, "sante": -2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Traquer activement ceux qui cherchent à l'intimider.",
+        "resume": "a traqué les intimidateurs d'un témoin clé",
+        "effets": { "stats": { "force": 2, "reputation": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_a001",
+    "arc": "missions",
+    "rang": "A",
+    "conditions": {},
+    "texte": "Mission de rang A : un groupe de mercenaires menace un village voisin sans défense. Le temps presse.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Intervenir immédiatement pour repousser les mercenaires.",
+        "resume": "a repoussé des mercenaires pour sauver un village voisin",
+        "effets": { "stats": { "force": 4, "reputation": 4, "sante": -3 }, "drapeaux": { "a_sauve_un_village": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Attendre des renforts pour limiter les risques.",
+        "resume": "a attendu des renforts avant d'intervenir",
+        "effets": { "stats": { "controleEmotionnel": 2, "reputation": -2 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_a002",
+    "arc": "missions",
+    "rang": "A",
+    "conditions": {},
+    "texte": "En mission avancée, ton équipier tombe gravement blessé. Le temps d'achever l'objectif est compté. Un choix s'impose.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Abandonner l'objectif pour évacuer ton équipier.",
+        "resume": "a abandonné une mission pour sauver un équipier blessé",
+        "effets": { "stats": { "loyaute": 4, "reputation": -3 }, "drapeaux": { "a_aide_un_camarade": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Achever l'objectif d'abord, quitte à le laisser en arrière.",
+        "resume": "a laissé un équipier blessé pour achever la mission",
+        "effets": { "stats": { "reputation": 3, "loyaute": -6 }, "drapeaux": { "a_trahi_son_equipe": true } }
+      }
+    ]
+  },
+  {
+    "id": "mis_a003",
+    "arc": "missions",
+    "rang": "A",
+    "conditions": {},
+    "texte": "Mission de rang A : une reconnaissance profonde en territoire hostile tourne mal. Tu dois traverser une zone de combat pour t'extraire.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Forcer le passage au combat.",
+        "resume": "a forcé le passage au combat en territoire hostile",
+        "effets": { "stats": { "force": 3, "sante": -4 } }
+      },
+      {
+        "id": "b",
+        "texte": "Contourner par un itinéraire plus long mais plus sûr.",
+        "resume": "a contourné une zone de combat par prudence",
+        "effets": { "stats": { "intelligence": 2, "vitesse": 2, "sante": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_s001",
+    "arc": "missions",
+    "rang": "S",
+    "conditions": {},
+    "texte": "Mission de rang S : repousser une incursion armée aux frontières du village, aux côtés de ton mentor. La bataille tourne au chaos.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Rester coûte que coûte aux côtés de ton mentor pour le protéger.",
+        "resume": "est resté protéger son mentor durant l'incursion",
+        "effets": { "stats": { "loyaute": 4, "sante": -3 }, "drapeaux": { "lien_fort_avec_mentor": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Foncer vers l'objectif stratégique, en confiance dans les capacités de ton mentor.",
+        "resume": "a foncé vers l'objectif pendant l'incursion, laissant son mentor se débrouiller seul",
+        "effets": { "stats": { "force": 3, "reputation": 3 }, "drapeaux": { "a_perdu_son_mentor": true } }
+      }
+    ]
+  },
+  {
+    "id": "mis_s002",
+    "arc": "missions",
+    "rang": "S",
+    "conditions": {},
+    "texte": "Mission de rang S : un émissaire à la voix posée t'aborde en marge de la mission. Il représente une organisation dont personne au village ne parle ouvertement, et te propose une conversation « informelle ».",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Écouter par curiosité, sans rien promettre.",
+        "resume": "a écouté un émissaire d'une organisation secrète",
+        "effets": { "stats": { "intelligence": 2 }, "drapeaux": { "contact_organisation_secrete": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Refuser net et signaler l'incident à ta hiérarchie.",
+        "resume": "a signalé le contact d'un émissaire suspect",
+        "effets": { "stats": { "loyaute": 3, "reputation": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_s003",
+    "arc": "missions",
+    "rang": "S",
+    "conditions": {},
+    "texte": "Mission de rang S : une opération décisive, suivie de près par tout le village. Ta gestion de cette mission marquera durablement ta réputation.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Jouer la sécurité pour garantir un succès sans accroc.",
+        "resume": "a assuré une mission de rang S sans prendre de risque",
+        "effets": { "stats": { "controleEmotionnel": 2, "reputation": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Prendre des risques calculés pour un résultat éclatant.",
+        "resume": "a pris des risques calculés lors d'une mission de rang S",
+        "effets": { "stats": { "reputation": 5, "sante": -2 } }
+      }
+    ]
+  }
+]

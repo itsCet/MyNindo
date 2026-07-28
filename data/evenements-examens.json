@@ -1,0 +1,162 @@
+[
+  {
+    "id": "gen_001",
+    "arc": "examen_genin",
+    "conditions": {},
+    "texte": "Première épreuve de l'examen genin : un questionnaire théorique redoutablement long, avec une règle non-dite que personne ne t'a expliquée.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Répondre méthodiquement, question après question.",
+        "resume": "a passé l'épreuve écrite avec méthode",
+        "effets": { "stats": { "intelligence": 3 } }
+      },
+      {
+        "id": "b",
+        "texte": "Observer discrètement comment les autres candidats réagissent à la règle non-dite.",
+        "resume": "a observé les autres candidats pendant l'épreuve écrite",
+        "effets": { "stats": { "intelligence": 2, "reputation": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "gen_002",
+    "arc": "examen_genin",
+    "conditions": {},
+    "texte": "Épreuve de précision : toucher une série de cibles mouvantes avec des projectiles d'entraînement, sous le regard du jury.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Viser lentement, cible par cible, pour ne rater aucun tir.",
+        "resume": "a visé avec prudence à l'épreuve de précision",
+        "effets": { "stats": { "intelligence": 1, "vitesse": -1, "maitriseChakra": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Enchaîner les tirs rapidement, quitte à en manquer certains.",
+        "resume": "a enchaîné les tirs à l'épreuve de précision",
+        "effets": { "stats": { "vitesse": 3, "controleEmotionnel": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "gen_003",
+    "arc": "examen_genin",
+    "conditions": {},
+    "texte": "Épreuve finale : un bref duel d'entraînement contre un autre candidat, noté par le jury sur la technique autant que sur l'attitude.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Chercher à dominer rapidement le duel.",
+        "resume": "a dominé son duel de l'examen genin",
+        "effets": { "stats": { "force": 3, "reputation": 2, "controleEmotionnel": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Privilégier une attitude respectueuse, même en cas de défaite.",
+        "resume": "a privilégié le respect pendant son duel d'examen",
+        "effets": { "stats": { "controleEmotionnel": 2, "reputation": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "gen_004",
+    "arc": "examen_genin",
+    "conditions": {},
+    "texte": "Le jury délibère devant toi. Un membre te pose une dernière question, presque personnelle : « Pourquoi veux-tu devenir ninja ? »",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Répondre avec sincérité, sans chercher à impressionner.",
+        "resume": "a répondu avec sincérité au jury",
+        "effets": { "stats": { "reputation": 2, "controleEmotionnel": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Répondre avec ambition, en évoquant les rangs les plus élevés.",
+        "resume": "a affiché son ambition devant le jury",
+        "effets": { "stats": { "reputation": 3, "loyaute": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "chu_001",
+    "arc": "examen_chunin",
+    "conditions": {},
+    "texte": "Première épreuve chunin : un adversaire expérimenté te propose un affrontement où la ruse compte plus que la force brute.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Tendre un piège plutôt que d'attaquer de front.",
+        "resume": "a tendu un piège lors de l'épreuve chunin",
+        "effets": { "stats": { "intelligence": 4, "reputation": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Affronter l'adversaire frontalement, quitte à encaisser des coups.",
+        "resume": "a affronté frontalement son adversaire chunin",
+        "effets": { "stats": { "force": 4, "sante": -3 } }
+      }
+    ]
+  },
+  {
+    "id": "chu_002",
+    "arc": "examen_chunin",
+    "conditions": {},
+    "texte": "Épreuve d'endurance : rester en mouvement, sans repos, pendant des heures, à travers un terrain hostile.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Gérer ton énergie avec prudence, quitte à ralentir.",
+        "resume": "a géré son énergie avec prudence à l'épreuve d'endurance",
+        "effets": { "stats": { "sante": 3, "intelligence": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Pousser ton corps à la limite pour finir en tête.",
+        "resume": "a poussé son corps à la limite à l'épreuve d'endurance",
+        "effets": { "stats": { "vitesse": 3, "sante": -4, "reputation": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "chu_003",
+    "arc": "examen_chunin",
+    "conditions": {},
+    "texte": "Épreuve de manipulation mentale : un examinateur brouille tes perceptions pour tester ton sang-froid face à l'illusion et au doute.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Te concentrer sur ta respiration pour garder les idées claires.",
+        "resume": "a gardé son sang-froid face à l'épreuve mentale",
+        "effets": { "stats": { "controleEmotionnel": 4, "maitriseChakra": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Forcer le passage en brisant l'illusion par le chakra brut.",
+        "resume": "a brisé l'illusion par la force du chakra",
+        "effets": { "stats": { "maitriseChakra": 3, "sante": -2 } }
+      }
+    ]
+  },
+  {
+    "id": "chu_004",
+    "arc": "examen_chunin",
+    "conditions": {},
+    "texte": "Entretien final devant le conseil du village. On te demande comment tu comptes utiliser tes nouvelles responsabilités.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Affirmer ta loyauté totale envers le village.",
+        "resume": "a affirmé sa loyauté devant le conseil",
+        "effets": { "stats": { "loyaute": 4, "reputation": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Rester évasif, préférant garder tes options ouvertes.",
+        "resume": "est resté évasif devant le conseil du village",
+        "effets": { "stats": { "intelligence": 2, "loyaute": -2 } }
+      }
+    ]
+  }
+]

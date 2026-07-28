@@ -1,0 +1,156 @@
+{
+  "villages": [
+    {
+      "id": "sylvombre",
+      "nom": "Sylvombre",
+      "description": "Village bâti dans la canopée d'une forêt sans fin, où l'on apprend à se déplacer sans un bruit avant même de savoir courir.",
+      "bonus": { "intelligence": 5, "maitriseChakra": 3, "force": -2 }
+    },
+    {
+      "id": "rocardent",
+      "nom": "Roc-Ardent",
+      "description": "Village creusé dans les flancs d'un volcan endormi. Ses habitants forgent leur corps à la chaleur des forges autant qu'à celle des entraînements.",
+      "bonus": { "force": 6, "sante": 4, "vitesse": -3 }
+    },
+    {
+      "id": "maregrise",
+      "nom": "Marée-Grise",
+      "description": "Port marchand battu par les vents, où l'on grandit entre les quais, les marchés et les rumeurs qui voyagent plus vite que les bateaux.",
+      "bonus": { "vitesse": 5, "reputation": 3, "sante": -2 }
+    },
+    {
+      "id": "sablenuit",
+      "nom": "Sablenuit",
+      "description": "Village-oasis niché au creux d'un désert glacial la nuit, brûlant le jour. La survie y forge une discipline de fer.",
+      "bonus": { "controleEmotionnel": 5, "loyaute": 3, "vitesse": -2 }
+    }
+  ],
+  "clans": [
+    {
+      "id": "kagetsu",
+      "nom": "Clan Kagetsu",
+      "description": "Lignée d'éclaireurs et d'espions, réputée pour son art de disparaître dans le clair-obscur.",
+      "bonus": { "vitesse": 3, "intelligence": 3, "reputation": -2 }
+    },
+    {
+      "id": "vharo",
+      "nom": "Clan Vharo",
+      "description": "Famille de combattants au sang chaud, connue pour son style offensif et son manque de patience légendaire.",
+      "bonus": { "force": 4, "controleEmotionnel": -4 }
+    },
+    {
+      "id": "nimbaru",
+      "nom": "Clan Nimbaru",
+      "description": "Descendants de danseurs de vent, capables d'enchaîner les déplacements à une vitesse déconcertante.",
+      "bonus": { "vitesse": 5, "maitriseChakra": 2, "sante": -2 }
+    },
+    {
+      "id": "glacenne",
+      "nom": "Clan Glacenne",
+      "description": "Lignée réputée pour sa maîtrise froide et méthodique du chakra, transmise de génération en génération.",
+      "bonus": { "controleEmotionnel": 4, "maitriseChakra": 3, "force": -2 }
+    },
+    {
+      "id": "ferrune",
+      "nom": "Clan Ferrune",
+      "description": "Clan de bâtisseurs et de gardes, réputé pour son endurance à toute épreuve et sa loyauté sans faille au village.",
+      "bonus": { "force": 3, "sante": 5, "vitesse": -3 }
+    },
+    {
+      "id": "aucun",
+      "nom": "Sans clan",
+      "description": "Aucune lignée derrière soi, aucun nom à honorer — seulement ce que l'on choisit de devenir.",
+      "bonus": { "reputation": -3, "loyaute": 2 }
+    }
+  ],
+  "affinitesChakra": [
+    {
+      "id": "feu",
+      "nom": "Feu",
+      "description": "Un chakra vif et agressif, qui répond à la colère aussi bien qu'à la détermination.",
+      "bonus": { "force": 3, "controleEmotionnel": -2 }
+    },
+    {
+      "id": "eau",
+      "nom": "Eau",
+      "description": "Un chakra fluide et patient, qui épouse la forme de chaque situation.",
+      "bonus": { "maitriseChakra": 3, "controleEmotionnel": 2 }
+    },
+    {
+      "id": "vent",
+      "nom": "Vent",
+      "description": "Un chakra léger et rapide, difficile à saisir comme à suivre.",
+      "bonus": { "vitesse": 4 }
+    },
+    {
+      "id": "terre",
+      "nom": "Terre",
+      "description": "Un chakra lourd et stable, qui ancre le corps autant que l'esprit.",
+      "bonus": { "sante": 4, "vitesse": -2 }
+    },
+    {
+      "id": "foudre",
+      "nom": "Foudre",
+      "description": "Un chakra tranchant et imprévisible, qui récompense la précision et punit l'hésitation.",
+      "bonus": { "intelligence": 2, "maitriseChakra": 3, "controleEmotionnel": -2 }
+    }
+  ],
+  "temperaments": [
+    {
+      "id": "impulsif",
+      "nom": "Impulsif",
+      "description": "Tu agis avant de réfléchir, pour le meilleur et pour le pire.",
+      "bonus": { "force": 2, "controleEmotionnel": -5, "reputation": 1 }
+    },
+    {
+      "id": "calme",
+      "nom": "Calme",
+      "description": "Rien ne semble jamais vraiment t'ébranler.",
+      "bonus": { "controleEmotionnel": 5, "intelligence": 2 }
+    },
+    {
+      "id": "ambitieux",
+      "nom": "Ambitieux",
+      "description": "Tu vises déjà plus haut que ton rang actuel, quitte à bousculer certains codes.",
+      "bonus": { "reputation": 3, "loyaute": -3 }
+    },
+    {
+      "id": "loyal",
+      "nom": "Loyal",
+      "description": "Ceux à qui tu t'attaches comptent plus que ta propre gloire.",
+      "bonus": { "loyaute": 6, "controleEmotionnel": -1 }
+    },
+    {
+      "id": "solitaire",
+      "nom": "Solitaire",
+      "description": "Tu réfléchis mieux seul, et cela s'entend dans ta réputation.",
+      "bonus": { "intelligence": 3, "loyaute": -4, "reputation": -2 }
+    }
+  ],
+  "mentors": [
+    {
+      "id": "mira-solenn",
+      "nom": "Instructrice Mira Solenn",
+      "description": "Ancienne éclaireuse devenue enseignante, elle privilégie la ruse et l'observation à la force brute.",
+      "bonus": { "intelligence": 3, "maitriseChakra": 2 }
+    },
+    {
+      "id": "dorin-kase",
+      "nom": "Maître Dorin Kase",
+      "description": "Vétéran de nombreuses missions de rang élevé, il forme ses élèves à la dure, au corps à corps.",
+      "bonus": { "force": 3, "sante": 2 }
+    },
+    {
+      "id": "yuna-vahl",
+      "nom": "Maîtresse Yuna Vahl",
+      "description": "Stratège réputée pour sa rapidité d'exécution, aussi bien sur le terrain que dans ses jugements.",
+      "bonus": { "vitesse": 3, "reputation": 2 }
+    },
+    {
+      "id": "threnn",
+      "nom": "Vieux Maître Threnn",
+      "description": "Le plus âgé des instructeurs encore actifs, connu pour sa patience et son attachement profond à ses élèves.",
+      "bonus": { "controleEmotionnel": 4, "loyaute": 2 }
+    }
+  ]
+}

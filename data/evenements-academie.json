@@ -1,0 +1,218 @@
+[
+  {
+    "id": "aca_001",
+    "arc": "academie",
+    "conditions": {},
+    "texte": "Premier jour à l'Académie. L'instructeur demande à chaque élève de se présenter devant la classe. Tu sens tous les regards se tourner vers toi.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Te présenter avec assurance, quitte à en faire un peu trop.",
+        "resume": "s'est présenté avec assurance dès le premier jour",
+        "effets": { "stats": { "reputation": 3, "controleEmotionnel": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Rester bref et discret, sans attirer l'attention.",
+        "resume": "est resté discret le premier jour",
+        "effets": { "stats": { "intelligence": 1, "reputation": -1 } }
+      },
+      {
+        "id": "c",
+        "texte": "Observer les autres élèves avant de parler, pour jauger la classe.",
+        "resume": "a observé la classe avant de se présenter",
+        "effets": { "stats": { "intelligence": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_002",
+    "arc": "academie",
+    "conditions": {},
+    "texte": "Le cours d'histoire des villages s'éternise. Ton esprit s'évade alors que l'instructeur détaille des traités vieux de deux siècles.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Sécher discrètement pour t'entraîner seul en forêt.",
+        "resume": "a séché un cours pour s'entraîner seul",
+        "effets": { "stats": { "force": 3, "reputation": -2 }, "drapeaux": { "a_seche_un_cours": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Forcer ta concentration et prendre des notes utiles.",
+        "resume": "a pris des notes malgré l'ennui",
+        "effets": { "stats": { "intelligence": 3, "controleEmotionnel": 1 } }
+      },
+      {
+        "id": "c",
+        "texte": "Glisser des questions provocantes pour réveiller la classe.",
+        "resume": "a chahuté le cours d'histoire",
+        "effets": { "stats": { "reputation": 2, "loyaute": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_003",
+    "arc": "academie",
+    "conditions": {},
+    "texte": "Un élève du nom de Kessho Rin te lance un défi public : un duel d'entraînement, devant toute la classe, pour savoir qui progresse le plus vite.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Accepter le duel sans hésiter.",
+        "resume": "a accepté le duel public de Kessho Rin",
+        "effets": { "stats": { "force": 2, "reputation": 2, "controleEmotionnel": -2 }, "drapeaux": { "a_defie_un_rival": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Décliner poliment, refusant d'en faire un spectacle.",
+        "resume": "a décliné le défi de Kessho Rin",
+        "effets": { "stats": { "controleEmotionnel": 2, "reputation": -1 } }
+      },
+      {
+        "id": "c",
+        "texte": "Proposer un entraînement commun plutôt qu'un duel.",
+        "resume": "a proposé un entraînement commun à Kessho Rin",
+        "effets": { "stats": { "loyaute": 2, "intelligence": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_003b",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "a_defie_un_rival": true } },
+    "texte": "Kessho Rin te recroise dans la cour, encore vexé de votre duel. « Une revanche, un jour ? » lance-t-il, mi-sérieux mi-amical.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Accepter avec le sourire — la rivalité te pousse à progresser.",
+        "resume": "a noué une rivalité amicale avec Kessho Rin",
+        "effets": { "stats": { "force": 2, "reputation": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Refuser calmement : tu n'as rien à prouver.",
+        "resume": "a refusé la revanche de Kessho Rin",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_004",
+    "arc": "academie",
+    "conditions": {},
+    "texte": "L'exercice du jour : faire circuler son chakra le long d'un fil sans le rompre. La plupart des élèves échouent en quelques secondes.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Prendre ton temps, quitte à finir après tout le monde.",
+        "resume": "a pris son temps sur l'exercice de chakra",
+        "effets": { "stats": { "maitriseChakra": 4, "reputation": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Foncer pour être le premier à réussir.",
+        "resume": "s'est précipité sur l'exercice de chakra",
+        "effets": { "stats": { "maitriseChakra": 1, "reputation": 2, "controleEmotionnel": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_005",
+    "arc": "academie",
+    "conditions": {},
+    "texte": "Une camarade peine visiblement à suivre le rythme des entraînements et reste seule à la fin des cours, découragée.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Rester pour l'aider à s'entraîner, même si cela te fatigue.",
+        "resume": "a aidé une camarade en difficulté",
+        "effets": { "stats": { "loyaute": 3, "sante": -1 }, "drapeaux": { "a_aide_un_camarade": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Lui conseiller de voir l'instructeur, et rentrer te reposer.",
+        "resume": "a laissé une camarade en difficulté se débrouiller",
+        "effets": { "stats": { "sante": 2, "loyaute": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_006",
+    "arc": "academie",
+    "conditions": {},
+    "texte": "Un instructeur te reproche publiquement une erreur mineure, sur un ton que tu juges injuste.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Répondre du tac au tac, quitte à envenimer la situation.",
+        "resume": "a tenu tête à un instructeur",
+        "effets": { "stats": { "reputation": 2, "controleEmotionnel": -3 } }
+      },
+      {
+        "id": "b",
+        "texte": "Encaisser sans un mot et ravaler ta frustration.",
+        "resume": "a encaissé une remarque injuste sans broncher",
+        "effets": { "stats": { "controleEmotionnel": -1, "loyaute": 1 } }
+      },
+      {
+        "id": "c",
+        "texte": "Demander calmement des explications après le cours.",
+        "resume": "a demandé des explications calmement à un instructeur",
+        "effets": { "stats": { "intelligence": 2, "controleEmotionnel": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_007",
+    "arc": "academie",
+    "conditions": {},
+    "texte": "Tu découvres une zone d'entraînement normalement interdite aux élèves, avec des cibles bien plus avancées que celles de l'Académie.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "T'y entraîner en cachette, la nuit, au risque d'être surpris.",
+        "resume": "s'est entraîné en secret dans une zone interdite",
+        "effets": { "stats": { "force": 2, "vitesse": 2, "sante": -2 }, "drapeaux": { "a_enfreint_le_reglement": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Signaler la zone à un instructeur, par principe.",
+        "resume": "a signalé une zone d'entraînement interdite",
+        "effets": { "stats": { "loyaute": 2, "reputation": 1 } }
+      },
+      {
+        "id": "c",
+        "texte": "Ignorer la découverte et continuer ta routine.",
+        "resume": "a ignoré la zone d'entraînement interdite",
+        "effets": { "stats": { "controleEmotionnel": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_008",
+    "arc": "academie",
+    "conditions": {},
+    "texte": "La veille de l'examen genin, le doute s'installe. Tu repenses à tout ce que tu as appris — et à tout ce qu'il te reste à prouver.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Réviser une dernière fois tard dans la nuit.",
+        "resume": "a révisé jusque tard la veille de l'examen",
+        "effets": { "stats": { "intelligence": 2, "sante": -2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Te coucher tôt pour être en pleine forme.",
+        "resume": "s'est reposé avant l'examen genin",
+        "effets": { "stats": { "sante": 3, "controleEmotionnel": 1 } }
+      },
+      {
+        "id": "c",
+        "texte": "Aller t'entraîner une dernière fois pour évacuer le stress.",
+        "resume": "s'est entraîné une dernière fois avant l'examen",
+        "effets": { "stats": { "force": 1, "vitesse": 1, "controleEmotionnel": -1 } }
+      }
+    ]
+  }
+]

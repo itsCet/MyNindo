@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Voie d'Ombre — Chronique d'un ninja</title>
+  <meta name="description" content="Un jeu narratif de carrière : incarne un jeune ninja de l'Académie à la fin de sa légende, dans un univers entièrement original." />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="entete">
+    <h1 class="titre-jeu">Voie d'Ombre</h1>
+    <button id="bouton-theme" class="bouton-theme" type="button" aria-pressed="false">Thème clair</button>
+  </header>
+
+  <main id="contenu-principal">
+    <!-- Écran d'accueil -->
+    <section id="ecran-accueil" class="ecran carte" data-ecran="accueil" tabindex="-1">
+      <h2>Bienvenue, jeune ninja</h2>
+      <p class="accueil-intro">
+        Tu es sur le point d'entrer à l'Académie. Chaque choix que tu feras — au combat, en mission,
+        face à tes proches — façonnera tes statistiques, ta réputation et, au bout du chemin, le destin
+        que l'on te reconnaîtra. Un même personnage ne traverse qu'une seule carrière : à toi de la
+        construire jusqu'au bout, ou de tout recommencer autrement.
+      </p>
+      <div class="actions">
+        <button id="bouton-nouvelle-partie" class="bouton-principal" type="button">Commencer une carrière</button>
+        <button id="bouton-voir-badges" class="bouton-secondaire" type="button">Badges</button>
+        <button id="bouton-voir-pantheon" class="bouton-secondaire" type="button">Panthéon</button>
+      </div>
+    </section>
+
+    <!-- Écran de création de personnage -->
+    <section id="ecran-creation" class="ecran carte" data-ecran="creation" tabindex="-1" hidden>
+      <h2>Création de personnage</h2>
+      <form id="formulaire-creation" novalidate>
+        <div class="champ-texte">
+          <label for="champ-nom">Nom de ton personnage</label>
+          <input type="text" id="champ-nom" name="nom" maxlength="24" placeholder="Ex. Ren, Isa, Katsuo…" required />
+        </div>
+
+        <fieldset class="groupe-options" id="groupe-village">
+          <legend>Village</legend>
+          <div class="grille-options"></div>
+        </fieldset>
+
+        <fieldset class="groupe-options" id="groupe-clan">
+          <legend>Clan</legend>
+          <div class="grille-options"></div>
+        </fieldset>
+
+        <fieldset class="groupe-options" id="groupe-affinite">
+          <legend>Affinité de chakra</legend>
+          <div class="grille-options"></div>
+        </fieldset>
+
+        <fieldset class="groupe-options" id="groupe-temperament">
+          <legend>Tempérament</legend>
+          <div class="grille-options"></div>
+        </fieldset>
+
+        <fieldset class="groupe-options" id="groupe-mentor">
+          <legend>Mentor</legend>
+          <div class="grille-options"></div>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" class="bouton-principal">Entrer à l'Académie</button>
+          <button type="button" class="bouton-secondaire" data-retour="accueil">Annuler</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Écran de jeu -->
+    <section id="ecran-jeu" class="ecran" data-ecran="jeu" tabindex="-1" hidden>
+      <p class="barre-progression" id="barre-progression"></p>
+      <div class="mise-en-page-jeu">
+        <aside class="panneau-stats carte" id="panneau-stats" aria-label="Statistiques du personnage"></aside>
+        <div class="carte-evenement carte">
+          <p id="texte-evenement"></p>
+          <div id="liste-choix" class="liste-choix" role="group" aria-label="Choix disponibles"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Écran de fin de run -->
+    <section id="ecran-fin" class="ecran carte" data-ecran="fin" tabindex="-1" hidden>
+      <h2>Fin de carrière</h2>
+      <p id="titre-final"></p>
+      <p id="score-final"></p>
+      <pre id="resume-final"></pre>
+      <div id="badges-nouveaux"></div>
+      <div class="actions">
+        <button id="bouton-rejouer" class="bouton-principal" type="button">Rejouer</button>
+        <button id="bouton-accueil-depuis-fin" class="bouton-secondaire" type="button">Retour à l'accueil</button>
+      </div>
+    </section>
+
+    <!-- Écran des badges -->
+    <section id="ecran-badges" class="ecran carte" data-ecran="badges" tabindex="-1" hidden>
+      <h2>Badges</h2>
+      <ul id="liste-badges"></ul>
+      <button class="bouton-retour" type="button" data-retour="accueil">Retour à l'accueil</button>
+    </section>
+
+    <!-- Écran du panthéon -->
+    <section id="ecran-pantheon" class="ecran carte" data-ecran="pantheon" tabindex="-1" hidden>
+      <h2>Panthéon de la session</h2>
+      <ol id="liste-pantheon"></ol>
+      <button class="bouton-retour" type="button" data-retour="accueil">Retour à l'accueil</button>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <p class="mention-session">
+      Aucune sauvegarde : ta progression, ton panthéon et tes badges vivent uniquement le temps de cette session
+      et disparaissent si tu recharges la page.
+    </p>
+  </footer>
+
+  <script type="module">
+    import { initialiser } from "./ui/ecrans.js";
+    initialiser();
+  </script>
+</body>
+</html>

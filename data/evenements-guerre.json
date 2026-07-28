@@ -1,0 +1,222 @@
+[
+  {
+    "id": "gue_001",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "Fraîchement promu, tu es affecté à une escouade permanente sous la responsabilité d'un chef d'équipe expérimenté. La première réunion s'annonce déterminante pour la suite.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Proposer immédiatement des idées pour marquer ta valeur.",
+        "resume": "a marqué son escouade dès la première réunion",
+        "effets": { "stats": { "reputation": 2, "intelligence": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Observer le fonctionnement du groupe avant de t'exprimer.",
+        "resume": "a observé son escouade avant de s'imposer",
+        "effets": { "stats": { "intelligence": 2, "loyaute": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_002",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "Un désaccord tactique éclate au sein de ton escouade avant une opération sensible. Deux plans s'opposent, et l'équipe attend une décision.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Défendre fermement ton propre plan.",
+        "resume": "a imposé son plan à son escouade",
+        "effets": { "stats": { "reputation": 2, "loyaute": -1, "controleEmotionnel": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Chercher un compromis qui rassemble l'équipe.",
+        "resume": "a cherché le compromis au sein de son escouade",
+        "effets": { "stats": { "loyaute": 3, "intelligence": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_003",
+    "arc": "guerre",
+    "conditions": { "drapeaux": { "contact_organisation_secrete": true } },
+    "texte": "L'émissaire de l'organisation secrète te retrouve, cette fois avec une offre concrète : rejoindre leurs rangs dans l'ombre, en échange d'un pouvoir et d'une liberté que le village ne t'offrira jamais.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Accepter et rejoindre l'organisation dans le plus grand secret.",
+        "resume": "a rejoint secrètement une organisation de l'ombre",
+        "effets": { "stats": { "maitriseChakra": 4, "loyaute": -6 }, "drapeaux": { "rejoint_organisation_secrete": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Refuser fermement et rester fidèle au village.",
+        "resume": "a refusé fermement l'organisation secrète",
+        "effets": { "stats": { "loyaute": 4, "reputation": 1 }, "drapeaux": { "rejoint_organisation_secrete": false } }
+      }
+    ]
+  },
+  {
+    "id": "gue_003b",
+    "arc": "guerre",
+    "conditions": { "drapeaux": { "contact_organisation_secrete": false } },
+    "texte": "Des rumeurs de guerre imminente circulent dans les couloirs du village. Les tensions entre factions rivales n'ont jamais été aussi vives.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Te porter volontaire pour les premières lignes de défense.",
+        "resume": "s'est porté volontaire pour la défense du village",
+        "effets": { "stats": { "force": 2, "reputation": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Te concentrer sur le soutien logistique et le renseignement.",
+        "resume": "a rejoint le soutien logistique avant la guerre",
+        "effets": { "stats": { "intelligence": 2, "maitriseChakra": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_004",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "La guerre éclate officiellement entre plusieurs villages rivaux. Le tien mobilise chaque ninja disponible, sans distinction de rang.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Te porter en première ligne dès les premiers combats.",
+        "resume": "s'est porté en première ligne dès le début de la guerre",
+        "effets": { "stats": { "force": 3, "reputation": 3, "sante": -3 } }
+      },
+      {
+        "id": "b",
+        "texte": "Assurer la coordination et la protection des positions arrière.",
+        "resume": "a coordonné les positions arrière au début de la guerre",
+        "effets": { "stats": { "intelligence": 3, "loyaute": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_005",
+    "arc": "guerre",
+    "conditions": { "drapeaux": { "rejoint_organisation_secrete": true } },
+    "texte": "L'organisation t'ordonne de transmettre des informations sensibles sur les défenses de ton propre village. C'est le moment où ton engagement devient irréversible.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Obéir et couper définitivement les ponts avec le village.",
+        "resume": "a définitivement rompu avec son village pour l'organisation",
+        "effets": { "stats": { "maitriseChakra": 3, "loyaute": -8, "reputation": -5 }, "drapeaux": { "a_quitte_le_village": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Feindre d'obéir tout en protégeant secrètement le village de l'intérieur.",
+        "resume": "a joué les agents doubles pour protéger son village",
+        "effets": { "stats": { "intelligence": 3, "controleEmotionnel": -2 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_005b",
+    "arc": "guerre",
+    "conditions": { "drapeaux": { "rejoint_organisation_secrete": false } },
+    "texte": "Une mission de guerre décisive t'est confiée : percer les lignes ennemies pour permettre l'évacuation de civils pris au piège.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Foncer en force pour percer rapidement.",
+        "resume": "a percé les lignes ennemies en force pour évacuer des civils",
+        "effets": { "stats": { "force": 3, "reputation": 3, "sante": -3 } }
+      },
+      {
+        "id": "b",
+        "texte": "Ouvrir un passage discret pour limiter les pertes.",
+        "resume": "a ouvert un passage discret pour évacuer des civils",
+        "effets": { "stats": { "vitesse": 2, "maitriseChakra": 2, "controleEmotionnel": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_006",
+    "arc": "guerre",
+    "conditions": { "drapeaux": { "a_perdu_son_mentor": false } },
+    "texte": "En pleine bataille, ton mentor se retrouve encerclé et gravement en difficulté. Une décision s'impose dans l'instant.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Foncer à son secours, au péril de ta propre sécurité.",
+        "resume": "a foncé secourir son mentor encerclé au péril de sa vie",
+        "effets": { "stats": { "loyaute": 5, "sante": -4 }, "drapeaux": { "lien_fort_avec_mentor": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Maintenir ta position, en comptant sur son expérience pour s'en sortir seul.",
+        "resume": "a maintenu sa position pendant que son mentor se battait seul",
+        "effets": { "stats": { "controleEmotionnel": 2, "reputation": -2 }, "drapeaux": { "a_perdu_son_mentor": true } }
+      }
+    ]
+  },
+  {
+    "id": "gue_006b",
+    "arc": "guerre",
+    "conditions": { "drapeaux": { "a_perdu_son_mentor": true } },
+    "texte": "Au cœur de la bataille, une pensée pour ton mentor disparu te traverse. Cette perte pèse encore sur chacun de tes gestes.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Transformer ce chagrin en détermination froide.",
+        "resume": "a transformé son deuil en détermination au combat",
+        "effets": { "stats": { "force": 3, "controleEmotionnel": -2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Prendre un instant pour honorer sa mémoire avant de continuer.",
+        "resume": "a pris un instant pour honorer la mémoire de son mentor",
+        "effets": { "stats": { "controleEmotionnel": 3, "loyaute": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_007",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "La veille de ce qui s'annonce comme la bataille décisive, le doute t'assaille. Tout ce que tu as construit tient à un fil.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Repenser à ton parcours pour retrouver confiance.",
+        "resume": "a repensé à son parcours avant la bataille finale",
+        "effets": { "stats": { "controleEmotionnel": 3, "reputation": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Canaliser ton doute en entraînement intensif de dernière minute.",
+        "resume": "a canalisé son doute en s'entraînant intensivement",
+        "effets": { "stats": { "force": 2, "maitriseChakra": 2, "sante": -2 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_008",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "La bataille décisive s'engage. Ce qui se joue ici déterminera durablement le sort du village — et le tien.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Prendre tous les risques pour porter le coup décisif.",
+        "resume": "a pris tous les risques lors de la bataille décisive",
+        "effets": { "stats": { "force": 4, "maitriseChakra": 3, "reputation": 4, "sante": -5 } }
+      },
+      {
+        "id": "b",
+        "texte": "Jouer un rôle de soutien pour sécuriser la victoire collective.",
+        "resume": "a sécurisé la victoire collective lors de la bataille décisive",
+        "effets": { "stats": { "loyaute": 4, "controleEmotionnel": 2, "reputation": 2 } }
+      }
+    ]
+  }
+]
