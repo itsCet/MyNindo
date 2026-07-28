@@ -110,18 +110,30 @@ button {
 /* ---------- Structure générale ---------- */
 .entete {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--espace-4);
+  gap: var(--espace-2);
   padding: var(--espace-4) var(--espace-4);
-  max-width: var(--largeur-contenu);
+  max-width: 560px;
   margin: 0 auto;
+  text-align: center;
+}
+
+.entete-controles {
+  align-self: flex-end;
 }
 
 .titre-jeu {
-  font-size: var(--taille-h2);
-  letter-spacing: 0.02em;
-  color: var(--couleur-braise-forte);
+  margin: 0;
+  line-height: 1;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  margin: 0 auto;
 }
 
 .bouton-theme {
@@ -257,8 +269,8 @@ fieldset.groupe-options legend {
 }
 
 .grille-options {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: var(--espace-3);
 }
 
@@ -303,36 +315,17 @@ fieldset.groupe-options legend {
 
 /* ---------- Écran de jeu ---------- */
 .mise-en-page-jeu {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--espace-6);
 }
 
-@media (min-width: 768px) {
-  .mise-en-page-jeu {
-    grid-template-columns: minmax(230px, 280px) 1fr;
-    align-items: start;
-  }
-}
-
 .barre-progression {
-  grid-column: 1 / -1;
   font-size: var(--taille-petite);
   color: var(--couleur-lueur);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: var(--espace-2);
-}
-
-.panneau-stats {
-  position: static;
-}
-
-@media (min-width: 768px) {
-  .panneau-stats {
-    position: sticky;
-    top: var(--espace-4);
-  }
 }
 
 .panneau-stats__nom {

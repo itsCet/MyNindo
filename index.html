@@ -9,8 +9,12 @@
 </head>
 <body>
   <header class="entete">
-    <h1 class="titre-jeu">Voie d'Ombre</h1>
-    <button id="bouton-theme" class="bouton-theme" type="button" aria-pressed="false">Thème clair</button>
+    <div class="entete-controles">
+      <button id="bouton-theme" class="bouton-theme" type="button" aria-pressed="false">Thème clair</button>
+    </div>
+    <h1 class="titre-jeu">
+      <img class="logo" src="./assets/logo.png" alt="My Nindô" />
+    </h1>
   </header>
 
   <main id="contenu-principal">
@@ -72,7 +76,7 @@
     </section>
 
     <!-- Écran de jeu -->
-    <section id="ecran-jeu" class="ecran" data-ecran="jeu" tabindex="-1" hidden>
+    <section id="ecran-jeu" class="ecran ecran--etroit" data-ecran="jeu" tabindex="-1" hidden>
       <p class="barre-progression" id="barre-progression"></p>
       <div class="mise-en-page-jeu">
         <aside class="panneau-stats carte" id="panneau-stats" aria-label="Statistiques du personnage"></aside>
