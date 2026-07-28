@@ -94,7 +94,16 @@ const CATALOGUE_BADGES = [
   },
 ];
 
-const DONNEES = { origines: null, enfance: null, academie: null, missions: null, examens: null, guerre: null, ascension: null };
+const DONNEES = {
+  origines: null,
+  personnages: null,
+  enfance: null,
+  academie: null,
+  missions: null,
+  examens: null,
+  guerre: null,
+  ascension: null,
+};
 
 let etatCourant = null;
 let idsVus = new Set();
@@ -110,8 +119,9 @@ async function chargerJson(chemin) {
 }
 
 export async function chargerDonnees() {
-  const [origines, enfance, academie, missions, examens, guerre, ascension] = await Promise.all([
+  const [origines, personnages, enfance, academie, missions, examens, guerre, ascension] = await Promise.all([
     chargerJson("./data/origines.json"),
+    chargerJson("./data/personnages.json"),
     chargerJson("./data/evenements-enfance.json"),
     chargerJson("./data/evenements-academie.json"),
     chargerJson("./data/evenements-missions.json"),
@@ -119,7 +129,7 @@ export async function chargerDonnees() {
     chargerJson("./data/evenements-guerre.json"),
     chargerJson("./data/evenements-ascension.json"),
   ]);
-  Object.assign(DONNEES, { origines, enfance, academie, missions, examens, guerre, ascension });
+  Object.assign(DONNEES, { origines, personnages, enfance, academie, missions, examens, guerre, ascension });
   return DONNEES.origines;
 }
 
@@ -203,10 +213,47 @@ function avancerProgression(etat) {
   }
 }
 
+// Tire des noms de PNJ distincts, sans remise, pour cette run.
+function tirerNomsAleatoires(nombre) {
+  const pool = [...(DONNEES.personnages?.noms ?? [])];
+  const tires = [];
+  for (let i = 0; i < nombre && pool.length > 0; i++) {
+    const index = Math.floor(Math.random() * pool.length);
+    const personnage = pool.splice(index, 1)[0];
+    tires.push(`${personnage.prenom} ${personnage.nom}`);
+  }
+  return tires;
+}
+
 export function demarrerNouvellePartie(selection) {
   etatCourant = creerPersonnage(selection, DONNEES.origines);
+  const [coequipier, ami, instructeur, adversaire] = tirerNomsAleatoires(4);
+  etatCourant.pnj = { coequipier, ami, instructeur, adversaire };
   idsVus = new Set();
   return etatCourant;
+}
+
+// Remplace les jetons {{role}} d'un texte par le nom de PNJ tiré pour cette run.
+function substituerPnj(texte, etat) {
+  if (!texte) return texte;
+  const pnj = etat.pnj ?? {};
+  return texte
+    .replaceAll("{{coequipier}}", pnj.coequipier ?? "ton équipier")
+    .replaceAll("{{ami}}", pnj.ami ?? "ta camarade")
+    .replaceAll("{{instructeur}}", pnj.instructeur ?? "un instructeur")
+    .replaceAll("{{adversaire}}", pnj.adversaire ?? "un adversaire");
+}
+
+function substituerEvenement(evenement, etat) {
+  return {
+    ...evenement,
+    texte: substituerPnj(evenement.texte, etat),
+    choix: evenement.choix.map((choix) => ({
+      ...choix,
+      texte: substituerPnj(choix.texte, etat),
+      resume: substituerPnj(choix.resume, etat),
+    })),
+  };
 }
 
 export function obtenirEtatCourant() {
@@ -235,7 +282,7 @@ export function obtenirEvenementCourant() {
   while (garde < RANGS_MISSIONS.length + Object.keys(CONFIG_ARCS).length + 1) {
     const pool = obtenirPool(etatCourant);
     const evenement = tirerProchainEvenement(pool, etatCourant, idsVus);
-    if (evenement) return evenement;
+    if (evenement) return substituerEvenement(evenement, etatCourant);
 
     // Filet de sécurité : si un pool venait à être épuisé, on avance quand même la progression
     forcerProgressionSuivante(etatCourant);

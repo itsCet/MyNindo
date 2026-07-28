@@ -129,19 +129,19 @@
     "id": "aca_005",
     "arc": "academie",
     "conditions": {},
-    "texte": "Une camarade peine visiblement à suivre le rythme des entraînements et reste seule à la fin des cours, découragée.",
+    "texte": "{{ami}} peine visiblement à suivre le rythme des entraînements et reste seul à la fin des cours, découragé.",
     "choix": [
       {
         "id": "a",
         "texte": "Rester pour l'aider à s'entraîner, même si cela te fatigue.",
-        "resume": "a aidé une camarade en difficulté",
+        "resume": "a aidé {{ami}}, en difficulté",
         "tag": "Loyal",
         "effets": { "stats": { "loyaute": 3, "sante": -1 }, "drapeaux": { "a_aide_un_camarade": true } }
       },
       {
         "id": "b",
         "texte": "Lui conseiller de voir l'instructeur, et rentrer te reposer.",
-        "resume": "a laissé une camarade en difficulté se débrouiller",
+        "resume": "a laissé {{ami}} se débrouiller seul",
         "effets": { "stats": { "sante": 2, "loyaute": -1 } }
       }
     ]
@@ -150,12 +150,12 @@
     "id": "aca_006",
     "arc": "academie",
     "conditions": {},
-    "texte": "Un instructeur te reproche publiquement une erreur mineure, sur un ton que tu juges injuste.",
+    "texte": "{{instructeur}} te reproche publiquement une erreur mineure, sur un ton que tu juges injuste.",
     "choix": [
       {
         "id": "a",
         "texte": "Répondre du tac au tac, quitte à envenimer la situation.",
-        "resume": "a tenu tête à un instructeur",
+        "resume": "a tenu tête à {{instructeur}}",
         "tag": "Impulsif",
         "effets": { "stats": { "reputation": 2, "controleEmotionnel": -3 } }
       },
@@ -168,7 +168,7 @@
       {
         "id": "c",
         "texte": "Demander calmement des explications après le cours.",
-        "resume": "a demandé des explications calmement à un instructeur",
+        "resume": "a demandé des explications calmement à {{instructeur}}",
         "tag": "Discipliné",
         "effets": { "stats": { "intelligence": 2, "controleEmotionnel": 1 } }
       }

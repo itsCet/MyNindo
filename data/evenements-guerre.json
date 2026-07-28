@@ -23,19 +23,19 @@
     "id": "gue_002",
     "arc": "guerre",
     "conditions": {},
-    "texte": "Un désaccord tactique éclate au sein de ton escouade avant une opération sensible. Deux plans s'opposent, et l'équipe attend une décision.",
+    "texte": "Un désaccord tactique éclate entre toi et {{coequipier}} avant une opération sensible. Deux plans s'opposent, et l'escouade attend une décision.",
     "choix": [
       {
         "id": "a",
         "texte": "Défendre fermement ton propre plan.",
-        "resume": "a imposé son plan à son escouade",
+        "resume": "a imposé son plan face à {{coequipier}}",
         "tag": "Impulsif",
         "effets": { "stats": { "reputation": 2, "loyaute": -1, "controleEmotionnel": -1 } }
       },
       {
         "id": "b",
         "texte": "Chercher un compromis qui rassemble l'équipe.",
-        "resume": "a cherché le compromis au sein de son escouade",
+        "resume": "a cherché le compromis avec {{coequipier}}",
         "tag": "Loyal",
         "effets": { "stats": { "loyaute": 3, "intelligence": 1 } }
       }

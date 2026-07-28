@@ -224,19 +224,19 @@
     "arc": "missions",
     "rang": "A",
     "conditions": {},
-    "texte": "En mission avancée, ton équipier tombe gravement blessé. Le temps d'achever l'objectif est compté. Un choix s'impose.",
+    "texte": "En mission avancée, {{coequipier}} tombe gravement blessé. Le temps d'achever l'objectif est compté. Un choix s'impose.",
     "choix": [
       {
         "id": "a",
         "texte": "Abandonner l'objectif pour évacuer ton équipier.",
-        "resume": "a abandonné une mission pour sauver un équipier blessé",
+        "resume": "a abandonné une mission pour sauver {{coequipier}}, blessé",
         "tag": "Loyal",
         "effets": { "stats": { "loyaute": 4, "reputation": -3 }, "drapeaux": { "a_aide_un_camarade": true } }
       },
       {
         "id": "b",
         "texte": "Achever l'objectif d'abord, quitte à le laisser en arrière.",
-        "resume": "a laissé un équipier blessé pour achever la mission",
+        "resume": "a laissé {{coequipier}} blessé pour achever la mission",
         "tag": "Froid",
         "effets": { "stats": { "reputation": 3, "loyaute": -6 }, "drapeaux": { "a_trahi_son_equipe": true } }
       }

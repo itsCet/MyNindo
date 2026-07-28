@@ -88,19 +88,19 @@
     "id": "chu_001",
     "arc": "examen_chunin",
     "conditions": {},
-    "texte": "Première épreuve chunin : un adversaire expérimenté te propose un affrontement où la ruse compte plus que la force brute.",
+    "texte": "Première épreuve chunin : {{adversaire}}, un adversaire expérimenté, te propose un affrontement où la ruse compte plus que la force brute.",
     "choix": [
       {
         "id": "a",
         "texte": "Tendre un piège plutôt que d'attaquer de front.",
-        "resume": "a tendu un piège lors de l'épreuve chunin",
+        "resume": "a tendu un piège à {{adversaire}} lors de l'épreuve chunin",
         "tag": "Calculé",
         "effets": { "stats": { "intelligence": 4, "reputation": 2 } }
       },
       {
         "id": "b",
         "texte": "Affronter l'adversaire frontalement, quitte à encaisser des coups.",
-        "resume": "a affronté frontalement son adversaire chunin",
+        "resume": "a affronté frontalement {{adversaire}}",
         "tag": "Risqué",
         "effets": { "stats": { "force": 4, "sante": -3 } }
       }
