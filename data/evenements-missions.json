@@ -197,6 +197,29 @@
     ]
   },
   {
+    "id": "mis_b004",
+    "arc": "missions",
+    "rang": "B",
+    "conditions": { "statsMin": { "vitesse": 60 } },
+    "texte": "Mission de rang B : ta rapidité est repérée par le commandement, qui te confie seul une mission d'interception éclair, jugée trop risquée pour une équipe complète.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Foncer sans attendre de renfort.",
+        "resume": "a intercepté seul une cible grâce à sa rapidité",
+        "tag": "Risqué",
+        "effets": { "stats": { "vitesse": 3, "reputation": 3, "sante": -2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Demander tout de même un appui, par prudence.",
+        "resume": "a demandé un appui avant une mission d'interception",
+        "tag": "Prudent",
+        "effets": { "stats": { "intelligence": 2, "loyaute": 1 } }
+      }
+    ]
+  },
+  {
     "id": "mis_a001",
     "arc": "missions",
     "rang": "A",
@@ -262,6 +285,28 @@
         "resume": "a contourné une zone de combat par prudence",
         "tag": "Prudent",
         "effets": { "stats": { "intelligence": 2, "vitesse": 2, "sante": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "mis_a004",
+    "arc": "missions",
+    "rang": "A",
+    "conditions": { "statsMax": { "controleEmotionnel": 35 } },
+    "texte": "La pression de la mission de rang A te submerge d'un coup. Une remarque déplacée d'un allié suffit à te faire perdre patience en plein terrain hostile.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Laisser exploser ta colère, tant pis pour les conséquences.",
+        "resume": "a laissé exploser sa colère en plein terrain hostile",
+        "tag": "Impulsif",
+        "effets": { "stats": { "force": 2, "reputation": -3, "loyaute": -2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Serrer les dents et ravaler ta colère, une fois de plus.",
+        "resume": "a ravalé sa colère une fois de plus en mission",
+        "effets": { "stats": { "controleEmotionnel": 3, "sante": -1 } }
       }
     ]
   },

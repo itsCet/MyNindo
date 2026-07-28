@@ -203,6 +203,49 @@
     ]
   },
   {
+    "id": "aca_009",
+    "arc": "academie",
+    "conditions": { "statsMin": { "maitriseChakra": 60 } },
+    "texte": "{{instructeur}} remarque ton contrôle du chakra, nettement au-dessus de la moyenne de ta promotion, et te propose un entraînement avancé réservé à une poignée d'élèves.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Accepter, quitte à t'épuiser plus vite que les autres.",
+        "resume": "a rejoint un entraînement avancé grâce à sa maîtrise du chakra",
+        "tag": "Discipliné",
+        "effets": { "stats": { "maitriseChakra": 3, "sante": -2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Décliner poliment, tu préfères progresser à ton rythme.",
+        "resume": "a décliné un entraînement avancé pour progresser à son rythme",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_010",
+    "arc": "academie",
+    "conditions": { "statsMin": { "force": 60 } },
+    "texte": "Ta force physique dépasse largement celle de tes camarades. Le responsable des entraînements te propose de rejoindre un groupe avancé, réservé aux meilleurs éléments.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Rejoindre le groupe avancé, quitte à en faire plus que les autres.",
+        "resume": "a rejoint le groupe d'entraînement avancé grâce à sa force",
+        "tag": "Audacieux",
+        "effets": { "stats": { "force": 3, "reputation": 2, "sante": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Rester avec ta classe, par solidarité.",
+        "resume": "est resté avec sa classe par solidarité",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 2 } }
+      }
+    ]
+  },
+  {
     "id": "aca_008",
     "arc": "academie",
     "conditions": {},

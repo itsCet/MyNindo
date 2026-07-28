@@ -233,6 +233,50 @@
     ]
   },
   {
+    "id": "gue_010",
+    "arc": "guerre",
+    "conditions": { "statsMin": { "reputation": 70 } },
+    "texte": "Ta réputation dans le village a atteint un tel niveau que de jeunes recrues viennent te demander conseil avant la bataille, les yeux pleins d'espoir.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Prendre le temps de les conseiller sincèrement.",
+        "resume": "a pris le temps de conseiller sincèrement de jeunes recrues",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 3, "reputation": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Leur dire simplement de rester en vie, sans plus.",
+        "resume": "a répondu froidement à de jeunes recrues venues lui demander conseil",
+        "tag": "Froid",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_011",
+    "arc": "guerre",
+    "conditions": { "statsMax": { "sante": 35 } },
+    "texte": "Les blessures accumulées finissent par te rattraper. Le médecin de guerre insiste pour te retirer temporairement du front, malgré tes protestations.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Refuser et repartir au combat quand même.",
+        "resume": "a refusé de quitter le front malgré ses blessures",
+        "tag": "Risqué",
+        "effets": { "stats": { "force": 2, "sante": -4, "reputation": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Accepter de te reposer, pour repartir plus fort ensuite.",
+        "resume": "a accepté de se reposer pour repartir plus fort",
+        "tag": "Prudent",
+        "effets": { "stats": { "sante": 5, "controleEmotionnel": 2 } }
+      }
+    ]
+  },
+  {
     "id": "gue_009",
     "arc": "guerre",
     "conditions": {},

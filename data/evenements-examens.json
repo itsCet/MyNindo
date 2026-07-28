@@ -85,6 +85,50 @@
     ]
   },
   {
+    "id": "gen_005",
+    "arc": "examen_genin",
+    "conditions": { "statsMin": { "intelligence": 60 } },
+    "texte": "Le jury remarque ta vivacité d'esprit et te propose une épreuve bonus : résoudre une énigme stratégique avant même la fin du temps imparti aux autres candidats.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Relever le défi devant tout le monde.",
+        "resume": "a relevé le défi de l'épreuve bonus devant tout le monde",
+        "tag": "Audacieux",
+        "effets": { "stats": { "intelligence": 2, "reputation": 3 } }
+      },
+      {
+        "id": "b",
+        "texte": "Décliner pour ne pas t'exposer inutilement.",
+        "resume": "a décliné l'épreuve bonus par prudence",
+        "tag": "Prudent",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "chu_005",
+    "arc": "examen_chunin",
+    "conditions": { "statsMin": { "controleEmotionnel": 65 } },
+    "texte": "Ton sang-froid, déjà remarqué, pousse les examinateurs à te confier un rôle inhabituel : accompagner {{ami}}, en pleine crise de panique avant l'épreuve suivante.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Prendre le temps de le ou la rassurer, même si cela te coûte du temps de préparation.",
+        "resume": "a pris le temps de rassurer {{ami}} avant l'épreuve",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 3, "sante": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Donner des consignes brèves et rester concentré sur ta propre épreuve.",
+        "resume": "a donné des consignes brèves à {{ami}} avant de se recentrer",
+        "tag": "Froid",
+        "effets": { "stats": { "intelligence": 2, "loyaute": -1 } }
+      }
+    ]
+  },
+  {
     "id": "chu_001",
     "arc": "examen_chunin",
     "conditions": {},
