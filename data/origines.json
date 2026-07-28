@@ -3,30 +3,35 @@
     {
       "id": "hono",
       "nom": "Hono-gakure",
+      "titreChef": "Honokage",
       "description": "Village caché du Pays de la Flamme, dirigé par le Honokage. Ses habitants grandissent au rythme des forges et des brasiers d'entraînement, dans une discipline aussi ardente que leur territoire.",
       "bonus": { "force": 4, "controleEmotionnel": -2, "reputation": 2 }
     },
     {
       "id": "kasumi",
       "nom": "Kasumi-gakure",
+      "titreChef": "Kasumikage",
       "description": "Village caché du Pays des Brumes, dirigé par le Kasumikage. Noyé sous un brouillard permanent, il forme des ninjas habitués à agir et se déplacer sans jamais être vraiment vus.",
       "bonus": { "maitriseChakra": 3, "intelligence": 2, "force": -2 }
     },
     {
       "id": "ganseki",
       "nom": "Ganseki-gakure",
+      "titreChef": "Gansekikage",
       "description": "Village caché du Pays de la Roche, dirigé par le Gansekikage. Bâti à même la pierre, il façonne des shinobi robustes, aussi patients qu'increvables.",
       "bonus": { "sante": 5, "force": 2, "vitesse": -3 }
     },
     {
       "id": "sabaku",
       "nom": "Sabaku-gakure",
+      "titreChef": "Sabakukage",
       "description": "Village caché du Pays du Désert, dirigé par le Sabakukage. La rareté de l'eau et la dureté du climat y forgent une endurance et une rapidité hors normes.",
       "bonus": { "vitesse": 4, "sante": -3, "reputation": 1 }
     },
     {
       "id": "raimei",
       "nom": "Raimei-gakure",
+      "titreChef": "Raimeikage",
       "description": "Village caché du Pays du Tonnerre, dirigé par le Raimeikage. Ses écoles enseignent une maîtrise du chakra aussi vive et tranchante que la foudre.",
       "bonus": { "intelligence": 2, "maitriseChakra": 3, "controleEmotionnel": -2 }
     }

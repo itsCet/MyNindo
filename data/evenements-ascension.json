@@ -1,0 +1,144 @@
+[
+  {
+    "id": "asc_001",
+    "arc": "ascension",
+    "conditions": { "drapeaux": { "exclu_du_conseil": false } },
+    "texte": "La guerre est finie. Le conseil du village te convoque pour évaluer les candidats à la succession du Kage.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Te porter candidat à la succession, avec toute l'ambition que cela suppose.",
+        "resume": "s'est porté candidat à la succession du Kage",
+        "tag": "Ambitieux",
+        "effets": { "stats": { "reputation": 3, "loyaute": 2 }, "drapeaux": { "vise_kage": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Décliner, et proposer de rester au service actif plutôt que de viser le sommet.",
+        "resume": "a proposé de servir comme bras droit plutôt que de viser le sommet",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 3, "intelligence": 2 }, "drapeaux": { "vise_bras_droit": true } }
+      },
+      {
+        "id": "c",
+        "texte": "Refuser poliment toute charge officielle — tu en as assez vu.",
+        "resume": "a refusé toute charge officielle après la guerre",
+        "effets": { "stats": { "controleEmotionnel": 2, "sante": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "asc_001b",
+    "arc": "ascension",
+    "conditions": { "drapeaux": { "exclu_du_conseil": true } },
+    "texte": "Loin du village, sans titre ni reconnaissance, un choix te reste : chercher à revenir, ou t'enfoncer plus loin encore.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Chercher un chemin de retour, même incertain.",
+        "resume": "a cherché un chemin de retour vers son village",
+        "tag": "Prudent",
+        "effets": { "stats": { "loyaute": 2, "controleEmotionnel": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Accepter ce que tu es devenu, sans plus regarder en arrière.",
+        "resume": "a accepté ce qu'il était devenu, sans regarder en arrière",
+        "tag": "Froid",
+        "effets": { "stats": { "maitriseChakra": 2, "loyaute": -2 } }
+      }
+    ]
+  },
+  {
+    "id": "asc_002",
+    "arc": "ascension",
+    "conditions": { "drapeaux": { "rejoint_organisation_secrete": true } },
+    "texte": "L'organisation prépare un coup décisif contre ton ancien village. Le moment est venu de choisir ton rôle dans ce dernier acte.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Porter le coup de grâce toi-même, pour prouver ta loyauté à l'organisation.",
+        "resume": "a porté le coup de grâce contre son propre village",
+        "tag": "Risqué",
+        "effets": { "stats": { "maitriseChakra": 4, "loyaute": -10 }, "drapeaux": { "a_cause_la_chute_du_village": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Saboter discrètement le plan de l'intérieur, au péril de ta vie.",
+        "resume": "a saboté le plan de l'organisation de l'intérieur",
+        "tag": "Risqué",
+        "effets": { "stats": { "intelligence": 3, "controleEmotionnel": 2, "sante": -3 }, "drapeaux": { "a_sabote_lorganisation": true } }
+      }
+    ]
+  },
+  {
+    "id": "asc_002b",
+    "arc": "ascension",
+    "conditions": { "drapeaux": { "rejoint_organisation_secrete": false } },
+    "texte": "Le village entame sa reconstruction. On te confie une mission de la plus haute confiance.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Accepter, et t'investir corps et âme dans la reconstruction.",
+        "resume": "s'est investi corps et âme dans la reconstruction du village",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 3, "reputation": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Accepter, mais en gardant une part de toi pour une vie plus simple, loin des projecteurs.",
+        "resume": "a choisi une vie plus simple, loin des projecteurs",
+        "tag": "Solitaire",
+        "effets": { "stats": { "controleEmotionnel": 3 }, "drapeaux": { "vise_liberte": true } }
+      }
+    ]
+  },
+  {
+    "id": "asc_003",
+    "arc": "ascension",
+    "conditions": {},
+    "texte": "Le monde a changé autour de toi. Ce que tu choisis de retenir de ce chemin t'appartient.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Repenser à ceux que tu as perdus en chemin.",
+        "resume": "a repensé à ceux qu'il a perdus en chemin",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Repenser à ceux que tu as aidés à grandir.",
+        "resume": "a repensé à ceux qu'il a aidés à grandir",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 2, "reputation": 1 } }
+      },
+      {
+        "id": "c",
+        "texte": "Ne penser qu'à la suite — il reste tant à faire.",
+        "resume": "ne pensait déjà qu'à la suite",
+        "tag": "Ambitieux",
+        "effets": { "stats": { "intelligence": 1, "reputation": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "asc_004",
+    "arc": "ascension",
+    "conditions": {},
+    "texte": "Un dernier moment, seul, avant que le monde ne décide officiellement de ce que tu deviens.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Te tenir prêt, quoi qu'il arrive.",
+        "resume": "s'est tenu prêt, quoi qu'il arrive",
+        "effets": { "stats": { "controleEmotionnel": 2, "sante": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Repenser une dernière fois à ton village d'origine.",
+        "resume": "a repensé une dernière fois à son village d'origine",
+        "effets": { "stats": { "loyaute": 1, "reputation": 1 } }
+      }
+    ]
+  }
+]

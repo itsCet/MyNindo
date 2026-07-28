@@ -48,6 +48,7 @@ export function creerPersonnage(selection, origines) {
     identite: {
       nom: selection.nom?.trim() || "Ninja sans nom",
       village: village?.nom ?? "Village inconnu",
+      titreChefVillage: village?.titreChef ?? "chef du village",
       clan: clan?.nom ?? "Sans clan",
       affiniteChakra: affinite?.nom ?? "Affinité inconnue",
       temperament: temperament?.nom ?? "Tempérament inconnu",
@@ -56,7 +57,7 @@ export function creerPersonnage(selection, origines) {
     stats,
     drapeaux: {},
     progression: {
-      arc: "academie",
+      arc: "enfance",
       compteurArc: 0,
       rangIndex: 0,
       compteurRang: 0,
@@ -92,38 +93,96 @@ export function calculerScoreFinal(etat) {
   if (etat.drapeaux.a_quitte_le_village) bonus -= 10;
   if (etat.drapeaux.rejoint_organisation_secrete) bonus -= 6;
   if (etat.drapeaux.a_perdu_son_mentor) bonus -= 4;
+  if (etat.drapeaux.a_cause_la_chute_du_village) bonus -= 25;
+  if (etat.drapeaux.a_sabote_lorganisation) bonus += 5;
 
   return clamp(score + bonus, 0, 100);
 }
 
-export function determinerTitre(etat, score) {
+// Détermine le titre final ET une catégorie stable (utilisée pour les phrases de
+// conclusion et les badges), à partir des drapeaux accumulés sur toute la carrière
+// et du score final. L'ordre des vérifications fait office de priorité narrative.
+export function determinerResolutionFinale(etat, score) {
   const d = etat.drapeaux;
+  const { titreChefVillage, village } = etat.identite;
 
-  if (d.a_trahi_son_equipe) return "Ombre Reniée";
-  if (d.a_quitte_le_village && !d.rejoint_organisation_secrete) return "Errant Sans Village";
-  if (d.rejoint_organisation_secrete) {
-    return score >= 60 ? "Lame de l'Ombre Repentie" : "Marionnette de l'Organisation";
+  if (d.a_cause_la_chute_du_village) {
+    return { titre: "Le Village en Cendres", categorie: "villageEnCendres" };
   }
-  if (score >= 90) return "Légende Vivante";
-  if (score >= 75) return "Maître Reconnu";
-  if (score >= 55) return "Jonin Accompli";
-  if (score >= 35) return "Chunin Vétéran";
-  return "Ninja Oublié";
+  if (d.a_trahi_son_equipe) {
+    return { titre: "Ombre Reniée", categorie: "traitre" };
+  }
+  if (d.rejoint_organisation_secrete) {
+    if (d.a_quitte_le_village) {
+      return score >= 60
+        ? { titre: "Lame de l'Ombre Repentie", categorie: "ombreRepentie" }
+        : { titre: "Marionnette de l'Organisation", categorie: "marionnette" };
+    }
+    return { titre: "Agent Double de l'Ombre", categorie: "agentDouble" };
+  }
+  if (d.a_quitte_le_village) {
+    return d.vise_liberte && etat.stats.controleEmotionnel >= 55
+      ? { titre: "Sage Sans Village", categorie: "sageErrant" }
+      : { titre: "Errant Sans Village", categorie: "errant" };
+  }
+  if (d.vise_kage) {
+    if (score >= 80 && etat.stats.reputation >= 65 && etat.stats.loyaute >= 55) {
+      return { titre: titreChefVillage, categorie: "kage" };
+    }
+    return { titre: "Candidat Écarté", categorie: "candidatEcarte" };
+  }
+  if (d.vise_bras_droit) {
+    return score >= 65
+      ? { titre: `Bras Droit du ${titreChefVillage}`, categorie: "brasDroit" }
+      : { titre: "Conseiller de l'Ombre", categorie: "conseillerOmbre" };
+  }
+  if (d.vise_liberte) {
+    return { titre: `Gardien Discret de ${village}`, categorie: "gardienDiscret" };
+  }
+
+  if (score >= 90) return { titre: "Légende Vivante", categorie: "legende" };
+  if (score >= 75) return { titre: "Maître Reconnu", categorie: "maitreReconnu" };
+  if (score >= 55) return { titre: "Jonin Accompli", categorie: "jonin" };
+  if (score >= 35) return { titre: "Chunin Vétéran", categorie: "chuninVeteran" };
+  return { titre: "Ninja Oublié", categorie: "oublie" };
 }
 
-export function construireResumeNarratif(etat, score, titre) {
+const PHRASES_CONCLUSION = {
+  villageEnCendres: (nom, village) => `Les flammes qui ont englouti ${village} porteront à jamais la marque de ce choix.`,
+  traitre: (nom) => `Le nom de ${nom} est aujourd'hui prononcé à voix basse, comme un avertissement.`,
+  marionnette: (nom) => `${nom} sert une cause qui ne lui appartient plus vraiment.`,
+  ombreRepentie: (nom) => `Entre l'ombre et la lumière, ${nom} a choisi de racheter ses choix, à sa manière.`,
+  agentDouble: (nom) => `Personne, ni au village ni dans l'organisation, ne connaît vraiment la loyauté réelle de ${nom}.`,
+  sageErrant: (nom) => `Libéré des titres, ${nom} continue d'enseigner sa voie à qui veut bien l'entendre.`,
+  errant: (nom) => `${nom} n'a plus de toit, mais garde, envers et contre tout, sa propre voie.`,
+  kage: (nom, village) => `Sous l'autorité de ${nom}, ${village} entre dans une nouvelle ère.`,
+  candidatEcarte: (nom) => `Le conseil a préféré l'expérience à l'ambition — ${nom} devra reconquérir sa place.`,
+  brasDroit: (nom, village) => `Dans l'ombre du pouvoir, ${nom} tient à ${village} des fils que peu de gens voient.`,
+  conseillerOmbre: (nom, village) => `${nom} influence ${village} sans jamais en réclamer les honneurs.`,
+  gardienDiscret: (nom, village) => `${nom} veille sur ${village} à sa manière, loin des titres et des honneurs.`,
+  legende: (nom) => `Des générations de jeunes ninjas grandiront en rêvant de marcher dans les pas de ${nom}.`,
+  maitreReconnu: (nom) => `${nom} a gagné le respect qu'aucun titre ne pouvait garantir.`,
+  jonin: (nom, village) => `${nom} continue de servir ${village}, sans éclat mais sans faille.`,
+  chuninVeteran: (nom) => `Le chemin de ${nom} n'est pas terminé, simplement plus incertain que prévu.`,
+  oublie: (nom) => `L'histoire ne retiendra pas le nom de ${nom} — mais lui s'en souvient.`,
+};
+
+export function construireResumeNarratif(etat, score, resolution) {
   const { nom, village, clan, mentor } = etat.identite;
   const moments = etat.historique
     .filter((h) => h.resume)
     .slice(-5)
     .map((h) => `— ${h.resume}.`);
 
+  const phraseConclusion = PHRASES_CONCLUSION[resolution.categorie]?.(nom, village) ?? "";
+
   const lignes = [
     `${nom}, du village de ${village}${clan !== "Sans clan" ? ` et du ${clan}` : ""}, a suivi l'enseignement de ${mentor} avant de tracer sa propre voie.`,
     "Derniers moments marquants de son parcours :",
     ...moments,
-    `Son parcours s'achève avec un score de ${score}/100, sous le titre : « ${titre} ».`,
-  ];
+    `Son parcours s'achève avec un score de ${score}/100, sous le titre : « ${resolution.titre} ».`,
+    phraseConclusion,
+  ].filter(Boolean);
 
   return lignes.join("\n");
 }

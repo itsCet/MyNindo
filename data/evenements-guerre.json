@@ -231,5 +231,27 @@
         "effets": { "stats": { "loyaute": 4, "controleEmotionnel": 2, "reputation": 2 } }
       }
     ]
+  },
+  {
+    "id": "gue_009",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "La guerre s'éternise et te vide de l'intérieur. Une nuit, la sortie du camp n'est gardée par personne.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Partir, cette nuit-là, sans un mot pour personne.",
+        "resume": "a déserté une nuit, sans un mot pour personne",
+        "tag": "Risqué",
+        "effets": { "stats": { "controleEmotionnel": 3, "loyaute": -5, "reputation": -3 }, "drapeaux": { "a_quitte_le_village": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Rester. Peu importe la fatigue, ce n'est pas ainsi que tu veux finir.",
+        "resume": "a refusé de déserter malgré l'épuisement",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 2, "controleEmotionnel": -1 } }
+      }
+    ]
   }
 ]

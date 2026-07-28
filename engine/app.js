@@ -1,25 +1,29 @@
 // Orchestrateur : charge les données, connaît l'engine et pilote la progression.
 // C'est le seul module qui connaît à la fois /data, /engine et (indirectement) /ui.
 
-import { creerPersonnage, calculerScoreFinal, determinerTitre, construireResumeNarratif, creerEntreePantheon } from "./etat.js";
+import { creerPersonnage, calculerScoreFinal, determinerResolutionFinale, construireResumeNarratif, creerEntreePantheon } from "./etat.js";
 import { tirerProchainEvenement, appliquerChoix } from "./moteur.js";
 
 const RANGS_MISSIONS = ["D", "C", "B", "A", "S"];
 
 const CONFIG_ARCS = {
+  enfance: { seuil: 4, suivant: "academie" },
   academie: { seuil: 6, suivant: "examen_genin" },
   examen_genin: { seuil: 3, suivant: "missions" },
   missions: { seuilParRang: 2, suivant: "examen_chunin" },
   examen_chunin: { seuil: 3, suivant: "guerre" },
-  guerre: { seuil: 8, suivant: "fin" },
+  guerre: { seuil: 8, suivant: "ascension" },
+  ascension: { seuil: 4, suivant: "fin" },
 };
 
 const LABELS_ARCS = {
+  enfance: "Enfance",
   academie: "Académie",
   examen_genin: "Examen Genin",
   missions: "Missions",
   examen_chunin: "Examen Chunin",
   guerre: "Guerre & Ombres",
+  ascension: "Ascension",
   fin: "Fin de run",
 };
 
@@ -60,9 +64,27 @@ const CATALOGUE_BADGES = [
     description: "Tisser un lien fort avec son mentor et le préserver jusqu'au bout.",
     condition: (etat) => Boolean(etat.drapeaux.lien_fort_avec_mentor) && !etat.drapeaux.a_perdu_son_mentor,
   },
+  {
+    id: "couronne_du_kage",
+    nom: "La Couronne",
+    description: "Devenir le Kage de son village.",
+    condition: (etat, score, resolution) => resolution.categorie === "kage",
+  },
+  {
+    id: "main_de_lombre",
+    nom: "La Main de l'Ombre",
+    description: "Devenir le bras droit du Kage.",
+    condition: (etat, score, resolution) => resolution.categorie === "brasDroit",
+  },
+  {
+    id: "cendres",
+    nom: "Cendres",
+    description: "Provoquer la chute de son propre village.",
+    condition: (etat, score, resolution) => resolution.categorie === "villageEnCendres",
+  },
 ];
 
-const DONNEES = { origines: null, academie: null, missions: null, examens: null, guerre: null };
+const DONNEES = { origines: null, enfance: null, academie: null, missions: null, examens: null, guerre: null, ascension: null };
 
 let etatCourant = null;
 let idsVus = new Set();
@@ -78,14 +100,16 @@ async function chargerJson(chemin) {
 }
 
 export async function chargerDonnees() {
-  const [origines, academie, missions, examens, guerre] = await Promise.all([
+  const [origines, enfance, academie, missions, examens, guerre, ascension] = await Promise.all([
     chargerJson("./data/origines.json"),
+    chargerJson("./data/evenements-enfance.json"),
     chargerJson("./data/evenements-academie.json"),
     chargerJson("./data/evenements-missions.json"),
     chargerJson("./data/evenements-examens.json"),
     chargerJson("./data/evenements-guerre.json"),
+    chargerJson("./data/evenements-ascension.json"),
   ]);
-  Object.assign(DONNEES, { origines, academie, missions, examens, guerre });
+  Object.assign(DONNEES, { origines, enfance, academie, missions, examens, guerre, ascension });
   return DONNEES.origines;
 }
 
@@ -95,6 +119,8 @@ export function obtenirOrigines() {
 
 function datasetPourArc(arc) {
   switch (arc) {
+    case "enfance":
+      return DONNEES.enfance;
     case "academie":
       return DONNEES.academie;
     case "examen_genin":
@@ -104,9 +130,17 @@ function datasetPourArc(arc) {
       return DONNEES.missions;
     case "guerre":
       return DONNEES.guerre;
+    case "ascension":
+      return DONNEES.ascension;
     default:
       return [];
   }
+}
+
+// Drapeau dérivé : calculé à la volée (idempotent) plutôt que stocké lors d'un
+// événement précis, car il dépend de l'état cumulé de plusieurs arcs précédents.
+function mettreAJourDrapeauxDerives(etat) {
+  etat.drapeaux.exclu_du_conseil = Boolean(etat.drapeaux.a_trahi_son_equipe || etat.drapeaux.a_quitte_le_village);
 }
 
 function obtenirPool(etat) {
@@ -115,6 +149,9 @@ function obtenirPool(etat) {
   if (arc === "missions") {
     const rang = RANGS_MISSIONS[rangIndex];
     return dataset.filter((ev) => ev.rang === rang);
+  }
+  if (arc === "ascension") {
+    mettreAJourDrapeauxDerives(etat);
   }
   return dataset.filter((ev) => ev.arc === arc);
 }
@@ -208,11 +245,11 @@ export function choisir(evenement, choixId) {
   };
 }
 
-function evaluerBadges(etat, score, titre) {
+function evaluerBadges(etat, score, resolution) {
   const nouveaux = [];
   for (const badge of CATALOGUE_BADGES) {
     if (badgesDebloques.has(badge.id)) continue;
-    if (badge.condition(etat, score, titre)) {
+    if (badge.condition(etat, score, resolution)) {
       badgesDebloques.add(badge.id);
       nouveaux.push(badge);
     }
@@ -222,15 +259,15 @@ function evaluerBadges(etat, score, titre) {
 
 export function terminerRun() {
   const score = calculerScoreFinal(etatCourant);
-  const titre = determinerTitre(etatCourant, score);
-  const resume = construireResumeNarratif(etatCourant, score, titre);
-  const entree = creerEntreePantheon(etatCourant, score, titre);
+  const resolution = determinerResolutionFinale(etatCourant, score);
+  const resume = construireResumeNarratif(etatCourant, score, resolution);
+  const entree = creerEntreePantheon(etatCourant, score, resolution.titre);
 
   pantheon.push(entree);
   pantheon.sort((a, b) => b.score - a.score);
-  const badgesGagnes = evaluerBadges(etatCourant, score, titre);
+  const badgesGagnes = evaluerBadges(etatCourant, score, resolution);
 
-  return { score, titre, resume, badgesGagnes };
+  return { score, titre: resolution.titre, resume, badgesGagnes };
 }
 
 export function obtenirPantheon() {

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "enf_001",
+    "arc": "enfance",
+    "conditions": {},
+    "texte": "Tout petit déjà, tu sens quelque chose d'étrange circuler en toi lorsque tu te concentres très fort — un picotement chaud, difficile à expliquer aux autres enfants du quartier.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "T'amuser à le déclencher encore et encore, au risque de t'épuiser.",
+        "resume": "s'amusait déjà, tout petit, à faire circuler son chakra",
+        "tag": "Impulsif",
+        "effets": { "stats": { "maitriseChakra": 2, "sante": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Le garder pour toi, un peu effrayé par cette sensation.",
+        "resume": "a gardé pour lui, enfant, la découverte de son chakra",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      },
+      {
+        "id": "c",
+        "texte": "En parler à un adulte du quartier pour comprendre.",
+        "resume": "a demandé de l'aide à un adulte pour comprendre son chakra naissant",
+        "tag": "Prudent",
+        "effets": { "stats": { "intelligence": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "enf_002",
+    "arc": "enfance",
+    "conditions": {},
+    "texte": "Un proche de ta famille part en mission pour plusieurs semaines. La maison te semble soudain bien plus silencieuse.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Occuper ce temps à observer les ninjas s'entraîner sur la place du village.",
+        "resume": "occupait son temps à observer les ninjas s'entraîner, enfant",
+        "effets": { "stats": { "intelligence": 1, "vitesse": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "T'isoler un peu, en attendant que tout redevienne comme avant.",
+        "resume": "a appris, enfant, à se débrouiller seul",
+        "tag": "Solitaire",
+        "effets": { "stats": { "controleEmotionnel": 1, "reputation": -1 }, "drapeaux": { "grandi_seul": true } }
+      }
+    ]
+  },
+  {
+    "id": "enf_003",
+    "arc": "enfance",
+    "conditions": {},
+    "texte": "Une dispute éclate entre enfants du quartier pour un jeu stupide. Le ton monte vite.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Prendre parti pour ton ami le plus proche, sans réfléchir.",
+        "resume": "prenait déjà parti pour ses proches, enfant",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 2, "controleEmotionnel": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Essayer de calmer tout le monde.",
+        "resume": "cherchait déjà à apaiser les conflits, enfant",
+        "effets": { "stats": { "controleEmotionnel": 2, "reputation": 1 } }
+      },
+      {
+        "id": "c",
+        "texte": "T'éloigner, ce genre de dispute ne t'intéresse pas.",
+        "resume": "préférait déjà s'éloigner des disputes, enfant",
+        "tag": "Solitaire",
+        "effets": { "stats": { "intelligence": 1, "loyaute": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "enf_004",
+    "arc": "enfance",
+    "conditions": {},
+    "texte": "Le repas est un peu maigre ce soir-là. Un enfant plus jeune que toi n'a visiblement rien mangé depuis un moment.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Partager la moitié de ton repas sans hésiter.",
+        "resume": "partageait déjà son repas, enfant",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 2, "sante": -1 }, "drapeaux": { "a_aide_un_camarade": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Garder ton repas, tu as toi-même à peine assez.",
+        "resume": "gardait son repas pour lui, enfant, faute d'en avoir assez",
+        "effets": { "stats": { "sante": 1, "loyaute": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "enf_005",
+    "arc": "enfance",
+    "conditions": {},
+    "texte": "Le jour où les inscriptions à l'Académie ouvrent enfin, tu te tiens devant le grand portail, la liste des candidats à la main.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "T'inscrire avec la ferme intention de devenir un jour un grand nom.",
+        "resume": "s'est inscrit à l'Académie avec une grande ambition",
+        "tag": "Ambitieux",
+        "effets": { "stats": { "reputation": 2, "loyaute": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "T'inscrire simplement pour protéger ceux qui comptent pour toi.",
+        "resume": "s'est inscrit à l'Académie pour protéger ses proches",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 2 } }
+      },
+      {
+        "id": "c",
+        "texte": "T'inscrire sans trop savoir pourquoi, porté par la curiosité.",
+        "resume": "s'est inscrit à l'Académie par curiosité, sans trop savoir pourquoi",
+        "effets": { "stats": { "intelligence": 1, "controleEmotionnel": 1 } }
+      }
+    ]
+  }
+]
