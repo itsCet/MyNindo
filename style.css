@@ -147,6 +147,15 @@ button {
   padding-top: var(--espace-4);
 }
 
+/* Écrans "carte" à contenu unique (accueil, création, fin, badges, panthéon) :
+   restent centrés et étroits même sur grand écran, plutôt que de s'étirer
+   avec le conteneur large réservé à l'écran de jeu à deux colonnes. */
+.ecran--etroit {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .pied {
   text-align: center;
   padding: var(--espace-6) var(--espace-4) var(--espace-12);
