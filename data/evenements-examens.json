@@ -15,6 +15,7 @@
         "id": "b",
         "texte": "Observer discrètement comment les autres candidats réagissent à la règle non-dite.",
         "resume": "a observé les autres candidats pendant l'épreuve écrite",
+        "tag": "Calculé",
         "effets": { "stats": { "intelligence": 2, "reputation": -1 } }
       }
     ]
@@ -29,12 +30,14 @@
         "id": "a",
         "texte": "Viser lentement, cible par cible, pour ne rater aucun tir.",
         "resume": "a visé avec prudence à l'épreuve de précision",
+        "tag": "Prudent",
         "effets": { "stats": { "intelligence": 1, "vitesse": -1, "maitriseChakra": 2 } }
       },
       {
         "id": "b",
         "texte": "Enchaîner les tirs rapidement, quitte à en manquer certains.",
         "resume": "a enchaîné les tirs à l'épreuve de précision",
+        "tag": "Risqué",
         "effets": { "stats": { "vitesse": 3, "controleEmotionnel": -1 } }
       }
     ]
@@ -49,6 +52,7 @@
         "id": "a",
         "texte": "Chercher à dominer rapidement le duel.",
         "resume": "a dominé son duel de l'examen genin",
+        "tag": "Audacieux",
         "effets": { "stats": { "force": 3, "reputation": 2, "controleEmotionnel": -1 } }
       },
       {
@@ -75,6 +79,7 @@
         "id": "b",
         "texte": "Répondre avec ambition, en évoquant les rangs les plus élevés.",
         "resume": "a affiché son ambition devant le jury",
+        "tag": "Ambitieux",
         "effets": { "stats": { "reputation": 3, "loyaute": -1 } }
       }
     ]
@@ -89,12 +94,14 @@
         "id": "a",
         "texte": "Tendre un piège plutôt que d'attaquer de front.",
         "resume": "a tendu un piège lors de l'épreuve chunin",
+        "tag": "Calculé",
         "effets": { "stats": { "intelligence": 4, "reputation": 2 } }
       },
       {
         "id": "b",
         "texte": "Affronter l'adversaire frontalement, quitte à encaisser des coups.",
         "resume": "a affronté frontalement son adversaire chunin",
+        "tag": "Risqué",
         "effets": { "stats": { "force": 4, "sante": -3 } }
       }
     ]
@@ -109,12 +116,14 @@
         "id": "a",
         "texte": "Gérer ton énergie avec prudence, quitte à ralentir.",
         "resume": "a géré son énergie avec prudence à l'épreuve d'endurance",
+        "tag": "Prudent",
         "effets": { "stats": { "sante": 3, "intelligence": 1 } }
       },
       {
         "id": "b",
         "texte": "Pousser ton corps à la limite pour finir en tête.",
         "resume": "a poussé son corps à la limite à l'épreuve d'endurance",
+        "tag": "Risqué",
         "effets": { "stats": { "vitesse": 3, "sante": -4, "reputation": 2 } }
       }
     ]
@@ -129,6 +138,7 @@
         "id": "a",
         "texte": "Te concentrer sur ta respiration pour garder les idées claires.",
         "resume": "a gardé son sang-froid face à l'épreuve mentale",
+        "tag": "Discipliné",
         "effets": { "stats": { "controleEmotionnel": 4, "maitriseChakra": 2 } }
       },
       {
@@ -149,12 +159,14 @@
         "id": "a",
         "texte": "Affirmer ta loyauté totale envers le village.",
         "resume": "a affirmé sa loyauté devant le conseil",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 4, "reputation": 2 } }
       },
       {
         "id": "b",
         "texte": "Rester évasif, préférant garder tes options ouvertes.",
         "resume": "est resté évasif devant le conseil du village",
+        "tag": "Solitaire",
         "effets": { "stats": { "intelligence": 2, "loyaute": -2 } }
       }
     ]

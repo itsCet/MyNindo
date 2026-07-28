@@ -29,12 +29,14 @@
         "id": "a",
         "texte": "Défendre fermement ton propre plan.",
         "resume": "a imposé son plan à son escouade",
+        "tag": "Impulsif",
         "effets": { "stats": { "reputation": 2, "loyaute": -1, "controleEmotionnel": -1 } }
       },
       {
         "id": "b",
         "texte": "Chercher un compromis qui rassemble l'équipe.",
         "resume": "a cherché le compromis au sein de son escouade",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 3, "intelligence": 1 } }
       }
     ]
@@ -49,12 +51,14 @@
         "id": "a",
         "texte": "Accepter et rejoindre l'organisation dans le plus grand secret.",
         "resume": "a rejoint secrètement une organisation de l'ombre",
+        "tag": "Risqué",
         "effets": { "stats": { "maitriseChakra": 4, "loyaute": -6 }, "drapeaux": { "rejoint_organisation_secrete": true } }
       },
       {
         "id": "b",
         "texte": "Refuser fermement et rester fidèle au village.",
         "resume": "a refusé fermement l'organisation secrète",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 4, "reputation": 1 }, "drapeaux": { "rejoint_organisation_secrete": false } }
       }
     ]
@@ -89,6 +93,7 @@
         "id": "a",
         "texte": "Te porter en première ligne dès les premiers combats.",
         "resume": "s'est porté en première ligne dès le début de la guerre",
+        "tag": "Audacieux",
         "effets": { "stats": { "force": 3, "reputation": 3, "sante": -3 } }
       },
       {
@@ -109,12 +114,14 @@
         "id": "a",
         "texte": "Obéir et couper définitivement les ponts avec le village.",
         "resume": "a définitivement rompu avec son village pour l'organisation",
+        "tag": "Risqué",
         "effets": { "stats": { "maitriseChakra": 3, "loyaute": -8, "reputation": -5 }, "drapeaux": { "a_quitte_le_village": true } }
       },
       {
         "id": "b",
         "texte": "Feindre d'obéir tout en protégeant secrètement le village de l'intérieur.",
         "resume": "a joué les agents doubles pour protéger son village",
+        "tag": "Calculé",
         "effets": { "stats": { "intelligence": 3, "controleEmotionnel": -2 } }
       }
     ]
@@ -129,12 +136,14 @@
         "id": "a",
         "texte": "Foncer en force pour percer rapidement.",
         "resume": "a percé les lignes ennemies en force pour évacuer des civils",
+        "tag": "Risqué",
         "effets": { "stats": { "force": 3, "reputation": 3, "sante": -3 } }
       },
       {
         "id": "b",
         "texte": "Ouvrir un passage discret pour limiter les pertes.",
         "resume": "a ouvert un passage discret pour évacuer des civils",
+        "tag": "Discret",
         "effets": { "stats": { "vitesse": 2, "maitriseChakra": 2, "controleEmotionnel": 1 } }
       }
     ]
@@ -149,12 +158,14 @@
         "id": "a",
         "texte": "Foncer à son secours, au péril de ta propre sécurité.",
         "resume": "a foncé secourir son mentor encerclé au péril de sa vie",
+        "tag": "Risqué",
         "effets": { "stats": { "loyaute": 5, "sante": -4 }, "drapeaux": { "lien_fort_avec_mentor": true } }
       },
       {
         "id": "b",
         "texte": "Maintenir ta position, en comptant sur son expérience pour s'en sortir seul.",
         "resume": "a maintenu sa position pendant que son mentor se battait seul",
+        "tag": "Froid",
         "effets": { "stats": { "controleEmotionnel": 2, "reputation": -2 }, "drapeaux": { "a_perdu_son_mentor": true } }
       }
     ]
@@ -209,12 +220,14 @@
         "id": "a",
         "texte": "Prendre tous les risques pour porter le coup décisif.",
         "resume": "a pris tous les risques lors de la bataille décisive",
+        "tag": "Risqué",
         "effets": { "stats": { "force": 4, "maitriseChakra": 3, "reputation": 4, "sante": -5 } }
       },
       {
         "id": "b",
         "texte": "Jouer un rôle de soutien pour sécuriser la victoire collective.",
         "resume": "a sécurisé la victoire collective lors de la bataille décisive",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 4, "controleEmotionnel": 2, "reputation": 2 } }
       }
     ]

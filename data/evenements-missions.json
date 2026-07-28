@@ -73,12 +73,14 @@
         "id": "a",
         "texte": "Rester visible pour dissuader toute attaque.",
         "resume": "a dissuadé des bandits en restant visible",
+        "tag": "Audacieux",
         "effets": { "stats": { "reputation": 2, "controleEmotionnel": 1 } }
       },
       {
         "id": "b",
         "texte": "Se fondre dans le décor pour surveiller la route sans être vu.",
         "resume": "a surveillé une route discrètement pendant une escorte",
+        "tag": "Discret",
         "effets": { "stats": { "vitesse": 2, "intelligence": 1 } }
       }
     ]
@@ -100,6 +102,7 @@
         "id": "b",
         "texte": "Rester constamment aux côtés de l'ouvrier, quitte à négliger l'enquête.",
         "resume": "a protégé un ouvrier sans quitter son poste",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 2, "controleEmotionnel": 1 } }
       }
     ]
@@ -115,6 +118,7 @@
         "id": "a",
         "texte": "Foncer sans t'arrêter, quitte à t'épuiser.",
         "resume": "a livré des messages en fonçant sous la tempête",
+        "tag": "Risqué",
         "effets": { "stats": { "vitesse": 3, "sante": -2 } }
       },
       {
@@ -136,12 +140,14 @@
         "id": "a",
         "texte": "T'approcher au plus près pour un rapport détaillé.",
         "resume": "s'est infiltré près d'un campement suspect",
+        "tag": "Risqué",
         "effets": { "stats": { "intelligence": 3, "controleEmotionnel": -1 } }
       },
       {
         "id": "b",
         "texte": "Observer à bonne distance, quitte à rapporter moins d'informations.",
         "resume": "a observé un campement suspect à distance prudente",
+        "tag": "Prudent",
         "effets": { "stats": { "vitesse": 1, "sante": 1 } }
       }
     ]
@@ -178,12 +184,14 @@
         "id": "a",
         "texte": "Rester constamment à ses côtés, sans relâche.",
         "resume": "a protégé un témoin clé sans relâche",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 3, "sante": -2 } }
       },
       {
         "id": "b",
         "texte": "Traquer activement ceux qui cherchent à l'intimider.",
         "resume": "a traqué les intimidateurs d'un témoin clé",
+        "tag": "Audacieux",
         "effets": { "stats": { "force": 2, "reputation": 2 } }
       }
     ]
@@ -199,12 +207,14 @@
         "id": "a",
         "texte": "Intervenir immédiatement pour repousser les mercenaires.",
         "resume": "a repoussé des mercenaires pour sauver un village voisin",
+        "tag": "Risqué",
         "effets": { "stats": { "force": 4, "reputation": 4, "sante": -3 }, "drapeaux": { "a_sauve_un_village": true } }
       },
       {
         "id": "b",
         "texte": "Attendre des renforts pour limiter les risques.",
         "resume": "a attendu des renforts avant d'intervenir",
+        "tag": "Prudent",
         "effets": { "stats": { "controleEmotionnel": 2, "reputation": -2 } }
       }
     ]
@@ -220,12 +230,14 @@
         "id": "a",
         "texte": "Abandonner l'objectif pour évacuer ton équipier.",
         "resume": "a abandonné une mission pour sauver un équipier blessé",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 4, "reputation": -3 }, "drapeaux": { "a_aide_un_camarade": true } }
       },
       {
         "id": "b",
         "texte": "Achever l'objectif d'abord, quitte à le laisser en arrière.",
         "resume": "a laissé un équipier blessé pour achever la mission",
+        "tag": "Froid",
         "effets": { "stats": { "reputation": 3, "loyaute": -6 }, "drapeaux": { "a_trahi_son_equipe": true } }
       }
     ]
@@ -241,12 +253,14 @@
         "id": "a",
         "texte": "Forcer le passage au combat.",
         "resume": "a forcé le passage au combat en territoire hostile",
+        "tag": "Risqué",
         "effets": { "stats": { "force": 3, "sante": -4 } }
       },
       {
         "id": "b",
         "texte": "Contourner par un itinéraire plus long mais plus sûr.",
         "resume": "a contourné une zone de combat par prudence",
+        "tag": "Prudent",
         "effets": { "stats": { "intelligence": 2, "vitesse": 2, "sante": -1 } }
       }
     ]
@@ -262,12 +276,14 @@
         "id": "a",
         "texte": "Rester coûte que coûte aux côtés de ton mentor pour le protéger.",
         "resume": "est resté protéger son mentor durant l'incursion",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 4, "sante": -3 }, "drapeaux": { "lien_fort_avec_mentor": true } }
       },
       {
         "id": "b",
         "texte": "Foncer vers l'objectif stratégique, en confiance dans les capacités de ton mentor.",
         "resume": "a foncé vers l'objectif pendant l'incursion, laissant son mentor se débrouiller seul",
+        "tag": "Froid",
         "effets": { "stats": { "force": 3, "reputation": 3 }, "drapeaux": { "a_perdu_son_mentor": true } }
       }
     ]
@@ -283,12 +299,14 @@
         "id": "a",
         "texte": "Écouter par curiosité, sans rien promettre.",
         "resume": "a écouté un émissaire d'une organisation secrète",
+        "tag": "Risqué",
         "effets": { "stats": { "intelligence": 2 }, "drapeaux": { "contact_organisation_secrete": true } }
       },
       {
         "id": "b",
         "texte": "Refuser net et signaler l'incident à ta hiérarchie.",
         "resume": "a signalé le contact d'un émissaire suspect",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 3, "reputation": 1 } }
       }
     ]
@@ -304,12 +322,14 @@
         "id": "a",
         "texte": "Jouer la sécurité pour garantir un succès sans accroc.",
         "resume": "a assuré une mission de rang S sans prendre de risque",
+        "tag": "Prudent",
         "effets": { "stats": { "controleEmotionnel": 2, "reputation": 2 } }
       },
       {
         "id": "b",
         "texte": "Prendre des risques calculés pour un résultat éclatant.",
         "resume": "a pris des risques calculés lors d'une mission de rang S",
+        "tag": "Risqué",
         "effets": { "stats": { "reputation": 5, "sante": -2 } }
       }
     ]

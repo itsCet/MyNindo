@@ -9,6 +9,7 @@
         "id": "a",
         "texte": "Te présenter avec assurance, quitte à en faire un peu trop.",
         "resume": "s'est présenté avec assurance dès le premier jour",
+        "tag": "Audacieux",
         "effets": { "stats": { "reputation": 3, "controleEmotionnel": -1 } }
       },
       {
@@ -21,6 +22,7 @@
         "id": "c",
         "texte": "Observer les autres élèves avant de parler, pour jauger la classe.",
         "resume": "a observé la classe avant de se présenter",
+        "tag": "Prudent",
         "effets": { "stats": { "intelligence": 2 } }
       }
     ]
@@ -35,6 +37,7 @@
         "id": "a",
         "texte": "Sécher discrètement pour t'entraîner seul en forêt.",
         "resume": "a séché un cours pour s'entraîner seul",
+        "tag": "Risqué",
         "effets": { "stats": { "force": 3, "reputation": -2 }, "drapeaux": { "a_seche_un_cours": true } }
       },
       {
@@ -47,6 +50,7 @@
         "id": "c",
         "texte": "Glisser des questions provocantes pour réveiller la classe.",
         "resume": "a chahuté le cours d'histoire",
+        "tag": "Impulsif",
         "effets": { "stats": { "reputation": 2, "loyaute": -1 } }
       }
     ]
@@ -61,6 +65,7 @@
         "id": "a",
         "texte": "Accepter le duel sans hésiter.",
         "resume": "a accepté le duel public de Kessho Rin",
+        "tag": "Audacieux",
         "effets": { "stats": { "force": 2, "reputation": 2, "controleEmotionnel": -2 }, "drapeaux": { "a_defie_un_rival": true } }
       },
       {
@@ -93,6 +98,7 @@
         "id": "b",
         "texte": "Refuser calmement : tu n'as rien à prouver.",
         "resume": "a refusé la revanche de Kessho Rin",
+        "tag": "Prudent",
         "effets": { "stats": { "controleEmotionnel": 2 } }
       }
     ]
@@ -107,12 +113,14 @@
         "id": "a",
         "texte": "Prendre ton temps, quitte à finir après tout le monde.",
         "resume": "a pris son temps sur l'exercice de chakra",
+        "tag": "Discipliné",
         "effets": { "stats": { "maitriseChakra": 4, "reputation": -1 } }
       },
       {
         "id": "b",
         "texte": "Foncer pour être le premier à réussir.",
         "resume": "s'est précipité sur l'exercice de chakra",
+        "tag": "Impulsif",
         "effets": { "stats": { "maitriseChakra": 1, "reputation": 2, "controleEmotionnel": -1 } }
       }
     ]
@@ -127,6 +135,7 @@
         "id": "a",
         "texte": "Rester pour l'aider à s'entraîner, même si cela te fatigue.",
         "resume": "a aidé une camarade en difficulté",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 3, "sante": -1 }, "drapeaux": { "a_aide_un_camarade": true } }
       },
       {
@@ -147,6 +156,7 @@
         "id": "a",
         "texte": "Répondre du tac au tac, quitte à envenimer la situation.",
         "resume": "a tenu tête à un instructeur",
+        "tag": "Impulsif",
         "effets": { "stats": { "reputation": 2, "controleEmotionnel": -3 } }
       },
       {
@@ -159,6 +169,7 @@
         "id": "c",
         "texte": "Demander calmement des explications après le cours.",
         "resume": "a demandé des explications calmement à un instructeur",
+        "tag": "Discipliné",
         "effets": { "stats": { "intelligence": 2, "controleEmotionnel": 1 } }
       }
     ]
@@ -173,12 +184,14 @@
         "id": "a",
         "texte": "T'y entraîner en cachette, la nuit, au risque d'être surpris.",
         "resume": "s'est entraîné en secret dans une zone interdite",
+        "tag": "Risqué",
         "effets": { "stats": { "force": 2, "vitesse": 2, "sante": -2 }, "drapeaux": { "a_enfreint_le_reglement": true } }
       },
       {
         "id": "b",
         "texte": "Signaler la zone à un instructeur, par principe.",
         "resume": "a signalé une zone d'entraînement interdite",
+        "tag": "Loyal",
         "effets": { "stats": { "loyaute": 2, "reputation": 1 } }
       },
       {

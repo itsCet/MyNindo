@@ -14,7 +14,23 @@ const LABELS_STATS = {
   sante: "Santé",
 };
 
+// Tonalité visuelle des étiquettes de choix (voir style.css : .etiquette-choix--*)
+const TONS_ETIQUETTES = {
+  Risqué: "chaude",
+  Audacieux: "chaude",
+  Impulsif: "chaude",
+  Ambitieux: "chaude",
+  Prudent: "froide",
+  Discipliné: "froide",
+  Calculé: "froide",
+  Discret: "froide",
+  Froid: "froide",
+  Loyal: "loyal",
+  Solitaire: "neutre",
+};
+
 let evenementCourant = null;
+let runTermineeEnAttente = false;
 
 function $(id) {
   return document.getElementById(id);
@@ -150,13 +166,27 @@ function rendreEcranJeu(evenement) {
 
   $("texte-evenement").textContent = evenement.texte;
 
+  $("zone-resultat").hidden = true;
   const liste = $("liste-choix");
+  liste.hidden = false;
   liste.innerHTML = "";
   for (const choix of evenement.choix) {
     const bouton = document.createElement("button");
     bouton.type = "button";
     bouton.className = "bouton-choix";
-    bouton.textContent = choix.texte;
+
+    if (choix.tag) {
+      const etiquette = document.createElement("span");
+      const ton = TONS_ETIQUETTES[choix.tag] ?? "neutre";
+      etiquette.className = `etiquette-choix etiquette-choix--${ton}`;
+      etiquette.textContent = choix.tag;
+      bouton.appendChild(etiquette);
+    }
+
+    const texte = document.createElement("span");
+    texte.textContent = choix.texte;
+    bouton.appendChild(texte);
+
     bouton.addEventListener("click", () => gererChoix(choix.id));
     liste.appendChild(bouton);
   }
@@ -173,9 +203,40 @@ function afficherProchainEvenementOuFin() {
   afficherEcran("jeu");
 }
 
+function rendreBadgesEffets(effets = {}) {
+  const conteneur = $("badges-effets");
+  conteneur.innerHTML = "";
+
+  for (const [cle, delta] of Object.entries(effets.stats ?? {})) {
+    if (!delta) continue;
+    const badge = document.createElement("span");
+    const positif = delta > 0;
+    badge.className = `badge-effet ${positif ? "badge-effet--positif" : "badge-effet--negatif"}`;
+    badge.textContent = `${positif ? "+" : ""}${delta} ${LABELS_STATS[cle] ?? cle}`;
+    conteneur.appendChild(badge);
+  }
+}
+
 function gererChoix(choixId) {
+  const choix = evenementCourant.choix.find((c) => c.id === choixId);
   const { termine } = jeu.choisir(evenementCourant, choixId);
-  if (termine) {
+  runTermineeEnAttente = termine;
+
+  rendreStats();
+  $("liste-choix").hidden = true;
+
+  $("texte-resultat").textContent = choix.resume
+    ? `Ton personnage ${choix.resume}.`
+    : choix.texte;
+  rendreBadgesEffets(choix.effets);
+
+  const zoneResultat = $("zone-resultat");
+  zoneResultat.hidden = false;
+  zoneResultat.focus?.();
+}
+
+function gererContinuer() {
+  if (runTermineeEnAttente) {
     conclureRun();
     return;
   }
@@ -285,6 +346,7 @@ function configurerNavigation() {
   });
 
   $("formulaire-creation").addEventListener("submit", gererSoumissionCreation);
+  $("bouton-continuer").addEventListener("click", gererContinuer);
 }
 
 export async function initialiser() {

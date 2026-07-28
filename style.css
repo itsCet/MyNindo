@@ -386,6 +386,10 @@ fieldset.groupe-options legend {
 }
 
 .bouton-choix {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espace-2);
   text-align: left;
   background: var(--couleur-surface-haute);
   border: 1px solid var(--couleur-bordure-forte);
@@ -397,6 +401,82 @@ fieldset.groupe-options legend {
 .bouton-choix:hover {
   border-color: var(--couleur-braise);
   transform: translateX(2px);
+}
+
+/* ---------- Étiquettes de choix (ton du choix, avant sélection) ---------- */
+
+.etiquette-choix {
+  display: inline-block;
+  font-size: var(--taille-petite);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px var(--espace-2);
+  border-radius: 999px;
+  border: 1px solid;
+  line-height: 1.6;
+}
+
+.etiquette-choix--chaude {
+  color: var(--couleur-braise-forte);
+  border-color: var(--couleur-braise);
+}
+
+.etiquette-choix--froide {
+  color: var(--couleur-lueur);
+  border-color: var(--couleur-lueur);
+}
+
+.etiquette-choix--loyal {
+  color: var(--couleur-succes);
+  border-color: var(--couleur-succes);
+}
+
+.etiquette-choix--neutre {
+  color: var(--couleur-texte-att);
+  border-color: var(--couleur-bordure-forte);
+}
+
+/* ---------- Résultat d'un choix (impact affiché avant de continuer) ---------- */
+
+.zone-resultat {
+  margin-top: var(--espace-6);
+  padding-top: var(--espace-6);
+  border-top: 1px dashed var(--couleur-bordure-forte);
+}
+
+#texte-resultat {
+  color: var(--couleur-texte-att);
+  font-style: italic;
+}
+
+.badges-effets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-2);
+  margin: var(--espace-4) 0 var(--espace-6);
+}
+
+.badge-effet {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--espace-2) var(--espace-3);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: var(--taille-petite);
+  border: 1px solid;
+}
+
+.badge-effet--positif {
+  color: var(--couleur-succes);
+  border-color: var(--couleur-succes);
+  background: color-mix(in srgb, var(--couleur-succes) 12%, transparent);
+}
+
+.badge-effet--negatif {
+  color: var(--couleur-danger);
+  border-color: var(--couleur-danger);
+  background: color-mix(in srgb, var(--couleur-danger) 12%, transparent);
 }
 
 /* ---------- Fin de run ---------- */
