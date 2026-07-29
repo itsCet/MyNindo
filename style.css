@@ -41,6 +41,8 @@
   --couleur-danger: #d3604a;
   --couleur-succes: #6ea87c;
   --ombre-carte: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --fond-image: url("./assets/background-dark.png");
+  --fond-voile: rgba(20, 21, 27, 0.72);
 }
 
 /* ---------- Palette claire ---------- */
@@ -59,6 +61,8 @@
   --couleur-danger: #a13a2b;
   --couleur-succes: #3f7a52;
   --ombre-carte: 0 8px 20px rgba(40, 30, 10, 0.12);
+  --fond-image: url("./assets/background-light.png");
+  --fond-voile: rgba(244, 241, 233, 0.75);
 }
 
 /* ---------- Reset minimal ---------- */
@@ -76,8 +80,10 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(1200px 600px at 20% -10%, var(--couleur-fond-alt), transparent),
-    var(--couleur-fond);
+    linear-gradient(var(--fond-voile), var(--fond-voile)),
+    var(--fond-image);
+  background-repeat: repeat;
+  background-size: 420px auto;
   color: var(--couleur-texte);
   font-family: var(--police);
   font-size: var(--taille-texte);
