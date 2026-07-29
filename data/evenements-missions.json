@@ -334,6 +334,7 @@
     "id": "mis_s001",
     "arc": "missions",
     "rang": "S",
+    "decisif": true,
     "conditions": {},
     "texte": "Mission de rang S : repousser une incursion armée aux frontières du village, aux côtés de ton mentor. La bataille tourne au chaos.",
     "choix": [

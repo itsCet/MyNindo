@@ -32,6 +32,7 @@ const TONS_ETIQUETTES = {
 let evenementCourant = null;
 let runTermineeEnAttente = false;
 let etapeEnAttente = null;
+let voieEnAttente = false;
 
 function $(id) {
   return document.getElementById(id);
@@ -166,9 +167,11 @@ function rendreEcranJeu(evenement) {
   rendreStats();
 
   $("texte-evenement").textContent = evenement.texte;
+  $("badge-decisif").hidden = !evenement.decisif;
 
   $("zone-resultat").hidden = true;
   $("zone-etape").hidden = true;
+  $("zone-voie").hidden = true;
   const liste = $("liste-choix");
   liste.hidden = false;
   liste.innerHTML = "";
@@ -220,9 +223,10 @@ function rendreBadgesEffets(effets = {}) {
 }
 
 function gererChoix(choixId) {
-  const { termine, etape, resultatChoix } = jeu.choisir(evenementCourant, choixId);
+  const { termine, etape, resultatChoix, voieProposee } = jeu.choisir(evenementCourant, choixId);
   runTermineeEnAttente = termine;
   etapeEnAttente = etape;
+  voieEnAttente = voieProposee;
 
   rendreStats();
   $("liste-choix").hidden = true;
@@ -252,6 +256,8 @@ function creerTuileEtape(valeur, label) {
 
 function rendreEtape(etape) {
   $("etape-badge").textContent = `Arc — ${etape.label}`;
+  $("etape-titre-presse").textContent = etape.titrePresse ? `« ${etape.titrePresse} »` : "";
+  $("etape-titre-presse").hidden = !etape.titrePresse;
   $("etape-citation").textContent = etape.citation ? `« ${etape.citation} »` : "";
   $("etape-citation").hidden = !etape.citation;
 
@@ -276,6 +282,9 @@ function rendreEtape(etape) {
     p.textContent = `Ton personnage ${moment}.`;
     moments.appendChild(p);
   }
+
+  $("etape-rival").textContent = etape.rival?.phrase ?? "";
+  $("etape-rival").hidden = !etape.rival?.phrase;
 }
 
 function gererContinuer() {
@@ -289,6 +298,11 @@ function gererContinuer() {
     zoneEtape.focus?.();
     return;
   }
+  if (voieEnAttente) {
+    $("zone-resultat").hidden = true;
+    afficherSelectionVoie();
+    return;
+  }
   if (runTermineeEnAttente) {
     conclureRun();
     return;
@@ -298,6 +312,10 @@ function gererContinuer() {
 
 function gererContinuerEtape() {
   $("zone-etape").hidden = true;
+  if (voieEnAttente) {
+    afficherSelectionVoie();
+    return;
+  }
   if (runTermineeEnAttente) {
     conclureRun();
     return;
@@ -305,14 +323,58 @@ function gererContinuerEtape() {
   afficherProchainEvenementOuFin();
 }
 
+/* ---------- Voie ninja (choix unique, milieu de carrière) ---------- */
+
+function afficherSelectionVoie() {
+  const liste = $("liste-voies");
+  liste.innerHTML = "";
+  for (const voie of jeu.obtenirVoies()) {
+    const bouton = document.createElement("button");
+    bouton.type = "button";
+    bouton.className = "carte-voie";
+    bouton.innerHTML = `
+      <span class="carte-voie__nom">${voie.nom}</span>
+      <span class="carte-voie__desc">${voie.description}</span>
+    `;
+    bouton.addEventListener("click", () => gererChoixVoie(voie.id));
+    liste.appendChild(bouton);
+  }
+  const zoneVoie = $("zone-voie");
+  zoneVoie.hidden = false;
+  zoneVoie.focus?.();
+}
+
+function gererChoixVoie(voieId) {
+  jeu.choisirVoie(voieId);
+  voieEnAttente = false;
+  $("zone-voie").hidden = true;
+  rendreStats();
+  afficherProchainEvenementOuFin();
+}
+
 /* ---------- Fin de run ---------- */
 
 function conclureRun() {
-  const { score, titre, resume, badgesGagnes } = jeu.terminerRun();
+  const { score, titre, resume, badgesGagnes, surnom, rival } = jeu.terminerRun();
+
+  const surnomEl = $("surnom-final");
+  surnomEl.textContent = surnom ? `« ${surnom} »` : "";
+  surnomEl.hidden = !surnom;
 
   $("titre-final").textContent = titre;
   $("score-final").textContent = `Score final : ${score} / 100`;
   $("resume-final").textContent = resume;
+
+  const faceAFace = $("face-a-face");
+  if (rival) {
+    $("rival-score-joueur").textContent = String(score);
+    $("rival-nom").textContent = rival.nom;
+    $("rival-score-rival").textContent = String(rival.score);
+    $("rival-verdict").textContent = rival.verdict;
+    faceAFace.hidden = false;
+  } else {
+    faceAFace.hidden = true;
+  }
 
   const conteneurBadges = $("badges-nouveaux");
   conteneurBadges.innerHTML = "";

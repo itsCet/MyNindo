@@ -1,7 +1,17 @@
 // Orchestrateur : charge les données, connaît l'engine et pilote la progression.
 // C'est le seul module qui connaît à la fois /data, /engine et (indirectement) /ui.
 
-import { creerPersonnage, calculerScoreFinal, determinerResolutionFinale, construireResumeNarratif, creerEntreePantheon } from "./etat.js";
+import {
+  creerPersonnage,
+  calculerScoreFinal,
+  determinerResolutionFinale,
+  construireResumeNarratif,
+  creerEntreePantheon,
+  determinerSurnom,
+  determinerVerdictRival,
+  appliquerEffets,
+  clamp,
+} from "./etat.js";
 import { tirerProchainEvenement, appliquerChoix } from "./moteur.js";
 
 const RANGS_MISSIONS = ["D", "C", "B", "A", "S"];
@@ -36,6 +46,97 @@ const JALONS_ARCS = {
   guerre: "Guerre traversée.",
   ascension: "Ton destin est scellé.",
 };
+
+// Voies ninja : choix unique proposé à l'entrée dans l'arc Guerre, qui octroie
+// un bonus de stats marqué et détermine le surnom affiché à l'écran de fin.
+const VOIES = [
+  {
+    id: "lame",
+    nom: "Voie de la Lame Silencieuse",
+    description: "Frapper vite et disparaître avant que l'adversaire ne comprenne ce qui s'est passé.",
+    effets: { stats: { vitesse: 5, maitriseChakra: 5, reputation: -2 } },
+  },
+  {
+    id: "rempart",
+    nom: "Voie du Rempart",
+    description: "Tenir la ligne, coûte que coûte, pour que les autres n'aient pas à le faire.",
+    effets: { stats: { force: 5, sante: 5, loyaute: 2 } },
+  },
+  {
+    id: "eclat",
+    nom: "Voie de l'Éclat Stratège",
+    description: "Gagner le combat avant même qu'il ne commence.",
+    effets: { stats: { intelligence: 5, controleEmotionnel: 5 } },
+  },
+  {
+    id: "coeur",
+    nom: "Voie du Cœur Ardent",
+    description: "Porter les autres par la seule force de sa conviction.",
+    effets: { stats: { reputation: 5, loyaute: 5, controleEmotionnel: -2 } },
+  },
+];
+
+const PHRASES_RIVAL_HAUSSE = [
+  (nom) => `Pendant ce temps, ${nom} enchaîne les bons résultats.`,
+  (nom) => `${nom} progresse aussi, saison après saison.`,
+];
+
+const PHRASES_RIVAL_BAISSE = [
+  (nom) => `${nom}, de son côté, traverse une passe difficile.`,
+  (nom) => `On raconte que ${nom} peine à confirmer, ces derniers temps.`,
+];
+
+function construirePhraseRival(nomRival, delta) {
+  const banque = delta >= 0 ? PHRASES_RIVAL_HAUSSE : PHRASES_RIVAL_BAISSE;
+  return banque[Math.floor(Math.random() * banque.length)](nomRival);
+}
+
+// Titres de presse dynamiques pour l'écran de bilan d'arc, choisis selon la
+// tendance de réputation de la période écoulée (hausse / baisse / neutre).
+const TITRES_PRESSE = {
+  enfance: {
+    hausse: (nom) => `Les premiers pas de ${nom} font déjà parler`,
+    baisse: (nom) => `Une enfance discrète pour ${nom}`,
+    neutre: (nom) => `${nom}, une enfance comme tant d'autres… pour l'instant`,
+  },
+  academie: {
+    hausse: (nom) => `${nom} impressionne déjà à l'Académie`,
+    baisse: (nom) => `Des débuts difficiles pour ${nom} à l'Académie`,
+    neutre: (nom) => `${nom} trace sa route à l'Académie, sans éclat ni fausse note`,
+  },
+  examen_genin: {
+    hausse: (nom) => `${nom} brille à l'examen Genin`,
+    baisse: (nom) => `${nom} arrache son diplôme Genin dans la douleur`,
+    neutre: (nom) => `${nom}, Genin comme les autres`,
+  },
+  missions: {
+    hausse: (nom) => `De D à S : l'ascension fulgurante de ${nom}`,
+    baisse: (nom) => `Missions difficiles : ${nom} traverse une zone de turbulences`,
+    neutre: (nom) => `${nom} enchaîne les missions, sans surprise`,
+  },
+  examen_chunin: {
+    hausse: (nom) => `${nom} impose sa loi à l'examen Chunin`,
+    baisse: (nom) => `L'examen Chunin laisse des traces chez ${nom}`,
+    neutre: (nom) => `${nom} décroche son grade de Chunin`,
+  },
+  guerre: {
+    hausse: (nom) => `${nom} sort grandi du chaos de la guerre`,
+    baisse: (nom) => `La guerre a laissé des cicatrices profondes chez ${nom}`,
+    neutre: (nom) => `${nom} survit à la guerre, comme tant d'autres`,
+  },
+  ascension: {
+    hausse: (nom) => `Le destin de ${nom} se dessine enfin`,
+    baisse: (nom) => `${nom} entre dans le dernier chapitre, incertain`,
+    neutre: (nom) => `${nom} approche du dénouement de son histoire`,
+  },
+};
+
+function determinerTitrePresse(arc, nom, deltaReputation) {
+  const banque = TITRES_PRESSE[arc];
+  if (!banque) return null;
+  const tendance = deltaReputation > 1 ? "hausse" : deltaReputation < -1 ? "baisse" : "neutre";
+  return banque[tendance](nom);
+}
 
 const CATALOGUE_BADGES = [
   {
@@ -229,6 +330,8 @@ export function demarrerNouvellePartie(selection) {
   etatCourant = creerPersonnage(selection, DONNEES.origines);
   const [coequipier, ami, instructeur, adversaire] = tirerNomsAleatoires(4);
   etatCourant.pnj = { coequipier, ami, instructeur, adversaire };
+  // Le rival de génération suit sa propre trajectoire simulée tout au long de la run.
+  etatCourant.rival = { nom: adversaire, score: 50 };
   idsVus = new Set();
   return etatCourant;
 }
@@ -326,16 +429,21 @@ function construireBilanArc(etat, arcTermine, tailleArc) {
     .map((e) => e.resume)
     .slice(-2);
 
+  const deltaRival = Math.round(Math.random() * 12) - 3; // -3 à +8 : le rival progresse un peu plus souvent qu'il ne recule
+  etat.rival.score = clamp(etat.rival.score + deltaRival, 0, 100);
+
   return {
     arc: arcTermine,
     label: obtenirLabelArc(arcTermine),
     jalon: JALONS_ARCS[arcTermine] ?? "",
+    titrePresse: determinerTitrePresse(arcTermine, etat.identite.nom, totaux.reputation ?? 0),
     nbEvenements: entrees.length,
     meilleureStat,
     reputation: etat.stats.reputation,
     sante: etat.stats.sante,
     citation: entreeCitation?.resume ?? null,
     moments: momentsRecents,
+    rival: { nom: etat.rival.nom, phrase: construirePhraseRival(etat.rival.nom, deltaRival) },
   };
 }
 
@@ -355,7 +463,21 @@ export function choisir(evenement, choixId) {
     termine: arcApres === "fin",
     etape,
     resultatChoix,
+    // La voie ninja se choisit une fois pour toutes à l'entrée dans la Guerre.
+    voieProposee: arcAvant === "examen_chunin" && arcApres === "guerre",
   };
+}
+
+export function obtenirVoies() {
+  return VOIES;
+}
+
+export function choisirVoie(voieId) {
+  const voie = VOIES.find((v) => v.id === voieId);
+  if (!voie || !etatCourant) return;
+  appliquerEffets(etatCourant, voie.effets);
+  etatCourant.drapeaux[`voie_${voieId}`] = true;
+  etatCourant.identite.voie = voie.nom;
 }
 
 function evaluerBadges(etat, score, resolution) {
@@ -380,7 +502,13 @@ export function terminerRun() {
   pantheon.sort((a, b) => b.score - a.score);
   const badgesGagnes = evaluerBadges(etatCourant, score, resolution);
 
-  return { score, titre: resolution.titre, resume, badgesGagnes };
+  const rival = etatCourant.rival && {
+    nom: etatCourant.rival.nom,
+    score: etatCourant.rival.score,
+    verdict: determinerVerdictRival(score, etatCourant.rival.score, etatCourant.identite.nom, etatCourant.rival.nom),
+  };
+
+  return { score, titre: resolution.titre, resume, badgesGagnes, surnom: determinerSurnom(etatCourant), rival };
 }
 
 export function obtenirPantheon() {

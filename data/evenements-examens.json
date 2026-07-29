@@ -156,6 +156,53 @@
     ]
   },
   {
+    "id": "chu_006",
+    "arc": "examen_chunin",
+    "decisif": true,
+    "conditions": {},
+    "texte": "Face à {{adversaire}}, l'épreuve finale se joue devant tout le village rassemblé. Une seule action peut faire basculer le jugement du jury.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Jouer la sécurité, un mouvement maîtrisé et sans surprise.",
+        "resume": "a joué la sécurité lors de l'épreuve finale devant tout le village",
+        "tag": "Prudent",
+        "effets": { "stats": { "controleEmotionnel": 2, "reputation": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Tenter une technique puissante, rarement réussie à ce niveau.",
+        "resume": "a tenté une technique puissante devant tout le village",
+        "tag": "Audacieux",
+        "risque": 0.25,
+        "effets": { "stats": { "force": 4, "maitriseChakra": 2, "reputation": 4 } },
+        "echec": {
+          "resume": "a raté sa technique puissante devant tout le village",
+          "effets": { "stats": { "sante": -3, "reputation": -3 } }
+        }
+      },
+      {
+        "id": "c",
+        "texte": "Rendre hommage à {{instructeur}} en exécutant fidèlement ce qu'on t'a enseigné.",
+        "resume": "a rendu hommage à {{instructeur}} devant tout le village",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 3, "intelligence": 1, "reputation": 2 } }
+      },
+      {
+        "id": "d",
+        "texte": "Improviser un geste jamais vu, quitte à tout perdre devant tout le monde.",
+        "resume": "a improvisé un geste inédit devant tout le village",
+        "tag": "Risqué",
+        "risque": 0.4,
+        "effets": { "stats": { "reputation": 6, "maitriseChakra": 3 } },
+        "echec": {
+          "resume": "a improvisé un geste qui a mal tourné devant tout le village",
+          "effets": { "stats": { "reputation": -6, "controleEmotionnel": -3 } }
+        }
+      }
+    ]
+  },
+  {
     "id": "chu_002",
     "arc": "examen_chunin",
     "conditions": {},

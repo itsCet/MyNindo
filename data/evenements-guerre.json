@@ -218,6 +218,7 @@
   {
     "id": "gue_008",
     "arc": "guerre",
+    "decisif": true,
     "conditions": {},
     "texte": "La bataille décisive s'engage. Ce qui se joue ici déterminera durablement le sort du village — et le tien.",
     "choix": [

@@ -183,9 +183,10 @@ export function construireResumeNarratif(etat, score, resolution) {
     .map((h) => `— ${h.resume}.`);
 
   const phraseConclusion = PHRASES_CONCLUSION[resolution.categorie]?.(nom, village) ?? "";
+  const surnom = determinerSurnom(etat);
 
   const lignes = [
-    `${nom}, du village de ${village}${clan !== "Sans clan" ? ` et du ${clan}` : ""}, a suivi l'enseignement de ${mentor} avant de tracer sa propre voie.`,
+    `${nom}${surnom ? `, surnommé « ${surnom} »,` : ","} du village de ${village}${clan !== "Sans clan" ? ` et du ${clan}` : ""}, a suivi l'enseignement de ${mentor} avant de tracer sa propre voie.`,
     "Derniers moments marquants de son parcours :",
     ...moments,
     `Son parcours s'achève avec un score de ${score}/100, sous le titre : « ${resolution.titre} ».`,
@@ -193,6 +194,30 @@ export function construireResumeNarratif(etat, score, resolution) {
   ].filter(Boolean);
 
   return lignes.join("\n");
+}
+
+// Surnom généré à partir de la voie ninja choisie en milieu de carrière (voir
+// engine/app.js::choisirVoie). Reste `null` si aucune voie n'a été choisie.
+const SURNOMS_VOIE = {
+  voie_lame: (village) => `La Lame Silencieuse de ${village}`,
+  voie_rempart: (village) => `Le Rempart de ${village}`,
+  voie_eclat: (village) => `L'Éclat Stratège de ${village}`,
+  voie_coeur: (village) => `Le Cœur Ardent de ${village}`,
+};
+
+export function determinerSurnom(etat) {
+  const cleVoie = Object.keys(SURNOMS_VOIE).find((cle) => etat.drapeaux[cle]);
+  return cleVoie ? SURNOMS_VOIE[cleVoie](etat.identite.village) : null;
+}
+
+// Verdict du face-à-face final avec le rival simulé, basé sur l'écart de score.
+export function determinerVerdictRival(scoreJoueur, scoreRival, nomJoueur, nomRival) {
+  const ecart = scoreJoueur - scoreRival;
+  if (ecart >= 15) return `${nomJoueur} prend clairement le dessus sur ${nomRival} au fil des années.`;
+  if (ecart >= 5) return `${nomJoueur} devance ${nomRival}, d'une courte tête.`;
+  if (ecart > -5) return `${nomJoueur} et ${nomRival} restent au coude à coude, année après année.`;
+  if (ecart > -15) return `${nomRival} garde une longueur d'avance sur ${nomJoueur}.`;
+  return `${nomRival} éclipse largement ${nomJoueur} aux yeux du village.`;
 }
 
 export function creerEntreePantheon(etat, score, titre) {
