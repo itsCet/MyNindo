@@ -194,6 +194,18 @@ const CATALOGUE_BADGES = [
     description: "Provoquer la chute de son propre village.",
     condition: (etat, score, resolution) => resolution.categorie === "villageEnCendres",
   },
+  {
+    id: "heritage_interdit",
+    nom: "Héritage Interdit",
+    description: "Apprendre une technique interdite au prix fort.",
+    condition: (etat) => Boolean(etat.drapeaux.porte_technique_interdite),
+  },
+  {
+    id: "prix_de_nyxar",
+    nom: "Le Prix de Nyxar",
+    description: "Sceller un pacte avec le Passeur d'âmes.",
+    condition: (etat) => Boolean(etat.drapeaux.a_paye_le_prix_de_nyxar),
+  },
 ];
 
 const DONNEES = {

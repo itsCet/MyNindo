@@ -359,5 +359,109 @@
         "effets": { "stats": { "sante": -3, "controleEmotionnel": 2 } }
       }
     ]
+  },
+  {
+    "id": "gue_014",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "En retrait du champ de bataille, tu découvres les ruines d'un temple oublié. Une inscription à moitié effacée y raconte la légende d'un Sage venu enseigner le chakra à l'humanité — et celle d'une déesse déchue qui, avant lui, tenta de le garder pour elle seule.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Étudier l'inscription en profondeur, malgré le temps que cela te coûte.",
+        "resume": "a étudié les ruines d'un temple oublié dédié au Sage des Sept Voies",
+        "tag": "Prudent",
+        "effets": { "stats": { "intelligence": 3, "maitriseChakra": 2, "sante": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Laisser ces vieilles légendes derrière toi, la guerre n'attend pas.",
+        "resume": "a laissé de côté les légendes d'un temple oublié",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_015",
+    "arc": "guerre",
+    "conditions": { "drapeaux": { "clan_hoshigami": true } },
+    "texte": "Un vieillard borgne, dernier gardien d'un ordre presque éteint, reconnaît en toi le sang du clan Hoshigami. Il te propose de t'enseigner le véritable nom de ta technique héréditaire — une flamme née du dieu déchu Solenya, capable de tout consumer, y compris celui qui l'invoque.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Accepter l'enseignement, quel qu'en soit le prix.",
+        "resume": "a appris la technique interdite des Flammes de Solenya",
+        "tag": "Risqué",
+        "risque": 0.35,
+        "effets": { "stats": { "maitriseChakra": 6, "force": 3, "controleEmotionnel": -4 }, "drapeaux": { "porte_technique_interdite": true } },
+        "echec": {
+          "resume": "a tenté d'apprendre les Flammes de Solenya et s'est brûlé de l'intérieur",
+          "effets": { "stats": { "sante": -6, "controleEmotionnel": -5 } }
+        }
+      },
+      {
+        "id": "b",
+        "texte": "Refuser, par respect pour ceux que cette technique a consumés avant toi.",
+        "resume": "a refusé l'enseignement des Flammes de Solenya",
+        "tag": "Discipliné",
+        "effets": { "stats": { "controleEmotionnel": 3, "loyaute": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_016",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "Encerclé, à bout de forces, tu sens une présence glaciale t'observer depuis l'ombre. Une voix sans corps, celle que les anciens nomment Nyxar, le Passeur, t'offre un marché : la moitié de ton âme contre celle de tes ennemis.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Accepter le marché pour renverser le combat.",
+        "resume": "a scellé un pacte avec Nyxar, le Passeur d'âmes",
+        "tag": "Risqué",
+        "risque": 0.3,
+        "effets": { "stats": { "force": 5, "maitriseChakra": 3, "controleEmotionnel": -6 }, "drapeaux": { "a_paye_le_prix_de_nyxar": true } },
+        "echec": {
+          "resume": "a entendu l'offre de Nyxar, mais le pacte s'est refermé sur lui sans rien lui donner en retour",
+          "effets": { "stats": { "sante": -5, "controleEmotionnel": -4 } }
+        }
+      },
+      {
+        "id": "b",
+        "texte": "Refuser et te battre avec ce qu'il te reste.",
+        "resume": "a refusé le pacte de Nyxar et s'est battu avec ce qu'il lui restait",
+        "tag": "Discipliné",
+        "effets": { "stats": { "controleEmotionnel": 2, "sante": -2 } }
+      }
+    ]
+  },
+  {
+    "id": "gue_017",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "Au cœur du chaos, une secte encapuchonnée profite de la guerre pour recruter. Ils vénèrent Vraxil, un dieu de sang oublié, et te promettent puissance et appartenance en échange d'un sacrifice.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Te joindre à eux, par désespoir ou par curiosité malsaine.",
+        "resume": "a rejoint la secte du dieu de sang Vraxil",
+        "tag": "Risqué",
+        "effets": { "stats": { "maitriseChakra": 4, "loyaute": -7, "reputation": -4 }, "drapeaux": { "rejoint_secte_vraxil": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Refuser et alerter les tiens.",
+        "resume": "a alerté les siens de la présence d'une secte sanguinaire",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 3, "reputation": 2 } }
+      },
+      {
+        "id": "c",
+        "texte": "T'infiltrer pour glaner des informations, sans t'engager.",
+        "resume": "a infiltré la secte de Vraxil sans s'engager",
+        "tag": "Prudent",
+        "effets": { "stats": { "intelligence": 2 }, "drapeaux": { "contact_secte_vraxil": true } }
+      }
+    ]
   }
 ]

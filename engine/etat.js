@@ -105,6 +105,9 @@ export function calculerScoreFinal(etat) {
   if (etat.drapeaux.a_sabote_lorganisation) bonus += 5;
   if (etat.drapeaux.rejoint_clan_deserteur) bonus -= 8;
   if (etat.drapeaux.porte_un_sceau) bonus -= 3;
+  if (etat.drapeaux.porte_technique_interdite) bonus -= 4;
+  if (etat.drapeaux.a_paye_le_prix_de_nyxar) bonus -= 6;
+  if (etat.drapeaux.rejoint_secte_vraxil) bonus -= 8;
 
   return clamp(score + bonus, 0, 100);
 }
