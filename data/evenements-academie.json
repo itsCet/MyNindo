@@ -408,5 +408,199 @@
         "effets": { "stats": { "force": 1, "vitesse": 1, "controleEmotionnel": -1 } }
       }
     ]
+  },
+  {
+    "id": "aca_017",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "clan_byakuen": true } },
+    "texte": "Ta capacité à percer les illusions les plus fines impressionne un instructeur — et met mal à l'aise certains camarades, qui se sentent transparents face à toi.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Utiliser ce don pour aider la classe à progresser.",
+        "resume": "a utilisé son regard perçant pour aider la classe",
+        "tag": "Loyal",
+        "effets": { "stats": { "intelligence": 2, "loyaute": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Garder tes observations pour toi, par prudence.",
+        "resume": "a gardé ses observations pour lui, par prudence",
+        "tag": "Froid",
+        "effets": { "stats": { "controleEmotionnel": 2, "reputation": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_018",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "clan_kurogane": true } },
+    "texte": "Ta résistance physique hors norme, propre au clan Kurogane, te vaut d'encaisser les entraînements les plus rudes sans broncher — et l'admiration mêlée de crainte de tes camarades.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Te porter volontaire pour les exercices les plus durs.",
+        "resume": "s'est porté volontaire pour les exercices les plus durs",
+        "tag": "Audacieux",
+        "effets": { "stats": { "force": 3, "sante": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Rester modeste, sans chercher à impressionner.",
+        "resume": "est resté modeste malgré sa résistance hors norme",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_019",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "clan_nagareboshi": true } },
+    "texte": "Personne à l'Académie ne parvient à suivre ton rythme lors des courses d'entraînement. Certains y voient un don du clan Nagareboshi ; d'autres, une facilité qui les agace.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Ralentir volontairement pour ne pas humilier les autres.",
+        "resume": "a ralenti volontairement pour ne pas humilier les autres",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 2, "vitesse": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Foncer sans retenue, tant pis pour les jaloux.",
+        "resume": "a foncé sans retenue, tant pis pour les jaloux",
+        "tag": "Impulsif",
+        "effets": { "stats": { "vitesse": 3, "reputation": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_020",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "clan_tsuchigumo": true } },
+    "texte": "Un exercice de manipulation de fils de chakra révèle une aisance déconcertante chez toi — l'art discret du clan Tsuchigumo, qui inquiète autant qu'il fascine.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Perfectionner la technique en secret, loin des regards.",
+        "resume": "a perfectionné sa technique de fils de chakra en secret",
+        "tag": "Solitaire",
+        "effets": { "stats": { "maitriseChakra": 3, "reputation": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Partager tes progrès ouvertement avec la classe.",
+        "resume": "a partagé ses progrès en fils de chakra avec la classe",
+        "effets": { "stats": { "intelligence": 1, "loyaute": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_021",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "clan_akaoni": true } },
+    "texte": "Un accès de colère d'un camarade dégénère presque en bagarre. Le sang-froid légendaire du clan Akaoni, censé couler dans tes veines, est mis à l'épreuve.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Intervenir physiquement pour calmer la situation.",
+        "resume": "est intervenu physiquement pour calmer une bagarre",
+        "tag": "Audacieux",
+        "effets": { "stats": { "force": 2, "controleEmotionnel": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Laisser la tension retomber d'elle-même.",
+        "resume": "a laissé la tension retomber d'elle-même",
+        "effets": { "stats": { "controleEmotionnel": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_022",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "clan_mizuchi": true } },
+    "texte": "Près du bassin d'entraînement, ton affinité naturelle avec l'eau surprend même les instructeurs — une aisance que l'on prête aux légendes du clan Mizuchi.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Explorer cette affinité plus en profondeur.",
+        "resume": "a exploré son affinité naturelle avec l'eau",
+        "tag": "Prudent",
+        "effets": { "stats": { "maitriseChakra": 2, "sante": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Impressionner la classe avec une démonstration.",
+        "resume": "a impressionné la classe avec une démonstration aquatique",
+        "tag": "Ambitieux",
+        "effets": { "stats": { "reputation": 2, "controleEmotionnel": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_023",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "temperament_ambitieux": true } },
+    "texte": "Un instructeur te met en garde : ton ambition dévorante commence à se remarquer, et pas toujours en bien.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Revoir tes méthodes, sans renoncer à tes objectifs.",
+        "resume": "a revu ses méthodes sans renoncer à ses objectifs",
+        "tag": "Discipliné",
+        "effets": { "stats": { "intelligence": 2, "reputation": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Assumer pleinement, tant que les résultats suivent.",
+        "resume": "a assumé pleinement son ambition dévorante",
+        "tag": "Ambitieux",
+        "effets": { "stats": { "reputation": 3, "loyaute": -2 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_024",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "temperament_loyal": true } },
+    "texte": "Un camarade te demande de mentir pour couvrir une petite bêtise. Ta loyauté légendaire est mise à l'épreuve pour la première fois.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Le couvrir, quitte à prendre des risques toi-même.",
+        "resume": "a couvert un camarade, quitte à prendre des risques",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 3, "reputation": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Refuser, même si cela te coûte cette amitié.",
+        "resume": "a refusé de mentir, même au prix d'une amitié",
+        "tag": "Discipliné",
+        "effets": { "stats": { "controleEmotionnel": 2, "loyaute": -1 } }
+      }
+    ]
+  },
+  {
+    "id": "aca_025",
+    "arc": "academie",
+    "conditions": { "drapeaux": { "temperament_solitaire": true } },
+    "texte": "Un groupe d'élèves t'invite à te joindre à eux pour étudier. Ton instinct te pousse plutôt vers la solitude, comme toujours.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Décliner poliment et continuer seul.",
+        "resume": "a décliné et continué à étudier seul, comme toujours",
+        "tag": "Solitaire",
+        "effets": { "stats": { "intelligence": 2, "loyaute": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Accepter, pour une fois, contre ton habitude.",
+        "resume": "a accepté de rejoindre le groupe, contre son habitude",
+        "effets": { "stats": { "loyaute": 2, "controleEmotionnel": 1 } }
+      }
+    ]
   }
 ]

@@ -124,5 +124,112 @@
         "effets": { "stats": { "intelligence": 1, "controleEmotionnel": 1 } }
       }
     ]
+  },
+  {
+    "id": "enf_006",
+    "arc": "enfance",
+    "conditions": { "drapeaux": { "village_hono": true } },
+    "texte": "Près des forges de Hono-gakure, tu passes des heures à regarder les artisans travailler le métal au rouge, fasciné par la chaleur et le vacarme.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Demander à un forgeron de t'apprendre quelques gestes.",
+        "resume": "a appris quelques gestes auprès d'un forgeron, enfant",
+        "tag": "Audacieux",
+        "effets": { "stats": { "force": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "Te contenter d'observer en silence, encore et encore.",
+        "resume": "observait les forges en silence, enfant",
+        "effets": { "stats": { "controleEmotionnel": 1, "intelligence": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "enf_007",
+    "arc": "enfance",
+    "conditions": { "drapeaux": { "village_kasumi": true } },
+    "texte": "Le brouillard permanent de Kasumi-gakure te sert de terrain de jeu favori : tu apprends très tôt à t'y déplacer sans qu'on te voie venir.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Perfectionner l'art de surprendre tes amis dans la brume.",
+        "resume": "s'amusait à surprendre ses amis dans la brume, enfant",
+        "tag": "Discret",
+        "effets": { "stats": { "vitesse": 2 } }
+      },
+      {
+        "id": "b",
+        "texte": "T'en servir pour te cacher quand tu as besoin d'être seul.",
+        "resume": "utilisait la brume pour s'isoler, enfant",
+        "tag": "Solitaire",
+        "effets": { "stats": { "controleEmotionnel": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "enf_008",
+    "arc": "enfance",
+    "conditions": { "drapeaux": { "village_ganseki": true } },
+    "texte": "Grandir parmi les falaises de Ganseki-gakure t'a appris très tôt à encaisser les chutes sans pleurer — les autres enfants du village s'en amusent.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Défier les autres enfants à qui grimpera le plus haut.",
+        "resume": "défiait les autres enfants à qui grimperait le plus haut",
+        "tag": "Audacieux",
+        "effets": { "stats": { "force": 1, "sante": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Grimper prudemment, à ton propre rythme.",
+        "resume": "grimpait prudemment les falaises, à son propre rythme",
+        "tag": "Prudent",
+        "effets": { "stats": { "controleEmotionnel": 1, "sante": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "enf_009",
+    "arc": "enfance",
+    "conditions": { "drapeaux": { "village_sabaku": true } },
+    "texte": "Sous le soleil brûlant de Sabaku-gakure, on t'apprend très jeune à économiser chaque geste et chaque goutte d'eau — une discipline que peu d'enfants d'ailleurs connaissent.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "T'endurcir volontairement en repoussant tes limites.",
+        "resume": "s'endurcissait volontairement sous le soleil du désert, enfant",
+        "tag": "Discipliné",
+        "effets": { "stats": { "sante": 2, "controleEmotionnel": 1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Apprendre plutôt à te déplacer vite pour limiter l'effort.",
+        "resume": "apprenait à se déplacer vite dans le désert pour économiser ses forces",
+        "effets": { "stats": { "vitesse": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "enf_010",
+    "arc": "enfance",
+    "conditions": { "drapeaux": { "village_raimei": true } },
+    "texte": "Les orages fréquents de Raimei-gakure terrifient la plupart des enfants du quartier — toi, ils te fascinent depuis toujours.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Sortir observer chaque orage, au grand désespoir de ta famille.",
+        "resume": "sortait observer chaque orage, enfant, au désespoir de sa famille",
+        "tag": "Impulsif",
+        "effets": { "stats": { "maitriseChakra": 2, "controleEmotionnel": -1 } }
+      },
+      {
+        "id": "b",
+        "texte": "Étudier les orages depuis la fenêtre, en toute sécurité.",
+        "resume": "étudiait les orages depuis sa fenêtre, enfant",
+        "effets": { "stats": { "intelligence": 2 } }
+      }
+    ]
   }
 ]
