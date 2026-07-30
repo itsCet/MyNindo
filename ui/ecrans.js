@@ -85,11 +85,25 @@ function creerGroupeOptions(nomChamp, items) {
     .join("");
 }
 
+// Les clans sont propres à chaque village (2 par village) + « Sans clan »
+// toujours disponible, pour ne pas montrer les 9 clans d'un coup à l'étape 2.
+function clansDisponiblesPourVillage(origines, villageId) {
+  const clansDuVillage = origines.clans.filter((c) => c.villages?.includes(villageId));
+  const clanAucun = origines.clans.find((c) => c.id === "aucun");
+  return clanAucun ? [...clansDuVillage, clanAucun] : clansDuVillage;
+}
+
+function rendreClansPourVillage(villageId) {
+  const origines = jeu.obtenirOrigines();
+  const clans = clansDisponiblesPourVillage(origines, villageId);
+  $("groupe-clan").querySelector(".grille-options").innerHTML = creerGroupeOptions("clan", clans);
+}
+
 function rendreFormulaireCreation() {
   const origines = jeu.obtenirOrigines();
 
   $("groupe-village").querySelector(".grille-options").innerHTML = creerGroupeOptions("village", origines.villages);
-  $("groupe-clan").querySelector(".grille-options").innerHTML = creerGroupeOptions("clan", origines.clans);
+  rendreClansPourVillage(origines.villages[0]?.id);
   $("groupe-affinite").querySelector(".grille-options").innerHTML = creerGroupeOptions(
     "affinite",
     origines.affinitesChakra
@@ -529,6 +543,9 @@ function configurerNavigation() {
   });
 
   $("formulaire-creation").addEventListener("submit", gererSoumissionCreation);
+  $("groupe-village").addEventListener("change", (evenement) => {
+    if (evenement.target.name === "village") rendreClansPourVillage(evenement.target.value);
+  });
   $("bouton-etape-suivante").addEventListener("click", gererEtapeSuivante);
   $("bouton-etape-precedente").addEventListener("click", gererEtapePrecedente);
   $("bouton-continuer").addEventListener("click", gererContinuer);

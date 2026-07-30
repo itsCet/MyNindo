@@ -40,48 +40,56 @@
     {
       "id": "byakuen",
       "nom": "Clan Byakuen",
+      "villages": ["kasumi"],
       "description": "Maîtres de l'Œil Blanc, capables de percer les illusions les plus fines au prix d'une froideur qui les tient à l'écart des autres clans.",
       "bonus": { "intelligence": 4, "controleEmotionnel": 2, "reputation": -1 }
     },
     {
       "id": "kurogane",
       "nom": "Clan Kurogane",
+      "villages": ["ganseki"],
       "description": "Guerriers au corps endurci comme du métal noir, réputés pour encaisser sans broncher ce qui briserait n'importe qui d'autre.",
       "bonus": { "force": 4, "sante": 4, "vitesse": -3 }
     },
     {
       "id": "nagareboshi",
       "nom": "Clan Nagareboshi",
+      "villages": ["sabaku", "raimei"],
       "description": "Spécialistes de la vitesse et des techniques dites « de comète », laissant derrière eux une traînée que l'adversaire n'a pas le temps de suivre.",
       "bonus": { "vitesse": 5, "reputation": 2, "sante": -2 }
     },
     {
       "id": "tsuchigumo",
       "nom": "Clan Tsuchigumo",
+      "villages": ["ganseki"],
       "description": "Lignée d'utilisateurs de fils de chakra et de pièges, tissés avec la patience et la précision d'une araignée de terre.",
       "bonus": { "intelligence": 3, "maitriseChakra": 3, "reputation": -3 }
     },
     {
       "id": "akaoni",
       "nom": "Clan Akaoni",
+      "villages": ["hono", "sabaku"],
       "description": "Réputés pour leur force brute autant que pour leur sang-froid absolu au combat, où d'autres perdraient tout contrôle.",
       "bonus": { "force": 4, "controleEmotionnel": 3, "loyaute": -1 }
     },
     {
       "id": "mizuchi",
       "nom": "Clan Mizuchi",
+      "villages": ["kasumi"],
       "description": "Clan aquatique dont la légende prétend qu'il descend de créatures serpentines liées aux cours d'eau les plus anciens.",
       "bonus": { "maitriseChakra": 4, "sante": 3, "controleEmotionnel": -1 }
     },
     {
       "id": "kagerou",
       "nom": "Clan Kagerou",
+      "villages": ["hono"],
       "description": "Spécialistes des mirages et des techniques d'illusion, aussi insaisissables qu'un miroitement de chaleur sur la route.",
       "bonus": { "intelligence": 3, "maitriseChakra": 2, "force": -2 }
     },
     {
       "id": "hoshigami",
       "nom": "Clan Hoshigami",
+      "villages": ["raimei"],
       "description": "Clan déchu, porteur d'un dojutsu céleste devenu extrêmement rare, dont l'héritage pèse autant qu'il fascine.",
       "bonus": { "maitriseChakra": 5, "reputation": -2, "loyaute": -2 }
     },
