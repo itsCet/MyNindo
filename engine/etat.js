@@ -94,9 +94,11 @@ export function calculerScoreFinal(etat) {
   let score = Math.round(moyenneStats(etat) * 0.7); // jusqu'à 70 points sur la forme du personnage
   let bonus = 20; // socle de base pour qu'un parcours honnête reste dans une fourchette lisible
 
-  if (etat.drapeaux.a_sauve_un_village) bonus += 8;
-  if (etat.drapeaux.a_aide_un_camarade) bonus += 4;
-  if (etat.drapeaux.lien_fort_avec_mentor) bonus += 6;
+  // Les moments décisifs bien joués rapportent gros, plutôt que d'abaisser
+  // la barre du Rang S : un parcours vraiment héroïque doit pouvoir l'atteindre.
+  if (etat.drapeaux.a_sauve_un_village) bonus += 14;
+  if (etat.drapeaux.a_aide_un_camarade) bonus += 8;
+  if (etat.drapeaux.lien_fort_avec_mentor) bonus += 12;
   if (etat.drapeaux.a_trahi_son_equipe) bonus -= 15;
   if (etat.drapeaux.a_quitte_le_village) bonus -= 10;
   if (etat.drapeaux.rejoint_organisation_secrete) bonus -= 6;
@@ -139,7 +141,7 @@ export function determinerResolutionFinale(etat, score) {
       : { titre: "Errant Sans Village", categorie: "errant" };
   }
   if (d.vise_kage) {
-    if (score >= 70 && etat.stats.reputation >= 65 && etat.stats.loyaute >= 55) {
+    if (score >= 80 && etat.stats.reputation >= 65 && etat.stats.loyaute >= 55) {
       return { titre: titreChefVillage, categorie: "kage" };
     }
     return { titre: "Candidat Écarté", categorie: "candidatEcarte" };
@@ -153,10 +155,10 @@ export function determinerResolutionFinale(etat, score) {
     return { titre: `Gardien Discret de ${village}`, categorie: "gardienDiscret" };
   }
 
-  if (score >= 75) return { titre: "Légende Vivante", categorie: "legende" };
-  if (score >= 62) return { titre: "Maître Reconnu", categorie: "maitreReconnu" };
-  if (score >= 48) return { titre: "Jonin Accompli", categorie: "jonin" };
-  if (score >= 32) return { titre: "Chunin Vétéran", categorie: "chuninVeteran" };
+  if (score >= 90) return { titre: "Légende Vivante", categorie: "legende" };
+  if (score >= 75) return { titre: "Maître Reconnu", categorie: "maitreReconnu" };
+  if (score >= 55) return { titre: "Jonin Accompli", categorie: "jonin" };
+  if (score >= 35) return { titre: "Chunin Vétéran", categorie: "chuninVeteran" };
   return { titre: "Ninja Oublié", categorie: "oublie" };
 }
 
@@ -164,10 +166,10 @@ export function determinerResolutionFinale(etat, score) {
 // même score peut donner un déserteur de Rang S ou un Kage de Rang S. Reprend
 // les mêmes seuils que les paliers de titre par défaut, pour rester cohérent.
 export function determinerRang(score) {
-  if (score >= 75) return { rang: "S", label: "Excellent" };
-  if (score >= 62) return { rang: "A", label: "Très bon" };
-  if (score >= 48) return { rang: "B", label: "Bon" };
-  if (score >= 32) return { rang: "C", label: "Moyen" };
+  if (score >= 90) return { rang: "S", label: "Excellent" };
+  if (score >= 75) return { rang: "A", label: "Très bon" };
+  if (score >= 55) return { rang: "B", label: "Bon" };
+  if (score >= 35) return { rang: "C", label: "Moyen" };
   return { rang: "F", label: "Échec" };
 }
 
