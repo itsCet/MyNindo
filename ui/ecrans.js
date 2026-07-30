@@ -1,7 +1,7 @@
 // Affichage et transitions entre écrans. Seul module autorisé à toucher le DOM.
 
 import * as jeu from "../engine/app.js";
-import { CLES_STATS } from "../engine/etat.js";
+import { CLES_STATS, moyenneStats } from "../engine/etat.js";
 
 const LABELS_STATS = {
   force: "Force",
@@ -33,6 +33,7 @@ let evenementCourant = null;
 let runTermineeEnAttente = false;
 let etapeEnAttente = null;
 let voieEnAttente = false;
+let statsVisibles = true;
 
 function $(id) {
   return document.getElementById(id);
@@ -162,31 +163,65 @@ function rendreProgression() {
   $("barre-progression").textContent = infos.rang ? `${infos.label} — Rang ${infos.rang}` : infos.label;
 }
 
+function basculerVisibiliteStats() {
+  statsVisibles = !statsVisibles;
+  rendreStats();
+}
+
 function rendreStats() {
   const etat = jeu.obtenirEtatCourant();
   const panneau = $("panneau-stats");
   panneau.innerHTML = "";
 
+  const entete = document.createElement("div");
+  entete.className = "panneau-stats__entete";
+
+  const identite = document.createElement("div");
   const nom = document.createElement("h2");
   nom.className = "panneau-stats__nom";
   nom.textContent = etat.identite.nom;
-  panneau.appendChild(nom);
-
   const sousTitre = document.createElement("p");
   sousTitre.className = "panneau-stats__sous-titre";
   sousTitre.textContent = `${etat.identite.village} · ${etat.identite.clan}`;
-  panneau.appendChild(sousTitre);
+  identite.appendChild(nom);
+  identite.appendChild(sousTitre);
+
+  const boutonToggle = document.createElement("button");
+  boutonToggle.type = "button";
+  boutonToggle.className = "bouton-toggle-stats";
+  boutonToggle.textContent = statsVisibles ? "Masquer" : "Détailler";
+  boutonToggle.addEventListener("click", basculerVisibiliteStats);
+
+  entete.appendChild(identite);
+  entete.appendChild(boutonToggle);
+  panneau.appendChild(entete);
+
+  if (!statsVisibles) {
+    const moyenne = Math.round(moyenneStats(etat));
+    const boutonMoyenne = document.createElement("button");
+    boutonMoyenne.type = "button";
+    boutonMoyenne.className = "moyenne-stats";
+    boutonMoyenne.innerHTML = `
+      <span class="moyenne-stats__valeur">${moyenne}</span>
+      <span class="moyenne-stats__label">Moyenne — appuie pour tout voir</span>
+    `;
+    boutonMoyenne.addEventListener("click", basculerVisibiliteStats);
+    panneau.appendChild(boutonMoyenne);
+    return;
+  }
 
   for (const cle of CLES_STATS) {
     const valeur = etat.stats[cle];
     const ligne = document.createElement("div");
     ligne.className = "stat-ligne";
     ligne.innerHTML = `
-      <span class="stat-ligne__label">${LABELS_STATS[cle]}</span>
+      <div class="stat-ligne__entete">
+        <span class="stat-ligne__label">${LABELS_STATS[cle]}</span>
+        <span class="stat-ligne__valeur">${valeur}</span>
+      </div>
       <span class="stat-barre" role="img" aria-label="${LABELS_STATS[cle]} : ${valeur} sur 100">
         <span class="stat-barre__remplissage" style="width:${valeur}%"></span>
       </span>
-      <span class="stat-ligne__valeur">${valeur}</span>
     `;
     panneau.appendChild(ligne);
   }

@@ -347,6 +347,14 @@ fieldset.groupe-options legend {
   margin-bottom: var(--espace-2);
 }
 
+.panneau-stats__entete {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espace-3);
+  margin-bottom: var(--espace-4);
+}
+
 .panneau-stats__nom {
   font-size: var(--taille-h2);
   margin-bottom: 0;
@@ -355,15 +363,65 @@ fieldset.groupe-options legend {
 .panneau-stats__sous-titre {
   color: var(--couleur-texte-att);
   font-size: var(--taille-petite);
-  margin-bottom: var(--espace-4);
+  margin-bottom: 0;
+}
+
+.bouton-toggle-stats {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--couleur-bordure-forte);
+  border-radius: var(--rayon-m);
+  padding: var(--espace-1) var(--espace-3);
+  font-size: var(--taille-petite);
+  color: var(--couleur-texte-att);
+  transition: border-color var(--transition-rapide), color var(--transition-rapide);
+}
+
+.bouton-toggle-stats:hover {
+  border-color: var(--couleur-lueur);
+  color: var(--couleur-texte);
+}
+
+.moyenne-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espace-1);
+  width: 100%;
+  padding: var(--espace-4);
+  background: var(--couleur-surface-haute);
+  border: 1px solid var(--couleur-bordure-forte);
+  border-radius: var(--rayon-m);
+  text-align: center;
+  transition: border-color var(--transition-rapide);
+}
+
+.moyenne-stats:hover {
+  border-color: var(--couleur-braise);
+}
+
+.moyenne-stats__valeur {
+  font-size: var(--taille-h1);
+  font-weight: 700;
+  color: var(--couleur-braise-forte);
+}
+
+.moyenne-stats__label {
+  font-size: var(--taille-petite);
+  color: var(--couleur-texte-att);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .stat-ligne {
-  display: grid;
-  grid-template-columns: 8.5rem 1fr 2.2rem;
-  align-items: center;
-  gap: var(--espace-2);
-  margin-bottom: var(--espace-2);
+  margin-bottom: var(--espace-3);
+}
+
+.stat-ligne__entete {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--espace-1);
 }
 
 .stat-ligne__label {
@@ -371,7 +429,15 @@ fieldset.groupe-options legend {
   color: var(--couleur-texte-att);
 }
 
+.stat-ligne__valeur {
+  font-variant-numeric: tabular-nums;
+  font-size: var(--taille-petite);
+  font-weight: 700;
+}
+
 .stat-barre {
+  display: block;
+  width: 100%;
   height: 8px;
   background: var(--couleur-fond);
   border: 1px solid var(--couleur-bordure-forte);
@@ -380,15 +446,10 @@ fieldset.groupe-options legend {
 }
 
 .stat-barre__remplissage {
+  display: block;
   height: 100%;
   background: linear-gradient(90deg, var(--couleur-lueur), var(--couleur-braise));
   transition: width 300ms ease;
-}
-
-.stat-ligne__valeur {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-  font-size: var(--taille-petite);
 }
 
 .carte-evenement {
