@@ -160,6 +160,17 @@ export function determinerResolutionFinale(etat, score) {
   return { titre: "Ninja Oublié", categorie: "oublie" };
 }
 
+// Rang de compétence brute (S/A/B/C/F), indépendant du titre narratif : un
+// même score peut donner un déserteur de Rang S ou un Kage de Rang S. Reprend
+// les mêmes seuils que les paliers de titre par défaut, pour rester cohérent.
+export function determinerRang(score) {
+  if (score >= 90) return { rang: "S", label: "Excellent" };
+  if (score >= 75) return { rang: "A", label: "Très bon" };
+  if (score >= 55) return { rang: "B", label: "Bon" };
+  if (score >= 35) return { rang: "C", label: "Moyen" };
+  return { rang: "F", label: "Échec" };
+}
+
 const PHRASES_CONCLUSION = {
   villageEnCendres: (nom, village) => `Les flammes qui ont englouti ${village} porteront à jamais la marque de ce choix.`,
   traitre: (nom) => `Le nom de ${nom} est aujourd'hui prononcé à voix basse, comme un avertissement.`,

@@ -420,11 +420,16 @@ function gererChoixVoie(voieId) {
 /* ---------- Fin de run ---------- */
 
 function conclureRun() {
-  const { score, titre, resume, badgesGagnes, surnom } = jeu.terminerRun();
+  const { score, titre, resume, badgesGagnes, surnom, rang } = jeu.terminerRun();
 
   const surnomEl = $("surnom-final");
   surnomEl.textContent = surnom ? `« ${surnom} »` : "";
   surnomEl.hidden = !surnom;
+
+  $("rang-badge").innerHTML = `
+    <span class="rang-badge__lettre">${rang.rang}</span>
+    <span class="rang-badge__label">${rang.label}</span>
+  `;
 
   $("titre-final").textContent = titre;
   $("score-final").textContent = `Score final : ${score} / 100`;

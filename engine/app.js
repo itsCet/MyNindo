@@ -5,6 +5,7 @@ import {
   creerPersonnage,
   calculerScoreFinal,
   determinerResolutionFinale,
+  determinerRang,
   construireResumeNarratif,
   creerEntreePantheon,
   determinerSurnom,
@@ -515,7 +516,14 @@ export function terminerRun() {
   pantheon.sort((a, b) => b.score - a.score);
   const badgesGagnes = evaluerBadges(etatCourant, score, resolution);
 
-  return { score, titre: resolution.titre, resume, badgesGagnes, surnom: determinerSurnom(etatCourant) };
+  return {
+    score,
+    titre: resolution.titre,
+    resume,
+    badgesGagnes,
+    surnom: determinerSurnom(etatCourant),
+    rang: determinerRang(score),
+  };
 }
 
 export function obtenirPantheon() {
