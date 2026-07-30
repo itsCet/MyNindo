@@ -1,11 +1,13 @@
-# Voie d'Ombre — Chronique d'un ninja
+# My Nindô — Chronique d'un ninja
 
-Jeu web narratif de carrière : tu incarnes un jeune ninja depuis son entrée à l'Académie jusqu'à
-la fin de sa carrière, à travers une succession d'événements à choix multiples qui façonnent ses
-statistiques, sa réputation et son destin final. Univers, villages, clans et personnages
-entièrement originaux.
+Jeu web narratif de carrière : tu incarnes un jeune ninja depuis l'enfance jusqu'à la fin de sa
+légende (Kage, déserteur, traître, sage errant...), à travers une succession d'événements à choix
+multiples qui façonnent ses statistiques, sa réputation et son destin final. Univers, villages,
+clans, PNJ et mythologie entièrement originaux — aucun nom ni personnage sous licence.
 
-Voir [spec.md](./spec.md) pour la spécification complète (mécaniques, architecture, milestones).
+Une carrière complète dure 5 à 10 minutes (19 événements répartis sur 7 arcs).
+
+Voir [spec.md](./spec.md) pour l'état détaillé des mécaniques et de l'architecture.
 
 ## Lancer le jeu en local
 
@@ -25,12 +27,27 @@ Puis ouvrir l'URL indiquée (ex. `http://localhost:5500`).
 ## Structure du projet
 
 ```
-index.html              point d'entrée unique
-style.css                design tokens, thèmes clair/sombre, responsive
-/data                    contenu du jeu (origines + pools d'événements par arc), aucune logique
-/engine                  logique pure (état du personnage, moteur d'événements, orchestration)
-/ui                       affichage et transitions entre écrans (seul module qui touche le DOM)
+index.html               point d'entrée unique
+style.css                 design tokens, thèmes clair/sombre, fond shuriken, responsive
+/assets                   logo + fonds d'écran (clair/sombre)
+/data                     contenu du jeu (origines, PNJ, pools d'événements par arc), aucune logique
+/engine                   logique pure (état du personnage, moteur d'événements, orchestration)
+/ui                        affichage et transitions entre écrans (seul module qui touche le DOM)
 ```
+
+## Mécaniques principales
+
+- **7 arcs** : Enfance → Académie → Examen Genin → Missions (D à S) → Examen Chunin →
+  Guerre & Ombres → Ascension → fin de run.
+- **Voie ninja** : choix unique et définitif à l'entrée dans la Guerre (4 voies), donne un surnom
+  affiché à l'écran de fin.
+- **Choix risqués** : certains choix ont une vraie chance d'échec (mission ratée, technique qui
+  se retourne contre toi...), pas juste un malus cosmétique.
+- **50 PNJ originaux** tirés au sort par run (coéquipier, ami, instructeur, adversaire/rival).
+- **Score /100 + Rang S/A/B/C/F** combiné à un titre narratif (le rang mesure la compétence brute,
+  le titre raconte l'histoire — un déserteur peut être Rang S).
+- **Événements conditionnés** par clan, tempérament ou seuils de statistiques, pour que chaque
+  combinaison de personnage vive une carrière différente.
 
 ## Contraintes importantes
 
@@ -41,4 +58,6 @@ style.css                design tokens, thèmes clair/sombre, responsive
 
 ## Déploiement
 
-Déployé sur Vercel comme site statique (aucune configuration de build nécessaire).
+- Code source : [github.com/itsCet/MyNindo](https://github.com/itsCet/MyNindo)
+- Déployé sur Vercel comme site statique (aucune configuration de build nécessaire), redéploiement
+  automatique à chaque push sur `main` via l'intégration GitHub de Vercel.

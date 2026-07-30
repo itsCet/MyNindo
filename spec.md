@@ -1,57 +1,75 @@
-# Spec — Jeu narratif de carrière ninja (univers original)
+# Spec — My Nindô, jeu narratif de carrière ninja (univers original)
 
-Statut : **proposition en attente de validation**. Aucun code n'a été écrit — seul ce document existe pour l'instant.
+Statut : **construit et déployé**. Ce document décrit l'état réel du jeu, pas une proposition —
+il est mis à jour au fil des évolutions plutôt que de rester figé sur l'intention initiale.
 
 ## 1. Pitch
 
-Un jeu narratif solo, 100% navigateur, où le joueur incarne un jeune ninja depuis son entrée à l'Académie de son village jusqu'à la fin de sa carrière, à travers une succession d'événements textuels à choix multiples qui façonnent ses statistiques, sa réputation et son destin final (jonin, maître, légende, déchu...).
+Un jeu narratif solo, 100% navigateur, où le joueur incarne un jeune ninja depuis l'enfance
+jusqu'à la fin de sa carrière, à travers une succession d'événements textuels à choix multiples
+qui façonnent ses statistiques, sa réputation et son destin final (Kage, bras droit, légende,
+déserteur, traître, sage errant...). Une carrière complète dure 5 à 10 minutes.
 
-Univers entièrement original : villages, clans, techniques, personnages et organisations inventés pour ce projet. Aucun nom, lieu, personnage ou terme protégé d'un univers existant.
+Univers entièrement original : villages, clans, mythologie, PNJ et organisations inventés pour ce
+projet. Aucun nom, lieu, personnage ou terme protégé d'un univers existant.
 
 ## 2. Boucle de gameplay
 
-Mécanique inspirée de Destiny Eleven (inspiration de structure uniquement, pas de contenu ni de design repris) :
-
 ```
-Création de personnage
+Création de personnage (6 étapes : nom, village, clan, affinité, tempérament, mentor)
+   → Arc Enfance
    → Arc Académie
    → Examen Genin
    → Arcs Missions (rang D → S)
    → Examen Chunin
-   → Escouade / mentor
-   → Arc Guerre / organisation secrète
-   → Résolution finale (rang + titre + score/100)
+   → Arc Guerre & Ombres (voie ninja choisie ici, mythologie originale, organisation secrète)
+   → Arc Ascension
+   → Résolution finale (rang S/A/B/C/F + titre narratif + score/100 + surnom)
    → Écran de fin de run (résumé narratif personnalisé)
-   → Panthéon / badges (session en cours)
+   → Rouleaux / Anciens Nindô (session en cours)
    → Rejouer
 ```
 
-Chaque étape puise dans un pool d'événements filtré par l'arc courant et par les conditions du personnage (stats, drapeaux). Chaque événement propose 2 à 4 choix, chacun avec des effets explicites sur les statistiques et/ou les drapeaux narratifs. Le jeu avance automatiquement d'arc en arc selon des seuils ou compteurs d'événements consommés.
+Chaque arc pioche dans un pool d'événements filtré par les conditions du personnage (stats,
+drapeaux de clan/tempérament/village, drapeaux narratifs accumulés). Chaque événement propose 2 à
+4 choix, certains tagués (Risqué, Prudent, Loyal...) et certains avec une vraie probabilité
+d'échec. Un bilan façon presse s'affiche à chaque transition d'arc (citation, tuiles de stats,
+mention du rival). Le jeu avance automatiquement d'arc en arc selon des seuils courts (2-3
+événements par arc, 1 par rang en missions) pour tenir dans la durée cible.
 
 ## 3. Stack & contraintes techniques
 
-- HTML5 / CSS3 / JavaScript vanilla, ES modules natifs (`<script type="module">`), aucun framework, aucun bundler.
-- **Point d'attention dev** : les ES modules et le `fetch()` des fichiers JSON ne fonctionnent pas en ouvrant `index.html` directement en `file://` (restriction CORS des navigateurs). Ce n'est pas un build tool, mais un serveur statique local est nécessaire en développement (`npx serve`, extension "Live Server", `python -m http.server`, etc.). Ce point sera documenté dans un `README.md` court.
-- Aucune dépendance à `localStorage` / `sessionStorage`. Tout l'état (personnage en cours, panthéon, badges) vit en mémoire JavaScript (variables de module).
-  - **Conséquence assumée** : un rechargement de page réinitialise entièrement la session, y compris le panthéon et les badges débloqués. C'est une contrainte imposée, pas un oubli — elle sera rappelée dans l'UI (ex. petite mention discrète) pour éviter toute frustration du joueur.
+- HTML5 / CSS3 / JavaScript vanilla, ES modules natifs (`<script type="module">`), aucun
+  framework, aucun bundler.
+- **Point d'attention dev** : les ES modules et le `fetch()` des fichiers JSON ne fonctionnent pas
+  en ouvrant `index.html` directement en `file://` (restriction CORS des navigateurs). Un serveur
+  statique local est nécessaire en développement (`npx serve`, `python -m http.server`...). Voir
+  [README.md](./README.md).
+- Aucune dépendance à `localStorage` / `sessionStorage`. Tout l'état (personnage en cours, rival
+  simulé, panthéon, badges) vit en mémoire JavaScript (variables de module).
+  - **Conséquence assumée** : un rechargement de page réinitialise entièrement la session. Rappelé
+    dans le pied de page.
 - Mobile-first, testé à 375px et 1280px+.
-- Dark/light mode avec bascule manuelle (pas seulement basé sur `prefers-color-scheme`, qui ne sert que de valeur par défaut initiale).
+- Dark/light mode avec bascule manuelle, fond shuriken tuilé propre à chaque thème.
 
 ## 4. Architecture de fichiers
 
 ```
 index.html
 style.css
-/data/origines.json
+/assets/logo.png, background-light.png, background-dark.png
+/data/origines.json              villages, clans, affinités, tempéraments, mentors
+/data/personnages.json           50 PNJ originaux (prénom + nom), tirés au sort par run
+/data/evenements-enfance.json
 /data/evenements-academie.json
 /data/evenements-missions.json
-/data/evenements-examens.json
-/data/evenements-guerre.json
-/engine/etat.js         → état du personnage + progression
-/engine/moteur.js        → lecture des événements, conditions, application des effets
-/engine/app.js           → AJOUT proposé : orchestrateur (bootstrap, chargement des données,
-                            initialisation de l'état, lancement de l'écran d'accueil)
-/ui/ecrans.js            → affichage et transitions entre écrans
+/data/evenements-examens.json    genin + chunin
+/data/evenements-guerre.json     inclut la mythologie originale et la voie ninja
+/data/evenements-ascension.json
+/engine/etat.js                  état du personnage, score, résolution finale, rang, surnom
+/engine/moteur.js                lecture des événements, conditions, application des effets/échecs
+/engine/app.js                   orchestrateur (progression, PNJ, voies, badges, panthéon, rival)
+/ui/ecrans.js                    affichage et transitions entre écrans (seul module qui touche le DOM)
 ```
 
 Séparation stricte des responsabilités :
@@ -64,92 +82,103 @@ Séparation stricte des responsabilités :
 
 ```js
 {
-  identite: {
-    nom, village, clan, affiniteChakra, temperament, mentor
-  },
+  identite: { nom, village, titreChefVillage, clan, affiniteChakra, temperament, mentor, voie },
   stats: {
     force, vitesse, intelligence, maitriseChakra,
     reputation, controleEmotionnel, loyaute, sante   // 0–100
   },
   drapeaux: {
-    a_perdu_son_mentor: false,
-    a_quitte_le_village: false,
-    rejoint_organisation_secrete: false,
-    // ... extensible par arc
+    // drapeaux d'archétype posés à la création : clan_<id>, temperament_<id>, village_<id>
+    // drapeaux narratifs accumulés au fil des choix (extensibles par événement)
   },
-  arc: "academie" | "examen_genin" | "missions" | "examen_chunin" | "escouade" | "guerre" | "fin",
-  historique: [ { eventId, choixId, resume } ],   // alimente le résumé narratif final
-  compteurArc: { missionsD: 0, missionsC: 0, ... }
+  pnj: { coequipier, ami, instructeur, adversaire },  // noms tirés parmi les 50 PNJ
+  rival: { nom, score },                               // trajectoire simulée, mise à jour à chaque bilan d'arc
+  progression: { arc, compteurArc, rangIndex, compteurRang },
+  historique: [ { eventId, choixId, resume, tag, effets, echec } ],
 }
 ```
 
 ## 6. Schéma d'un événement (JSON)
 
-Commun aux 4 fichiers de `/data` :
-
 ```json
 {
-  "id": "aca_001",
-  "arc": "academie",
+  "id": "gue_015",
+  "arc": "guerre",
+  "decisif": true,
   "conditions": { "drapeaux": {}, "statsMin": {}, "statsMax": {} },
-  "texte": "...",
+  "texte": "... {{instructeur}} ... {{coequipier}} ... {{ami}} ... {{adversaire}} ...",
   "choix": [
     {
       "id": "a",
       "texte": "...",
-      "effets": {
-        "stats": { "force": 2, "reputation": -1 },
-        "drapeaux": { "a_seche_un_cours": true }
-      }
+      "tag": "Risqué",
+      "risque": 0.35,
+      "effets": { "stats": { "force": 2 }, "drapeaux": { "porte_technique_interdite": true } },
+      "echec": { "resume": "...", "effets": { "stats": { "sante": -6 } } }
     }
   ]
 }
 ```
 
-`moteur.js` expose (a minima) :
-- `filtrerEvenementsDisponibles(pool, etat)`
-- `tirerProchainEvenement(pool, etat)`
-- `appliquerChoix(etat, evenement, choixId)`
-- `evaluerConditions(etat, conditions)`
+- `decisif: true` affiche un badge "Moment décisif" sur la carte.
+- `{{role}}` dans les textes est remplacé par le nom du PNJ correspondant tiré pour la run.
+- `risque` + `echec` : un choix risqué peut réellement échouer et appliquer un résultat différent
+  (pire) de celui affiché sur le bouton.
 
 ## 7. Écrans (`ui/ecrans.js`)
 
-Accueil → Création de personnage → Jeu (carte événement + panneau de statistiques) → Fin de run (résumé narratif + score/100 + titre) → Badges → Panthéon (runs de la session, triées par score).
+Accueil → Création (6 étapes) → Jeu (stats repliables + carte événement + résultat + bilan d'arc +
+sélection de voie) → Fin de run (surnom, rang S/A/B/C/F, titre, résumé) → Rouleaux (badges) →
+Anciens Nindô (panthéon de la session).
 
-Transitions gérées par affichage/masquage de sections dans `index.html`, sans router externe.
+Transitions gérées par affichage/masquage de sections, sans router externe.
 
-## 8. Scoring & titres de fin
+## 8. Scoring, rang et titres de fin
 
-Score sur 100 = pondération des statistiques finales + bonus/malus liés aux drapeaux narratifs clés + réputation. Une table de correspondance (seuils de score × drapeaux → titre, ex. "Légende du village", "Maître déchu", "Ombre errante") détermine le titre final. Table indicative en Milestone 1 (valeurs factices), finalisée en Milestone 2/3.
+- **Score /100** = pondération des statistiques finales + bonus/malus liés aux drapeaux narratifs
+  clés. Les trois moments héroïques (village sauvé, aide décisive, lien fort avec le mentor
+  préservé) rapportent gros (+14/+8/+12) pour qu'un parcours vraiment exemplaire puisse viser le
+  haut du barème.
+- **Rang S/A/B/C/F** (seuils 90/75/55/35) : mesure la compétence brute, indépendante du titre.
+- **Titre narratif** (13 catégories : Kage dynamique selon le village, Bras Droit, Légende
+  Vivante, Errant Sans Village, Ombre Reniée, Le Village en Cendres...) : raconte l'histoire vécue.
+  Les deux axes sont indépendants — un déserteur peut être Rang S.
+- **Surnom** : généré par la voie ninja choisie (ex. « La Lame Silencieuse de Hono-gakure »).
+- **Rival simulé** : mentionné dans les bilans d'arc (trajectoire propre), sans écran de
+  comparaison dédié.
 
 ## 9. Guidelines de design
 
-- Design tokens CSS : espacement en base 4px (4 / 8 / 12 / 16 / 24 / 32 / 48 / 64), typographie fluide via `clamp()`.
-- Palette sombre par défaut : tons encre/charbon + un accent chaud ("braise") et un accent froid ("lueur de chakra"). Explicitement **pas** de dégradé violet générique, **pas** de grille à 3 colonnes identiques façon template IA.
-- Thème clair = variante lisible avec contrastes conformes AA.
-- Accessibilité de base : focus clavier toujours visible, navigation complète au clavier, alt text sur toute icône informative.
-- Direction visuelle Milestone 1 (validée) : **100% texte + icônes SVG/CSS générées en interne**, aucun portrait ni asset bitmap. Une structure `/assets/` pourra être ajoutée plus tard si besoin, sans bloquer le code.
+- Design tokens CSS : espacement en base 4px, typographie fluide via `clamp()`.
+- Palette sombre par défaut : tons encre/charbon + accent chaud (braise) et accent froid (lueur de
+  chakra). Pas de dégradé violet générique, pas de grille à colonnes identiques.
+- Thème clair = variante lisible, contrastes AA. Fond shuriken tuilé propre à chaque thème.
+- Toute l'interface tient en une seule colonne, y compris l'écran de jeu (stats au-dessus de la
+  carte d'événement), pour rester digeste sur mobile comme sur desktop.
+- Accessibilité de base : focus clavier toujours visible, navigation complète au clavier.
 
 ## 10. Meta-progression (session uniquement)
 
-- Badges débloqués pendant la session courante (ex. premier run terminé, score > 90, tous les rangs testés au moins une fois).
-- Panthéon = liste des runs de la session en cours, triée par score, réinitialisée au rechargement de page — cohérent avec la contrainte "pas de storage persistant".
+- **Rouleaux** (badges) débloqués pendant la session : Premier Pas, Parcours Éclatant, Loyauté
+  Inébranlable, Dans l'Ombre, Sauveur, Lien Indéfectible, La Couronne, La Main de l'Ombre, Cendres,
+  Héritage Interdit, Le Prix de Nyxar.
+- **Anciens Nindô** (panthéon) = liste des runs de la session en cours, triée par score.
+- Une couche méta persistante (boutique de jetons, quêtes du jour, streak) est envisagée mais pas
+  construite : elle nécessiterait de lever la contrainte "aucun stockage", décision volontairement
+  reportée.
 
-## 11. Milestones
+## 11. Historique des grandes étapes
 
-**Milestone 1 — Fondations jouables**
-Écran d'accueil, création de personnage (village / clan / affinité de chakra / tempérament / mentor), moteur d'événements minimal, arc "Académie" jouable de bout en bout avec données factices (6 à 8 événements), écran de fin de run basique (score placeholder + titre générique), bascule dark/light, responsive 375px/1280px+, zéro dépendance externe.
+Construit en une seule session itérative à partir de ce spec initial : Milestone 1 (fondations),
+Milestone 2 (boucle complète Missions/Examens/Guerre), Milestone 3 (méta, badges, polish) ont tous
+été livrés, puis étendus bien au-delà du plan d'origine : arcs Enfance/Ascension, 50 PNJ nommés,
+mécanique d'échec réelle, événements conditionnés par clan/tempérament/stats, voie ninja et
+surnom, rival simulé, mythologie originale, rang S/A/B/C/F, réduction de la durée à 5-10 minutes,
+recalibrage du score, refonte de la création en étapes successives, identité visuelle (logo, fonds
+d'écran par thème).
 
-**Milestone 2 — Boucle de carrière complète**
-Arcs Missions (D → S), Examen Genin puis Chunin, Escouade/mentor, ensemble des drapeaux narratifs et des arcs spéciaux qu'ils déclenchent, résumé narratif personnalisé complet, table de titres finalisée, contenu texte définitif remplaçant les données factices du M1.
+## 12. Hors scope actuel
 
-**Milestone 3 — Meta-progression & polish**
-Arc Guerre/organisation secrète + rangs finaux multiples, système de badges complet, panthéon complet, passe d'accessibilité (contrastes, focus, navigation clavier), polish visuel final, relecture de tout le contenu narratif (originalité, absence de toute référence à un univers protégé).
-
-## 12. Hors scope explicite
-
-Pas de sauvegarde persistante (imposé par la stack), pas de multijoueur, pas de son/musique sauf demande contraire ultérieure, pas d'illustrations bitmap en Milestone 1, contenu en français uniquement (pas de traduction prévue).
-
----
-
-*Prochaine étape (après validation de ce document) : rédaction du `todo.md` détaillé pour le Milestone 1 uniquement.*
+Pas de sauvegarde persistante (choix assumé), pas de multijoueur, pas de son/musique, pas de
+boutique/quêtes/duels/mode histoire (nécessitent de statuer sur le stockage), contenu en français
+uniquement.
