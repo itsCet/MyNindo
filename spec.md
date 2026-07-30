@@ -34,7 +34,7 @@ Chaque arc pioche dans un pool d'événements filtré par les conditions du pers
 drapeaux de clan/tempérament/village, drapeaux narratifs accumulés). Chaque événement propose 2 à
 4 choix, certains tagués (Risqué, Prudent, Loyal...) et certains avec une vraie probabilité
 d'échec. Un bilan façon presse s'affiche à chaque transition d'arc (citation, tuiles de stats,
-mention du rival). Le jeu avance automatiquement d'arc en arc selon des seuils courts (2-3
+moments marquants). Le jeu avance automatiquement d'arc en arc selon des seuils courts (2-3
 événements par arc, 1 par rang en missions) pour tenir dans la durée cible.
 
 ## 3. Stack & contraintes techniques
@@ -45,8 +45,8 @@ mention du rival). Le jeu avance automatiquement d'arc en arc selon des seuils c
   en ouvrant `index.html` directement en `file://` (restriction CORS des navigateurs). Un serveur
   statique local est nécessaire en développement (`npx serve`, `python -m http.server`...). Voir
   [README.md](./README.md).
-- Aucune dépendance à `localStorage` / `sessionStorage`. Tout l'état (personnage en cours, rival
-  simulé, panthéon, badges) vit en mémoire JavaScript (variables de module).
+- Aucune dépendance à `localStorage` / `sessionStorage`. Tout l'état (personnage en cours,
+  panthéon, badges) vit en mémoire JavaScript (variables de module).
   - **Conséquence assumée** : un rechargement de page réinitialise entièrement la session. Rappelé
     dans le pied de page.
 - Mobile-first, testé à 375px et 1280px+.
@@ -68,7 +68,7 @@ style.css
 /data/evenements-ascension.json
 /engine/etat.js                  état du personnage, score, résolution finale, rang, surnom
 /engine/moteur.js                lecture des événements, conditions, application des effets/échecs
-/engine/app.js                   orchestrateur (progression, PNJ, voies, badges, panthéon, rival)
+/engine/app.js                   orchestrateur (progression, PNJ, voies, badges, panthéon)
 /ui/ecrans.js                    affichage et transitions entre écrans (seul module qui touche le DOM)
 ```
 
@@ -92,7 +92,6 @@ Séparation stricte des responsabilités :
     // drapeaux narratifs accumulés au fil des choix (extensibles par événement)
   },
   pnj: { coequipier, ami, instructeur, adversaire },  // noms tirés parmi les 50 PNJ
-  rival: { nom, score },                               // trajectoire simulée, mise à jour à chaque bilan d'arc
   progression: { arc, compteurArc, rangIndex, compteurRang },
   historique: [ { eventId, choixId, resume, tag, effets, echec } ],
 }
@@ -144,8 +143,6 @@ Transitions gérées par affichage/masquage de sections, sans router externe.
   Vivante, Errant Sans Village, Ombre Reniée, Le Village en Cendres...) : raconte l'histoire vécue.
   Les deux axes sont indépendants — un déserteur peut être Rang S.
 - **Surnom** : généré par la voie ninja choisie (ex. « La Lame Silencieuse de Hono-gakure »).
-- **Rival simulé** : mentionné dans les bilans d'arc (trajectoire propre), sans écran de
-  comparaison dédié.
 
 ## 9. Guidelines de design
 
@@ -173,9 +170,9 @@ Construit en une seule session itérative à partir de ce spec initial : Milesto
 Milestone 2 (boucle complète Missions/Examens/Guerre), Milestone 3 (méta, badges, polish) ont tous
 été livrés, puis étendus bien au-delà du plan d'origine : arcs Enfance/Ascension, 50 PNJ nommés,
 mécanique d'échec réelle, événements conditionnés par clan/tempérament/stats, voie ninja et
-surnom, rival simulé, mythologie originale, rang S/A/B/C/F, réduction de la durée à 5-10 minutes,
-recalibrage du score, refonte de la création en étapes successives, identité visuelle (logo, fonds
-d'écran par thème).
+surnom, mythologie originale, rang S/A/B/C/F, réduction de la durée à 5-10 minutes, recalibrage du
+score, refonte de la création en étapes successives, identité visuelle (logo, fonds d'écran par
+thème), clans propres à chaque village.
 
 ## 12. Hors scope actuel
 

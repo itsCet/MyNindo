@@ -10,7 +10,6 @@ import {
   creerEntreePantheon,
   determinerSurnom,
   appliquerEffets,
-  clamp,
 } from "./etat.js";
 import { tirerProchainEvenement, appliquerChoix } from "./moteur.js";
 
@@ -77,21 +76,6 @@ const VOIES = [
     effets: { stats: { reputation: 5, loyaute: 5, controleEmotionnel: -2 } },
   },
 ];
-
-const PHRASES_RIVAL_HAUSSE = [
-  (nom) => `Pendant ce temps, ${nom} enchaîne les bons résultats.`,
-  (nom) => `${nom} progresse aussi, saison après saison.`,
-];
-
-const PHRASES_RIVAL_BAISSE = [
-  (nom) => `${nom}, de son côté, traverse une passe difficile.`,
-  (nom) => `On raconte que ${nom} peine à confirmer, ces derniers temps.`,
-];
-
-function construirePhraseRival(nomRival, delta) {
-  const banque = delta >= 0 ? PHRASES_RIVAL_HAUSSE : PHRASES_RIVAL_BAISSE;
-  return banque[Math.floor(Math.random() * banque.length)](nomRival);
-}
 
 // Titres de presse dynamiques pour l'écran de bilan d'arc, choisis selon la
 // tendance de réputation de la période écoulée (hausse / baisse / neutre).
@@ -344,8 +328,6 @@ export function demarrerNouvellePartie(selection) {
   etatCourant = creerPersonnage(selection, DONNEES.origines);
   const [coequipier, ami, instructeur, adversaire] = tirerNomsAleatoires(4);
   etatCourant.pnj = { coequipier, ami, instructeur, adversaire };
-  // Le rival de génération suit sa propre trajectoire simulée tout au long de la run.
-  etatCourant.rival = { nom: adversaire, score: 50 };
   idsVus = new Set();
   return etatCourant;
 }
@@ -443,9 +425,6 @@ function construireBilanArc(etat, arcTermine, tailleArc) {
     .map((e) => e.resume)
     .slice(-2);
 
-  const deltaRival = Math.round(Math.random() * 12) - 3; // -3 à +8 : le rival progresse un peu plus souvent qu'il ne recule
-  etat.rival.score = clamp(etat.rival.score + deltaRival, 0, 100);
-
   return {
     arc: arcTermine,
     label: obtenirLabelArc(arcTermine),
@@ -457,7 +436,6 @@ function construireBilanArc(etat, arcTermine, tailleArc) {
     sante: etat.stats.sante,
     citation: entreeCitation?.resume ?? null,
     moments: momentsRecents,
-    rival: { nom: etat.rival.nom, phrase: construirePhraseRival(etat.rival.nom, deltaRival) },
   };
 }
 

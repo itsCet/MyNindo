@@ -669,13 +669,6 @@ fieldset.groupe-options legend {
   margin-bottom: var(--espace-4);
 }
 
-.etape-rival {
-  color: var(--couleur-lueur);
-  font-size: var(--taille-petite);
-  font-style: italic;
-  margin-bottom: var(--espace-6);
-}
-
 /* ---------- Moment décisif ---------- */
 .badge-decisif {
   display: inline-block;

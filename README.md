@@ -43,7 +43,7 @@ style.css                 design tokens, thèmes clair/sombre, fond shuriken, re
   affiché à l'écran de fin.
 - **Choix risqués** : certains choix ont une vraie chance d'échec (mission ratée, technique qui
   se retourne contre toi...), pas juste un malus cosmétique.
-- **50 PNJ originaux** tirés au sort par run (coéquipier, ami, instructeur, adversaire/rival).
+- **50 PNJ originaux** tirés au sort par run (coéquipier, ami, instructeur, adversaire).
 - **Score /100 + Rang S/A/B/C/F** combiné à un titre narratif (le rang mesure la compétence brute,
   le titre raconte l'histoire — un déserteur peut être Rang S).
 - **Événements conditionnés** par clan, tempérament ou seuils de statistiques, pour que chaque

@@ -361,9 +361,6 @@ function rendreEtape(etape) {
     p.textContent = `Ton personnage ${moment}.`;
     moments.appendChild(p);
   }
-
-  $("etape-rival").textContent = etape.rival?.phrase ?? "";
-  $("etape-rival").hidden = !etape.rival?.phrase;
 }
 
 function gererContinuer() {
