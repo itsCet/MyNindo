@@ -15,14 +15,16 @@ import { tirerProchainEvenement, appliquerChoix } from "./moteur.js";
 
 const RANGS_MISSIONS = ["D", "C", "B", "A", "S"];
 
+// Seuils volontairement courts : 2-3 dilemmes par arc ("saison") pour qu'une
+// carrière complète tienne en 5 à 10 minutes plutôt qu'en 20-30.
 const CONFIG_ARCS = {
-  enfance: { seuil: 4, suivant: "academie" },
-  academie: { seuil: 6, suivant: "examen_genin" },
-  examen_genin: { seuil: 3, suivant: "missions" },
-  missions: { seuilParRang: 2, suivant: "examen_chunin" },
-  examen_chunin: { seuil: 3, suivant: "guerre" },
-  guerre: { seuil: 8, suivant: "ascension" },
-  ascension: { seuil: 4, suivant: "fin" },
+  enfance: { seuil: 2, suivant: "academie" },
+  academie: { seuil: 3, suivant: "examen_genin" },
+  examen_genin: { seuil: 2, suivant: "missions" },
+  missions: { seuilParRang: 1, suivant: "examen_chunin" },
+  examen_chunin: { seuil: 2, suivant: "guerre" },
+  guerre: { seuil: 3, suivant: "ascension" },
+  ascension: { seuil: 2, suivant: "fin" },
 };
 
 const LABELS_ARCS = {
