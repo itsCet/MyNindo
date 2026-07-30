@@ -103,6 +103,8 @@ export function calculerScoreFinal(etat) {
   if (etat.drapeaux.a_perdu_son_mentor) bonus -= 4;
   if (etat.drapeaux.a_cause_la_chute_du_village) bonus -= 25;
   if (etat.drapeaux.a_sabote_lorganisation) bonus += 5;
+  if (etat.drapeaux.rejoint_clan_deserteur) bonus -= 8;
+  if (etat.drapeaux.porte_un_sceau) bonus -= 3;
 
   return clamp(score + bonus, 0, 100);
 }
@@ -208,16 +210,6 @@ const SURNOMS_VOIE = {
 export function determinerSurnom(etat) {
   const cleVoie = Object.keys(SURNOMS_VOIE).find((cle) => etat.drapeaux[cle]);
   return cleVoie ? SURNOMS_VOIE[cleVoie](etat.identite.village) : null;
-}
-
-// Verdict du face-à-face final avec le rival simulé, basé sur l'écart de score.
-export function determinerVerdictRival(scoreJoueur, scoreRival, nomJoueur, nomRival) {
-  const ecart = scoreJoueur - scoreRival;
-  if (ecart >= 15) return `${nomJoueur} prend clairement le dessus sur ${nomRival} au fil des années.`;
-  if (ecart >= 5) return `${nomJoueur} devance ${nomRival}, d'une courte tête.`;
-  if (ecart > -5) return `${nomJoueur} et ${nomRival} restent au coude à coude, année après année.`;
-  if (ecart > -15) return `${nomRival} garde une longueur d'avance sur ${nomJoueur}.`;
-  return `${nomRival} éclipse largement ${nomJoueur} aux yeux du village.`;
 }
 
 export function creerEntreePantheon(etat, score, titre) {

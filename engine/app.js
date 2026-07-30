@@ -8,7 +8,6 @@ import {
   construireResumeNarratif,
   creerEntreePantheon,
   determinerSurnom,
-  determinerVerdictRival,
   appliquerEffets,
   clamp,
 } from "./etat.js";
@@ -502,13 +501,7 @@ export function terminerRun() {
   pantheon.sort((a, b) => b.score - a.score);
   const badgesGagnes = evaluerBadges(etatCourant, score, resolution);
 
-  const rival = etatCourant.rival && {
-    nom: etatCourant.rival.nom,
-    score: etatCourant.rival.score,
-    verdict: determinerVerdictRival(score, etatCourant.rival.score, etatCourant.identite.nom, etatCourant.rival.nom),
-  };
-
-  return { score, titre: resolution.titre, resume, badgesGagnes, surnom: determinerSurnom(etatCourant), rival };
+  return { score, titre: resolution.titre, resume, badgesGagnes, surnom: determinerSurnom(etatCourant) };
 }
 
 export function obtenirPantheon() {

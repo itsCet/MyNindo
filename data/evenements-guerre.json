@@ -308,5 +308,56 @@
         "effets": { "stats": { "loyaute": 2, "controleEmotionnel": -1 } }
       }
     ]
+  },
+  {
+    "id": "gue_012",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "Un groupe de ninjas déserteurs, rejetés par leurs propres villages, t'aborde en marge du champ de bataille. Leur meneur te tend la main : « Rejoins-nous. Ici, ta valeur ne dépend d'aucun nom de clan, d'aucun rang. »",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Accepter de les rejoindre, séduit par cette liberté.",
+        "resume": "a rejoint un clan de ninjas déserteurs",
+        "tag": "Risqué",
+        "effets": { "stats": { "vitesse": 3, "loyaute": -6, "reputation": -3 }, "drapeaux": { "rejoint_clan_deserteur": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Refuser et rester fidèle à ton village.",
+        "resume": "a refusé l'offre d'un clan de ninjas déserteurs",
+        "tag": "Loyal",
+        "effets": { "stats": { "loyaute": 3, "reputation": 1 } }
+      },
+      {
+        "id": "c",
+        "texte": "Écouter leur offre sans t'engager, par curiosité.",
+        "resume": "a écouté l'offre d'un clan de ninjas déserteurs sans s'engager",
+        "tag": "Prudent",
+        "effets": { "stats": { "intelligence": 2 }, "drapeaux": { "contact_clan_deserteur": true } }
+      }
+    ]
+  },
+  {
+    "id": "gue_013",
+    "arc": "guerre",
+    "conditions": {},
+    "texte": "Gravement blessé en plein combat, tu sens la mort te frôler. Un vieux ninja solitaire surgit et te propose un rituel interdit : un sceau qui te maintiendra en vie... et bien plus encore.",
+    "choix": [
+      {
+        "id": "a",
+        "texte": "Accepter le sceau, quel qu'en soit le prix.",
+        "resume": "a accepté un sceau interdit pour survivre",
+        "tag": "Risqué",
+        "effets": { "stats": { "force": 5, "maitriseChakra": 4, "controleEmotionnel": -5, "sante": 3 }, "drapeaux": { "porte_un_sceau": true } }
+      },
+      {
+        "id": "b",
+        "texte": "Refuser et t'en remettre à tes propres forces.",
+        "resume": "a refusé le sceau interdit et s'en est remis à ses propres forces",
+        "tag": "Discipliné",
+        "effets": { "stats": { "sante": -3, "controleEmotionnel": 2 } }
+      }
+    ]
   }
 ]

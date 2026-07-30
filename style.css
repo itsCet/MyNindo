@@ -246,6 +246,19 @@ button {
 }
 
 /* ---------- Création de personnage ---------- */
+.creation-progression {
+  font-size: var(--taille-petite);
+  color: var(--couleur-lueur);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: calc(var(--espace-3) * -1);
+  margin-bottom: var(--espace-4);
+}
+
+.etape-creation {
+  min-height: 12rem;
+}
+
 .champ-texte {
   display: flex;
   flex-direction: column;
@@ -680,54 +693,6 @@ fieldset.groupe-options legend {
   border-radius: var(--rayon-m);
   padding: var(--espace-4);
   margin-top: var(--espace-4);
-}
-
-.face-a-face {
-  margin-top: var(--espace-6);
-  padding-top: var(--espace-6);
-  border-top: 1px dashed var(--couleur-bordure-forte);
-}
-
-.face-a-face h3 {
-  font-size: var(--taille-texte);
-  margin-bottom: var(--espace-3);
-}
-
-.face-a-face__tableau {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--espace-3);
-}
-
-.face-a-face__colonne {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--espace-1);
-  padding: var(--espace-4);
-  background: var(--couleur-surface-haute);
-  border: 1px solid var(--couleur-bordure-forte);
-  border-radius: var(--rayon-m);
-  text-align: center;
-}
-
-.face-a-face__label {
-  font-size: var(--taille-petite);
-  color: var(--couleur-texte-att);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.face-a-face__score {
-  font-size: var(--taille-h1);
-  font-weight: 700;
-  color: var(--couleur-braise-forte);
-}
-
-.face-a-face__verdict {
-  margin-top: var(--espace-4);
-  font-style: italic;
-  color: var(--couleur-texte-att);
 }
 
 .badges-nouveaux__titre {

@@ -102,8 +102,38 @@ function rendreFormulaireCreation() {
   $("champ-nom").value = "";
 }
 
+// La création se déroule étape par étape (nom, village, clan, affinité,
+// tempérament, mentor) plutôt que tout sur un seul écran à faire défiler.
+const NB_ETAPES_CREATION = 6;
+let etapeCreationCourante = 0;
+
+function afficherEtapeCreation(index) {
+  etapeCreationCourante = index;
+  document.querySelectorAll(".etape-creation").forEach((el) => {
+    el.hidden = Number(el.dataset.etape) !== index;
+  });
+  $("creation-progression").textContent = `Étape ${index + 1} / ${NB_ETAPES_CREATION}`;
+  $("bouton-annuler-creation").hidden = index !== 0;
+  $("bouton-etape-precedente").hidden = index === 0;
+  $("bouton-etape-suivante").hidden = index === NB_ETAPES_CREATION - 1;
+  $("bouton-valider-creation").hidden = index !== NB_ETAPES_CREATION - 1;
+}
+
+function gererEtapeSuivante() {
+  if (etapeCreationCourante === 0 && !$("champ-nom").value.trim()) {
+    $("champ-nom").reportValidity();
+    return;
+  }
+  if (etapeCreationCourante < NB_ETAPES_CREATION - 1) afficherEtapeCreation(etapeCreationCourante + 1);
+}
+
+function gererEtapePrecedente() {
+  if (etapeCreationCourante > 0) afficherEtapeCreation(etapeCreationCourante - 1);
+}
+
 function demarrerCreation() {
   rendreFormulaireCreation();
+  afficherEtapeCreation(0);
   afficherEcran("creation");
 }
 
@@ -355,7 +385,7 @@ function gererChoixVoie(voieId) {
 /* ---------- Fin de run ---------- */
 
 function conclureRun() {
-  const { score, titre, resume, badgesGagnes, surnom, rival } = jeu.terminerRun();
+  const { score, titre, resume, badgesGagnes, surnom } = jeu.terminerRun();
 
   const surnomEl = $("surnom-final");
   surnomEl.textContent = surnom ? `« ${surnom} »` : "";
@@ -364,17 +394,6 @@ function conclureRun() {
   $("titre-final").textContent = titre;
   $("score-final").textContent = `Score final : ${score} / 100`;
   $("resume-final").textContent = resume;
-
-  const faceAFace = $("face-a-face");
-  if (rival) {
-    $("rival-score-joueur").textContent = String(score);
-    $("rival-nom").textContent = rival.nom;
-    $("rival-score-rival").textContent = String(rival.score);
-    $("rival-verdict").textContent = rival.verdict;
-    faceAFace.hidden = false;
-  } else {
-    faceAFace.hidden = true;
-  }
 
   const conteneurBadges = $("badges-nouveaux");
   conteneurBadges.innerHTML = "";
@@ -470,6 +489,8 @@ function configurerNavigation() {
   });
 
   $("formulaire-creation").addEventListener("submit", gererSoumissionCreation);
+  $("bouton-etape-suivante").addEventListener("click", gererEtapeSuivante);
+  $("bouton-etape-precedente").addEventListener("click", gererEtapePrecedente);
   $("bouton-continuer").addEventListener("click", gererContinuer);
   $("bouton-continuer-etape").addEventListener("click", gererContinuerEtape);
 }

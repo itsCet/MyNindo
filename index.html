@@ -37,40 +37,55 @@
     <!-- Écran de création de personnage -->
     <section id="ecran-creation" class="ecran carte ecran--etroit" data-ecran="creation" tabindex="-1" hidden>
       <h2>Création de personnage</h2>
+      <p class="creation-progression" id="creation-progression"></p>
       <form id="formulaire-creation" novalidate>
-        <div class="champ-texte">
-          <label for="champ-nom">Nom de ton personnage</label>
-          <input type="text" id="champ-nom" name="nom" maxlength="24" placeholder="Ex. Ren, Isa, Katsuo…" required />
+        <div class="etape-creation" data-etape="0">
+          <div class="champ-texte">
+            <label for="champ-nom">Nom de ton personnage</label>
+            <input type="text" id="champ-nom" name="nom" maxlength="24" placeholder="Ex. Ren, Isa, Katsuo…" required />
+          </div>
         </div>
 
-        <fieldset class="groupe-options" id="groupe-village">
-          <legend>Village</legend>
-          <div class="grille-options"></div>
-        </fieldset>
+        <div class="etape-creation" data-etape="1">
+          <fieldset class="groupe-options" id="groupe-village">
+            <legend>Village</legend>
+            <div class="grille-options"></div>
+          </fieldset>
+        </div>
 
-        <fieldset class="groupe-options" id="groupe-clan">
-          <legend>Clan</legend>
-          <div class="grille-options"></div>
-        </fieldset>
+        <div class="etape-creation" data-etape="2">
+          <fieldset class="groupe-options" id="groupe-clan">
+            <legend>Clan</legend>
+            <div class="grille-options"></div>
+          </fieldset>
+        </div>
 
-        <fieldset class="groupe-options" id="groupe-affinite">
-          <legend>Affinité de chakra</legend>
-          <div class="grille-options"></div>
-        </fieldset>
+        <div class="etape-creation" data-etape="3">
+          <fieldset class="groupe-options" id="groupe-affinite">
+            <legend>Affinité de chakra</legend>
+            <div class="grille-options"></div>
+          </fieldset>
+        </div>
 
-        <fieldset class="groupe-options" id="groupe-temperament">
-          <legend>Tempérament</legend>
-          <div class="grille-options"></div>
-        </fieldset>
+        <div class="etape-creation" data-etape="4">
+          <fieldset class="groupe-options" id="groupe-temperament">
+            <legend>Tempérament</legend>
+            <div class="grille-options"></div>
+          </fieldset>
+        </div>
 
-        <fieldset class="groupe-options" id="groupe-mentor">
-          <legend>Mentor</legend>
-          <div class="grille-options"></div>
-        </fieldset>
+        <div class="etape-creation" data-etape="5">
+          <fieldset class="groupe-options" id="groupe-mentor">
+            <legend>Mentor</legend>
+            <div class="grille-options"></div>
+          </fieldset>
+        </div>
 
         <div class="actions">
-          <button type="submit" class="bouton-principal">Entrer à l'Académie</button>
-          <button type="button" class="bouton-secondaire" data-retour="accueil">Annuler</button>
+          <button type="button" class="bouton-secondaire" data-retour="accueil" id="bouton-annuler-creation">Annuler</button>
+          <button type="button" class="bouton-secondaire" id="bouton-etape-precedente" hidden>← Précédent</button>
+          <button type="button" class="bouton-principal" id="bouton-etape-suivante">Suivant →</button>
+          <button type="submit" class="bouton-principal" id="bouton-valider-creation" hidden>Entrer à l'Académie</button>
         </div>
       </form>
     </section>
@@ -119,20 +134,6 @@
       <p id="titre-final"></p>
       <p id="score-final"></p>
       <pre id="resume-final"></pre>
-      <div id="face-a-face" class="face-a-face" hidden>
-        <h3>Face à face</h3>
-        <div class="face-a-face__tableau">
-          <div class="face-a-face__colonne">
-            <span class="face-a-face__label">Toi</span>
-            <span id="rival-score-joueur" class="face-a-face__score"></span>
-          </div>
-          <div class="face-a-face__colonne">
-            <span class="face-a-face__label" id="rival-nom"></span>
-            <span id="rival-score-rival" class="face-a-face__score"></span>
-          </div>
-        </div>
-        <p id="rival-verdict" class="face-a-face__verdict"></p>
-      </div>
       <div id="badges-nouveaux"></div>
       <div class="actions">
         <button id="bouton-rejouer" class="bouton-principal" type="button">Rejouer</button>
