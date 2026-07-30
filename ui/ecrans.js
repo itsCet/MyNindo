@@ -435,13 +435,13 @@ function conclureRun() {
   if (badgesGagnes.length > 0) {
     const titreBadges = document.createElement("p");
     titreBadges.className = "badges-nouveaux__titre";
-    titreBadges.textContent = "Nouveau(x) badge(s) débloqué(s) :";
+    titreBadges.textContent = "Nouveau(x) rouleau(x) débloqué(s) :";
     conteneurBadges.appendChild(titreBadges);
 
     for (const badge of badgesGagnes) {
       const ligne = document.createElement("p");
       ligne.className = "badge-ligne";
-      ligne.textContent = `Badge — ${badge.nom} : ${badge.description}`;
+      ligne.textContent = `Rouleau — ${badge.nom} : ${badge.description}`;
       conteneurBadges.appendChild(ligne);
     }
   }
@@ -464,7 +464,7 @@ function rendreBadges() {
     li.className = `badge-item ${estDebloque ? "badge-item--debloque" : "badge-item--verrouille"}`;
     li.innerHTML = `
       <span class="badge-item__nom">${badge.nom}</span>
-      <span class="badge-item__desc">${estDebloque ? badge.description : "Badge encore verrouillé."}</span>
+      <span class="badge-item__desc">${estDebloque ? badge.description : "Rouleau encore verrouillé."}</span>
     `;
     liste.appendChild(li);
   }
